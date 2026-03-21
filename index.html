@@ -6,30 +6,43 @@
 </head>
 <body>
 
-  <!-- Navbar -->
-  <div class="navbar">
-    <h2>🔒 My Secret Book</h2>
+<!-- Navbar -->
+<div class="navbar">
+  <h2>🔒 SecretBook</h2>
+  <div>
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('about')">About</button>
+    <button onclick="showPage('login')">Login</button>
   </div>
+</div>
 
-  <!-- Main Card -->
-  <div class="container">
-    <h1>Your Private Notes</h1>
+<!-- HOME -->
+<div id="home" class="page">
+  <h1>Welcome to Secret Book 🔐</h1>
+  <p>Your private notes, सुरक्षित और hidden.</p>
+</div>
 
-    <textarea id="secretInput" placeholder="Write your secret..."></textarea>
+<!-- ABOUT -->
+<div id="about" class="page">
+  <h1>About</h1>
+  <p>This app lets you store secrets safely with password protection.</p>
+</div>
 
-    <button onclick="saveSecret()">Save Secret</button>
+<!-- LOGIN -->
+<div id="login" class="page">
+  <h1>Login 🔐</h1>
+  <input type="password" id="passwordInput" placeholder="Enter password">
+  <button onclick="checkPassword()">Login</button>
+</div>
 
-    <h3>Saved Secrets</h3>
-    <ul id="secretList"></ul>
-  </div>
+<!-- APP -->
+<div id="app" class="page">
+  <h1>Your Secrets</h1>
+  <textarea id="secretInput" placeholder="Write your secret..."></textarea>
+  <button onclick="saveSecret()">Save</button>
+  <ul id="secretList"></ul>
+</div>
 
-  <!-- Lock Screen -->
-  <div id="lockScreen">
-    <h2>Enter Password 🔐</h2>
-    <input type="password" id="passwordInput" placeholder="Enter password">
-    <button onclick="checkPassword()">Unlock</button>
-  </div>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
