@@ -182,8 +182,10 @@ textarea {
  .login-bg {
   min-height: 100vh;
 
-  background: url("business-team-members-standing-together-600nw-2509274179.jpg") no-repeat;
+  background-image: url("business-team-members-standing-together-600nw-2509274179.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
   
-  background-size: cover;        /* screen full */
-  background-position: center top; /* important fix */
+  background-size: contain;   /* 👈 सबसे important */
+  background-color: black;    /* खाली जगह cover करेगा */
  }
