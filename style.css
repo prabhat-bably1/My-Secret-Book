@@ -185,7 +185,6 @@ textarea {
   background-image: url("business-team-members-standing-together-600nw-2509274179.jpg");
   background-repeat: no-repeat;
   background-position: center;
-  
-  background-size: contain;   /* 👈 सबसे important */
-  background-color: black;    /* खाली जगह cover करेगा */
+
+  background-size: cover;   /* best look */
  }
