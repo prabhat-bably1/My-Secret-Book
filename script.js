@@ -1,67 +1,48 @@
 let secrets = JSON.parse(localStorage.getItem("secrets")) || [];
+const password = "1234";
 
-function displaySecrets() {
-  let list = document.getElementById("secretList");
-  list.innerHTML = "";
-
-  secrets.forEach((item, index) => {
-    let li = document.createElement("li");
-
-    let text = document.createElement("span");
-    text.textContent = item.text + " (" + item.time + ")";
-
-    let editBtn = document.createElement("button");
-    editBtn.textContent = "✏️";
-    editBtn.onclick = function () {
-      editSecret(index);
-    };
-
-    let delBtn = document.createElement("button");
-    delBtn.textContent = "❌";
-    delBtn.onclick = function () {
-      deleteSecret(index);
-    };
-
-    li.appendChild(text);
-    li.appendChild(editBtn);
-    li.appendChild(delBtn);
-
-    list.appendChild(li);
-  });
+// Page switch
+function showPage(pageId) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById(pageId).classList.add("active");
 }
 
+// Default page
+showPage("home");
+
+// Login
+function checkPassword() {
+  let input = document.getElementById("passwordInput").value;
+
+  if (input === password) {
+    showPage("app");
+    displaySecrets();
+  } else {
+    alert("Wrong Password ❌");
+  }
+}
+
+// Save
 function saveSecret() {
   let input = document.getElementById("secretInput");
 
   if (input.value === "") return;
 
-  let time = new Date().toLocaleString();
-
-  secrets.push({
-    text: input.value,
-    time: time
-  });
-
+  secrets.push(input.value);
   localStorage.setItem("secrets", JSON.stringify(secrets));
 
   input.value = "";
   displaySecrets();
 }
 
-function deleteSecret(index) {
-  secrets.splice(index, 1);
-  localStorage.setItem("secrets", JSON.stringify(secrets));
-  displaySecrets();
+// Display
+function displaySecrets() {
+  let list = document.getElementById("secretList");
+  list.innerHTML = "";
+
+  secrets.forEach((s, i) => {
+    let li = document.createElement("li");
+    li.textContent = s;
+    list.appendChild(li);
+  });
 }
-
-function editSecret(index) {
-  let newText = prompt("Edit your secret:", secrets[index].text);
-
-  if (newText !== null && newText !== "") {
-    secrets[index].text = newText;
-    localStorage.setItem("secrets", JSON.stringify(secrets));
-    displaySecrets();
-  }
-}
-
-displaySecrets();
