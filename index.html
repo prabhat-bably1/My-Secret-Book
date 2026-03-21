@@ -18,11 +18,12 @@
       background: rgba(0,0,0,0.3);
     }
 
-    .navbar button, select {
+    .navbar button {
       margin-left: 10px;
       padding: 8px;
-      border-radius: 5px;
       border: none;
+      border-radius: 5px;
+      cursor: pointer;
     }
 
     .page {
@@ -48,6 +49,17 @@
       padding: 10px;
       border-radius: 10px;
     }
+
+    .lang-bar {
+      margin: 10px;
+      font-size: 14px;
+    }
+
+    .lang-bar span {
+      cursor: pointer;
+      color: #22c55e;
+      margin: 0 5px;
+    }
   </style>
 
 </head>
@@ -60,27 +72,21 @@
     <button onclick="showPage('home')">Home</button>
     <button onclick="showPage('about')">About</button>
     <button onclick="showPage('login')">Login</button>
-
-    <select onchange="changeLanguage(this.value)">
-      <option value="en">English</option>
-      <option value="hi">Hindi</option>
-      <option value="auto">🌍 Other</option>
-    </select>
   </div>
 </div>
 
 <!-- HOME -->
 <div id="home" class="page active">
-  <h1 id="homeTitle">Welcome to Secret Book 🔐</h1>
-  <p id="homeDesc">Your private notes, safe and secure.</p>
+  <h1>Welcome to My Secret Book 🔐</h1>
+  <p>Your private space to keep secrets safe.</p>
 </div>
 
 <!-- ABOUT -->
 <div id="about" class="page">
 
-  <h1 id="aboutTitle">About My Secret Book</h1>
+  <h1 id="aboutTitle"></h1>
 
-  <!-- Language Options -->
+  <!-- Languages -->
   <div class="lang-bar">
     <span onclick="setLang('en')">English</span> |
     <span onclick="setLang('hi')">Hindi</span> |
@@ -90,7 +96,6 @@
     <span onclick="setLang('mr')">Marathi</span>
   </div>
 
-  <!-- About Content -->
   <p id="about1"></p>
   <p id="about2"></p>
   <p id="about3"></p>
@@ -100,9 +105,9 @@
 
 <!-- LOGIN -->
 <div id="login" class="page">
-  <h1 id="loginTitle">Login 🔐</h1>
+  <h1>Login 🔐</h1>
   <input type="password" id="passwordInput" placeholder="Enter password">
-  <button id="loginBtn" onclick="checkPassword()">Login</button>
+  <button onclick="checkPassword()">Login</button>
 </div>
 
 <!-- APP -->
@@ -126,8 +131,6 @@ const password = "1234";
 function showPage(pageId) {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.getElementById(pageId).classList.add("active");
-
-  if(pageId === "about") startTyping();
 }
 
 // Login
@@ -142,7 +145,7 @@ function checkPassword() {
   }
 }
 
-// Save secret
+// Save
 function saveSecret() {
   let input = document.getElementById("secretInput");
 
@@ -167,7 +170,7 @@ function displaySecrets() {
   });
 }
 
-// 🎤 Voice Input
+// Voice input
 function startVoice() {
   let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
   recognition.lang = "en-IN";
@@ -179,57 +182,37 @@ function startVoice() {
   recognition.start();
 }
 
-// ✨ Typing Effect
-let textData = [];
-let index = 0;
-let charIndex = 0;
+// About language
+function setLang(lang) {
 
-function startTyping() {
-  textData = [
-    "My Secret Book is not just a website — it’s a personal space where your secrets stay safe and truly yours.",
-    "In today’s world, everyone has something they cannot say out loud.",
-    "This website does not belong to me alone. The moment you trust it, it becomes yours.",
-    "Simple, secure, and personal — just like a real diary, but smarter."
-  ];
-
-  document.getElementById("aboutTitle").textContent = "About My Secret Book";
-
-  index = 0;
-  charIndex = 0;
-  typeLine();
-}
-
-function typeLine() {
-  if (index >= textData.length) return;
-
-  let current = textData[index];
-  let element = document.getElementById("aboutText" + (index+1));
-
-  if (charIndex < current.length) {
-    element.textContent += current.charAt(charIndex);
-    charIndex++;
-    setTimeout(typeLine, 30);
-  } else {
-    index++;
-    charIndex = 0;
-    setTimeout(typeLine, 500);
+  if (lang === "en") {
+    aboutTitle.textContent = "About My Secret Book";
+    about1.textContent = "My Secret Book is not just a website — it’s a personal space where your secrets stay safe and truly yours.";
+    about2.textContent = "Everyone has something they cannot say out loud.";
+    about3.textContent = "This website does not belong to me alone. Whoever trusts it, owns it.";
+    about4.textContent = "Simple, secure, and personal.";
   }
+
+  else if (lang === "hi") {
+    aboutTitle.textContent = "मेरी सीक्रेट बुक के बारे में";
+    about1.textContent = "यह सिर्फ एक वेबसाइट नहीं है — यह आपकी अपनी जगह है जहाँ आपके राज सुरक्षित रहते हैं।";
+    about2.textContent = "हर किसी के पास कुछ होता है जो वो नहीं कह पाता।";
+    about3.textContent = "यह वेबसाइट सिर्फ मेरी नहीं है, जो इसे अपना समझेगा यह उसकी हो जाएगी।";
+    about4.textContent = "सुरक्षित और व्यक्तिगत।";
+  }
+
+  else if (lang === "od") {
+    aboutTitle.textContent = "ମୋ ସିକ୍ରେଟ ବୁକ ବିଷୟରେ";
+    about1.textContent = "ଏହା ତୁମର ନିଜସ୍ୱ ସ୍ଥାନ ଯେଉଁଠି ରହସ୍ୟ ସୁରକ୍ଷିତ ରହେ।";
+    about2.textContent = "ପ୍ରତ୍ୟେକଙ୍କ ପାଖରେ କିଛି ଅଛି ଯାହା ସେ କହିପାରେ ନାହିଁ।";
+    about3.textContent = "ଏହା ସମସ୍ତଙ୍କର ହେବା ପାଇଁ ତିଆରି।";
+    about4.textContent = "ସରଳ ଏବଂ ସୁରକ୍ଷିତ।";
+  }
+
 }
 
-// 🌍 Language
-function changeLanguage(lang) {
-  if (lang === "hi") {
-    document.getElementById("homeTitle").textContent = "Secret Book में आपका स्वागत है 🔐";
-    document.getElementById("homeDesc").textContent = "आपके निजी नोट्स, सुरक्षित और सिर्फ आपके।";
-  } 
-  else if (lang === "en") {
-    location.reload();
-  } 
-  else {
-    window.location.href =
-      "https://translate.google.com/translate?sl=auto&tl=auto&u=" + window.location.href;
-  }
-}
+// default
+setLang("en");
 
 </script>
 
