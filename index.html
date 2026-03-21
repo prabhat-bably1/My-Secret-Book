@@ -5,20 +5,29 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="lockScreen">
-  <h2>Enter Password 🔐</h2>
-  <input type="password" id="passwordInput" placeholder="Enter password">
-  <button onclick="checkPassword()">Unlock</button>
-</div>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <h2>🔒 My Secret Book</h2>
+  </div>
+
+  <!-- Main Card -->
   <div class="container">
-    <h1>My Secret Book 🔒</h1>
+    <h1>Your Private Notes</h1>
 
     <textarea id="secretInput" placeholder="Write your secret..."></textarea>
 
-    <button onclick="saveSecret()">Save</button>
+    <button onclick="saveSecret()">Save Secret</button>
 
-    <h2>Your Secrets</h2>
+    <h3>Saved Secrets</h3>
     <ul id="secretList"></ul>
+  </div>
+
+  <!-- Lock Screen -->
+  <div id="lockScreen">
+    <h2>Enter Password 🔐</h2>
+    <input type="password" id="passwordInput" placeholder="Enter password">
+    <button onclick="checkPassword()">Unlock</button>
   </div>
 
   <script src="script.js"></script>
