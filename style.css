@@ -1,69 +1,64 @@
-/* BODY */
 body {
     margin: 0;
     display: flex;
-    font-family: Arial, sans-serif;
+    font-family: Arial;
     background: #f5efe6;
 }
 
-/* SIDEBAR */
+/* SIDEBAR AREA */
 .sidebar {
-    width: 220px;
+    width: 150px;
     height: 100vh;
     background: #cbb89d;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding-top: 30px;
+    justify-content: center;
+    gap: 20px;
+    padding-left: 10px;
 }
 
-/* LOGO */
-.logo {
-    font-size: 30px;
-    margin-bottom: 30px;
-}
-
-/* NAV LINKS */
-.sidebar a {
-    width: 70%;
-    text-align: center;
-    margin: 10px 0;
-    padding: 12px;
-    background: #fff;
-    border-radius: 25px;
-    text-decoration: none;
-    color: #333;
+/* RIBBON STYLE 🔥 */
+.ribbon {
+    position: relative;
+    background: linear-gradient(#e8d8b5, #d6c29a);
+    padding: 12px 20px;
     font-weight: bold;
-    transition: 0.3s;
+    cursor: pointer;
+    width: 100px;
+    text-align: center;
+    
+    /* 3D SHADOW */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+/* TRIANGLE CUT (ribbon tail) */
+.ribbon::after {
+    content: "";
+    position: absolute;
+    right: -15px;
+    top: 0;
+    border-top: 22px solid transparent;
+    border-bottom: 22px solid transparent;
+    border-left: 15px solid #d6c29a;
 }
 
 /* HOVER EFFECT */
-.sidebar a:hover {
-    background: #8d6e63;
-    color: white;
-    transform: scale(1.05);
+.ribbon:hover {
+    transform: translateX(10px);
+    background: linear-gradient(#f0e0b8, #cdb07f);
 }
 
-/* MAIN */
+/* MAIN CENTER */
 .main {
     flex: 1;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-/* BIG TITLE 🔥 */
+/* TITLE */
 .title {
     font-size: 50px;
     font-family: cursive;
     color: #5d4037;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-}
-
-/* SUBTITLE */
-.subtitle {
-    margin-top: 10px;
-    font-size: 18px;
-    color: #6d4c41;
 }
