@@ -10,16 +10,16 @@
 /* BODY */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Arial;
     display: flex;
-    background-color: #f5efe6;
+    background: #f5efe6;
 }
 
-/* LEFT NAVBAR */
+/* LEFT SIDEBAR */
 .sidebar {
-    width: 220px;
+    width: 200px;
     height: 100vh;
-    background-color: #cbb89d;
+    background: #cbb89d;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,15 +27,15 @@ body {
 }
 
 .sidebar a {
+    margin: 15px;
+    padding: 10px 20px;
+    background: white;
+    border-radius: 20px;
     text-decoration: none;
     color: black;
-    margin: 15px 0;
-    padding: 10px 20px;
-    background: #eee;
-    border-radius: 20px;
 }
 
-/* MAIN SECTION */
+/* MAIN AREA */
 .main {
     flex: 1;
     display: flex;
@@ -43,38 +43,37 @@ body {
     align-items: center;
 }
 
-/* CONTAINER */
-.book-container {
+/* CONTENT */
+.container {
     text-align: center;
 }
 
-/* TITLE (BOOK KE UPAR) */
-.book-title {
+/* TITLE */
+.title {
     font-size: 30px;
     font-family: cursive;
     color: #5d4037;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
-/* BOOK IMAGE */
-.book-container img {
+/* IMAGE */
+.container img {
     width: 90%;
     max-width: 400px;
 }
 
-/* NEXT BUTTON */
-.next-btn {
-    margin-top: 15px;
+/* BUTTON */
+.btn {
+    margin-top: 20px;
 }
 
-.next-btn button {
+.btn button {
     padding: 10px 25px;
     border: none;
     border-radius: 25px;
-    background-color: #8d6e63;
+    background: #8d6e63;
     color: white;
     font-size: 16px;
-    cursor: pointer;
 }
 
 </style>
@@ -82,24 +81,23 @@ body {
 
 <body>
 
-<!-- LEFT SIDE NAVBAR -->
+<!-- SIDEBAR -->
 <div class="sidebar">
     <a href="#">Home</a>
     <a href="#">About</a>
     <a href="#">Login</a>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- MAIN -->
 <div class="main">
-    <div class="book-container">
+    <div class="container">
 
-        <!-- TITLE -->
-        <div class="book-title">My Secret Book</div>
+        <div class="title">My Secret Book</div>
 
-        <img src="book.png.jpg" alt="Book">
+    
+        <img src="book.png.jpg" alt="book">
 
-        <!-- BUTTON -->
-        <div class="next-btn">
+        <div class="btn">
             <button>Next →</button>
         </div>
 
