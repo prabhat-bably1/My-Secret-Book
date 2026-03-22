@@ -2,79 +2,57 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Secret Book</title>
-<style>
-  body {
-    margin: 0;
-    font-family: 'Georgia', serif;
-    background-color: #fdf6e3;
-  }
-
-  header {
-    text-align: center;
-    padding: 20px 0;
-    position: relative;
-  }
-
-  /* Title on top of the book */
-  .title {
-    font-family: 'Cursive', serif;
-    font-size: 48px;
-    color: #5c3a21;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    margin-bottom: 20px;
-  }
-
-  /* Open book image */
-  .book {
-    position: relative;
-    display: inline-block;
-    width: 500px;
-    height: 250px;
-    background: url('open-book.png') no-repeat center/contain;
-  }
-
-  /* Navigation tabs on the book */
-  .tabs {
-    position: absolute;
-    top: 50px; /* adjust as needed */
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 40px;
-  }
-
-  .tabs a {
-    text-decoration: none;
-    font-size: 20px;
-    color: #5c3a21;
-    background: rgba(255, 248, 220, 0.7);
-    padding: 5px 15px;
-    border-radius: 5px;
-    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
-    transition: 0.3s;
-  }
-
-  .tabs a:hover {
-    background: rgba(255, 248, 220, 1);
-    transform: translateY(-2px);
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <div class="title">My Secret Book</div>
-  <div class="book">
-    <div class="tabs">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Login</a>
-    </div>
-  </div>
-</header>
+<!-- Top Left Menu -->
+<div class="nav">
+    <a href="#">Home</a>
+    <a href="#" onclick="showAbout()">About</a>
+    <a href="#" onclick="showLogin()">Login</a>
+</div>
 
+<!-- Main Book Section -->
+<div class="book-container">
+    <h1>My Secret Book</h1>
+    <img src="book.png" alt="book">
+</div>
+
+<!-- About Section -->
+<div id="aboutBox" class="popup">
+    <p>This is my secret book website 🌟</p>
+
+    <select>
+        <option>Hindi</option>
+        <option>English</option>
+        <option>Punjabi</option>
+        <option>Bengali</option>
+        <option>Gujarati</option>
+        <option>Marathi</option>
+        <option>Tamil</option>
+        <option>Telugu</option>
+        <option>Kannada</option>
+        <option>Malayalam</option>
+        <option>Odia</option>
+        <option>Assamese</option>
+        <option>Urdu</option>
+        <option>Sanskrit</option>
+    </select>
+
+    <button onclick="closeBox()">Close</button>
+</div>
+
+<!-- Login Section -->
+<div id="loginBox" class="popup">
+    <h2>Login</h2>
+    <input type="text" placeholder="Username"><br>
+    <input type="password" placeholder="Password"><br>
+    <button>Login</button>
+    <button onclick="closeBox()">Close</button>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
