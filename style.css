@@ -4,62 +4,68 @@ body {
     background: #f5efe6;
 }
 
-/* NAVBAR */
+/* NAVBAR LEFT SIDE */
 .navbar {
+    position: absolute;
+    top: 20px;
+    left: 20px;   /* LEFT SIDE SHIFT */
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
+    gap: 15px;
 }
 
 /* RIBBON STYLE */
 .nav-item {
     position: relative;
-    padding: 12px 30px;
+    padding: 10px 25px;
     background: linear-gradient(#f0e0b8, #d2b98b);
     font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
-
-    /* shadow */
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 
-/* ribbon tail */
+/* RIBBON SIDES */
 .nav-item::before,
 .nav-item::after {
     content: "";
     position: absolute;
     top: 0;
-    border-top: 22px solid transparent;
-    border-bottom: 22px solid transparent;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
 }
 
 .nav-item::before {
-    left: -15px;
-    border-right: 15px solid #d2b98b;
+    left: -12px;
+    border-right: 12px solid #d2b98b;
 }
 
 .nav-item::after {
-    right: -15px;
-    border-left: 15px solid #d2b98b;
+    right: -12px;
+    border-left: 12px solid #d2b98b;
 }
 
-/* hover */
+/* HOVER */
 .nav-item:hover {
     background: linear-gradient(#e8d8b5, #c5a774);
 }
 
-/* MAIN */
+/* MAIN CENTER */
 .main {
-    text-align: center;
-    margin-top: 80px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* TITLE */
+/* BIG TITLE 🔥 */
 .title {
-    font-size: 50px;
+    font-size: 70px;              /* BADA */
     font-family: cursive;
     color: #5d4037;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    
+    /* stylish effect */
+    letter-spacing: 3px;          /* LAMBA feel */
+    text-shadow: 
+        2px 2px 5px rgba(0,0,0,0.2),
+        0 0 10px rgba(93,64,55,0.2);
 }
