@@ -1,100 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Secret Book</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Secret Book</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background-color: #fdf6e3;
+  }
 
+  header {
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+  }
+
+  /* Title on top of the book */
+  .title {
+    font-family: 'Cursive', serif;
+    font-size: 48px;
+    color: #5c3a21;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+  }
+
+  /* Open book image */
+  .book {
+    position: relative;
+    display: inline-block;
+    width: 500px;
+    height: 250px;
+    background: url('open-book.png') no-repeat center/contain;
+  }
+
+  /* Navigation tabs on the book */
+  .tabs {
+    position: absolute;
+    top: 50px; /* adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 40px;
+  }
+
+  .tabs a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #5c3a21;
+    background: rgba(255, 248, 220, 0.7);
+    padding: 5px 15px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+    transition: 0.3s;
+  }
+
+  .tabs a:hover {
+    background: rgba(255, 248, 220, 1);
+    transform: translateY(-2px);
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  }
+</style>
+</head>
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-  <h2>🔒 SecretBook</h2>
-  <div>
-    <button onclick="showPage('home')">Home</button>
-    <button onclick="showPage('about')">About</button>
-    <button onclick="showPage('login')">Login</button>
-  </div>
-</div>
-
-<!-- HOME -->
-<div id="home" class="page active">
-
-  <div class="hero-bg">
-
-    <div class="overlay">
-
-      <h1 class="title">You are not just living...</h1>
-      <h2 class="subtitle">You are writing your story ✍️</h2>
-
-      <p class="desc">
-        Every emotion you hide, every thought you feel...  
-        deserves to be written somewhere.
-      </p>
-
-      <button onclick="showPage('about')" class="start-btn">
-        Start Writing
-      </button>
-
+<header>
+  <div class="title">My Secret Book</div>
+  <div class="book">
+    <div class="tabs">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Login</a>
     </div>
-
   </div>
+</header>
 
-</div>
-    <button onclick="showPage('about')" class="next-btn">
-      Next ➜
-    </button>
-
-  </div>
-
-</div>
-
-<!-- ABOUT -->
-<div id="about" class="page about-bg">
-
-  <h1 id="aboutTitle"></h1>
-
-  <div class="lang-bar">
-    <span onclick="setLang('en')">English</span>
-    <span onclick="setLang('hi')">Hindi</span>
-    <span onclick="setLang('od')">Odia</span>
-    <span onclick="setLang('ta')">Tamil</span>
-    <span onclick="setLang('te')">Telugu</span>
-    <span onclick="setLang('mr')">Marathi</span>
-    <span onclick="setLang('bn')">Bengali</span>
-    <span onclick="setLang('gu')">Gujarati</span>
-    <span onclick="setLang('pa')">Punjabi</span>
-    <span onclick="setLang('kn')">Kannada</span>
-    <span onclick="setLang('ml')">Malayalam</span>
-  </div>
-
-  <p id="about1"></p>
-  <p id="about2"></p>
-  <p id="about3"></p>
-  <p id="about4"></p>
-
-</div>
-
-<!-- LOGIN -->
-<div id="login" class="page login-bg">
-
-  <div class="login-box">
-    <h2>Login</h2>
-    <input type="text" placeholder="Username"><br><br>
-    <input type="password" placeholder="Password"><br><br>
-    <button>Login</button>
-  </div>
-
-</div>
-
-<!-- APP -->
-<div id="app" class="page">
-  <h2>Your Secrets</h2>
-  <textarea id="secret"></textarea><br><br>
-  <button onclick="save()">Save</button>
-  <ul id="list"></ul>
-</div>
-
-<script src="script.js"></script>
 </body>
 </html>
