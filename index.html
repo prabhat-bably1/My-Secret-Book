@@ -1,33 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Secret Book</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Secret Book</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- SIDEBAR -->
-<div class="sidebar">
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Login</a>
+<!-- TOP BOOK MENU -->
+<div class="menu">
+    <span onclick="goHome()">Home</span>
+    <span onclick="goAbout()">About</span>
+    <span onclick="goLogin()">Login</span>
 </div>
 
-<!-- MAIN -->
-<div class="main">
-    <div class="container">
-
-        <h1 class="title">My Secret Book</h1>
-
-        <!-- ✅ Sahi image use karo -->
-        <img src="open-book.png" alt="book">
-
-        <button onclick="nextPage()">Next →</button>
-
-    </div>
-</div>
+<!-- TITLE -->
+<h1 class="title">My Secret Book</h1>
 
 <script src="script.js"></script>
 </body>
