@@ -14,16 +14,41 @@
     <a href="#" onclick="showLogin()">Login</a>
 </div>
 
-<!-- Main Book Section -->
-<div class="book-container">
-    <h1>My Secret Book</h1>
-    <img src="book.png" alt="book">
+<h1 class="title">My Secret Book</h1>
+
+<!-- Book Wrapper -->
+<div class="book-wrapper">
+    <div class="book" id="book">
+
+        <!-- Page 1 -->
+        <div class="page">
+            <div class="front">Welcome 📖</div>
+            <div class="back">This is Page 2</div>
+        </div>
+
+        <!-- Page 2 -->
+        <div class="page">
+            <div class="front">This is Page 3</div>
+            <div class="back">This is Page 4</div>
+        </div>
+
+        <!-- Page 3 -->
+        <div class="page">
+            <div class="front">This is Page 5</div>
+            <div class="back">The End ❤️</div>
+        </div>
+
+    </div>
 </div>
 
-<!-- About Section -->
+<div class="controls">
+    <button onclick="prevPage()">⬅ Prev</button>
+    <button onclick="nextPage()">Next ➡</button>
+</div>
+
+<!-- About -->
 <div id="aboutBox" class="popup">
     <p>This is my secret book website 🌟</p>
-
     <select>
         <option>Hindi</option>
         <option>English</option>
@@ -40,11 +65,10 @@
         <option>Urdu</option>
         <option>Sanskrit</option>
     </select>
-
     <button onclick="closeBox()">Close</button>
 </div>
 
-<!-- Login Section -->
+<!-- Login -->
 <div id="loginBox" class="popup">
     <h2>Login</h2>
     <input type="text" placeholder="Username"><br>
