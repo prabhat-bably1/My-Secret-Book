@@ -1,65 +1,51 @@
 body {
-    margin: 0;
-    background: #efe7d3;
-    font-family: serif;
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  color: white;
 }
 
-/* Top Left Menu */
-.nav {
-    position: absolute;
-    top: 20px;
-    left: 20px;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background: rgba(0,0,0,0.3);
 }
 
-.nav a {
-    margin-right: 15px;
-    text-decoration: none;
-    color: #4b2e1e;
-    font-weight: bold;
-    font-size: 18px;
+.navbar button {
+  margin-left: 10px;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
 }
 
-/* Title */
-.title {
-    text-align: center;
-    margin-top: 80px;
-    font-family: 'Great Vibes', cursive;
-    font-size: 50px;
-    color: #4b2e1e;
+.page {
+  display: none;
+  padding: 20px;
+  text-align: center;
 }
 
-/* Book Image */
-.book {
-    width: 700px;
-    height: 350px;
-    margin: 30px auto;
-    background: url('https://i.imgur.com/8Km9tLL.png') no-repeat center;
-    background-size: contain;
+.active {
+  display: block;
 }
 
-/* Popup */
-.popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #fff8dc;
-    padding: 20px;
-    border: 2px solid #4b2e1e;
-    border-radius: 10px;
-    text-align: center;
+.lang-bar {
+  margin: 15px;
+  font-size: 14px;
+  line-height: 25px;
 }
 
-.popup input {
-    margin: 10px;
-    padding: 8px;
+.lang-bar span {
+  cursor: pointer;
+  color: #22c55e;
+  margin: 5px;
+  display: inline-block;
 }
 
-.popup button {
-    padding: 8px 12px;
-    background: #4b2e1e;
-    color: white;
-    border: none;
-    cursor: pointer;
+textarea {
+  width: 80%;
+  height: 80px;
+  border-radius: 10px;
+  padding: 10px;
 }
