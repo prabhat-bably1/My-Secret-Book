@@ -1,22 +1,28 @@
-body {
+/* RESET */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     font-family: Arial;
     background: #f5efe6;
 }
 
-/* NAVBAR LEFT SIDE */
+/* NAVBAR LEFT */
 .navbar {
-    position: absolute;
+    position: fixed;
     top: 20px;
-    left: 20px;   /* LEFT SIDE SHIFT */
+    left: 20px;
     display: flex;
     gap: 15px;
 }
 
-/* RIBBON STYLE */
+/* RIBBON */
 .nav-item {
     position: relative;
-    padding: 10px 25px;
+    padding: 12px 30px;
     background: linear-gradient(#f0e0b8, #d2b98b);
     font-weight: bold;
     border-radius: 8px;
@@ -24,48 +30,45 @@ body {
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 
-/* RIBBON SIDES */
+/* SIDES */
 .nav-item::before,
 .nav-item::after {
     content: "";
     position: absolute;
     top: 0;
-    border-top: 20px solid transparent;
-    border-bottom: 20px solid transparent;
+    border-top: 22px solid transparent;
+    border-bottom: 22px solid transparent;
 }
 
 .nav-item::before {
-    left: -12px;
-    border-right: 12px solid #d2b98b;
+    left: -15px;
+    border-right: 15px solid #d2b98b;
 }
 
 .nav-item::after {
-    right: -12px;
-    border-left: 12px solid #d2b98b;
-}
-
-/* HOVER */
-.nav-item:hover {
-    background: linear-gradient(#e8d8b5, #c5a774);
+    right: -15px;
+    border-left: 15px solid #d2b98b;
 }
 
 /* MAIN CENTER */
 .main {
     height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center;  /* horizontal center */
+    align-items: center;      /* vertical center */
 }
 
-/* BIG TITLE 🔥 */
+/* BIG STYLISH TITLE 🔥 */
 .title {
-    font-size: 70px;              /* BADA */
+    font-size: 80px;                 /* BADA */
     font-family: cursive;
     color: #5d4037;
+
+    letter-spacing: 5px;             /* LAMBA */
     
-    /* stylish effect */
-    letter-spacing: 3px;          /* LAMBA feel */
-    text-shadow: 
-        2px 2px 5px rgba(0,0,0,0.2),
-        0 0 10px rgba(93,64,55,0.2);
+    text-shadow:
+        3px 3px 6px rgba(0,0,0,0.2),
+        0 0 15px rgba(93,64,55,0.3);
+
+    transform: scaleX(1.2);          /* LAMBA WIDTH */
 }
