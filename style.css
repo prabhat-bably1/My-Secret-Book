@@ -5,50 +5,73 @@ body {
     text-align: center;
 }
 
-/* MENU BAR */
+/* MENU */
 .menu {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    padding: 20px 0;
+    gap: 15px;
+    padding: 30px 0;
 }
 
-/* BOOK STYLE TABS */
+/* REAL BOOK TABS */
 .tab {
-    background: linear-gradient(#e8d8b5, #d6c29a);
-    padding: 12px 30px;
-    font-weight: bold;
-    border-radius: 8px 8px 0 0;
-    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
-    cursor: pointer;
     position: relative;
+    padding: 12px 30px;
+    background: linear-gradient(to bottom, #f0e0b8, #d2b98b);
+    border-radius: 10px 10px 0 0;
+    font-weight: bold;
+    cursor: pointer;
+    
+    /* 3D SHADOW */
+    box-shadow: 
+        0 4px 0 #b89b6b,
+        0 6px 10px rgba(0,0,0,0.2);
+
+    transition: all 0.2s ease;
 }
 
-/* CURVE EFFECT */
+/* SIDE FOLDS */
 .tab::before,
 .tab::after {
     content: "";
     position: absolute;
-    bottom: 0;
-    width: 15px;
-    height: 15px;
-    background: inherit;
+    bottom: -2px;
+    width: 12px;
+    height: 12px;
+    background: #c9ad7a;
 }
 
 .tab::before {
     left: -10px;
-    border-bottom-right-radius: 15px;
+    border-bottom-right-radius: 10px;
 }
 
 .tab::after {
     right: -10px;
-    border-bottom-left-radius: 15px;
+    border-bottom-left-radius: 10px;
+}
+
+/* HOVER EFFECT 🔥 */
+.tab:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 6px 0 #b89b6b,
+        0 10px 15px rgba(0,0,0,0.3);
+}
+
+/* ACTIVE TAB */
+.tab:active {
+    transform: translateY(2px);
+    box-shadow: 
+        0 2px 0 #b89b6b,
+        0 4px 6px rgba(0,0,0,0.2);
 }
 
 /* TITLE */
 .title {
-    margin-top: 30px;
-    font-size: 32px;
+    margin-top: 40px;
+    font-size: 36px;
     font-family: cursive;
     color: #5d4037;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
