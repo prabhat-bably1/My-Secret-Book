@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: Arial;
-    background: #f5f0e6;
+    background: linear-gradient(to bottom, #f5f0e6, #e8dcc6);
 }
 
 /* NAVBAR */
@@ -26,40 +26,71 @@ body {
 .main {
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;  /* upar le aayega */
-    gap: 60px;
-
-    padding-top: 120px;  /* navbar ke niche set karega */
+    align-items: center;
+    padding-top: 80px;
 }
 
 /* TITLE */
 .title {
-    font-size: 90px;
+    font-size: 75px;
     font-family: cursive;
     color: #5d4037;
+    text-align: center;
     text-shadow: 3px 3px 10px rgba(0,0,0,0.3);
-
-    margin-top: 20px; /* thoda aur upar control */
 }
 
-/* BOOK TEXT (jhulta effect) */
+/* BOOK TEXT ANIMATION */
 .book-text {
     display: block;
-    margin-left: 120px;
     animation: swing 2s infinite;
 }
 
-/* ANIMATION */
 @keyframes swing {
     0% { transform: rotate(0deg); }
-    50% { transform: rotate(5deg); }
+    50% { transform: rotate(4deg); }
     100% { transform: rotate(0deg); }
+}
+
+/* WELCOME */
+.welcome {
+    margin-top: 20px;
+    text-align: center;
+    max-width: 400px;
+}
+
+.welcome h2 {
+    color: #5d4037;
+    margin-bottom: 10px;
+}
+
+.welcome p {
+    color: #6d4c41;
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 /* IMAGE */
 .book-img {
-    width: 250px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    width: 200px;
+    margin-top: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* BUTTON */
+.next-btn {
+    margin-top: 25px;
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    background: #5d4037;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.next-btn:hover {
+    background: #3e2723;
 }
