@@ -4,7 +4,7 @@ body {
     font-family: serif;
 }
 
-/* Nav */
+/* Top Left Menu */
 .nav {
     position: absolute;
     top: 20px;
@@ -16,90 +16,25 @@ body {
     text-decoration: none;
     color: #4b2e1e;
     font-weight: bold;
+    font-size: 18px;
 }
 
 /* Title */
 .title {
     text-align: center;
-    margin-top: 60px;
-    font-family: cursive;
+    margin-top: 80px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 50px;
     color: #4b2e1e;
 }
 
-/* Book Wrapper (shadow) */
-.book-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-}
-
-/* Book */
+/* Book Image */
 .book {
-    position: relative;
-    width: 500px;
-    height: 320px;
-    perspective: 2000px;
-}
-
-/* Page */
-.page {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    transform-origin: left;
-    transform-style: preserve-3d;
-    transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-
-/* Flip effect */
-.page.flipped {
-    transform: rotateY(-180deg);
-}
-
-/* Page sides */
-.front, .back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, #fff8dc, #f5deb3);
-    border: 1px solid #4b2e1e;
-    box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 22px;
-    backface-visibility: hidden;
-}
-
-/* Back side */
-.back {
-    transform: rotateY(180deg);
-}
-
-/* Book spine shadow */
-.book::before {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 100%;
-    left: 50%;
-    background: rgba(0,0,0,0.2);
-    filter: blur(8px);
-}
-
-/* Controls */
-.controls {
-    text-align: center;
-    margin-top: 20px;
-}
-
-button {
-    padding: 10px 15px;
-    background: #4b2e1e;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin: 5px;
+    width: 700px;
+    height: 350px;
+    margin: 30px auto;
+    background: url('https://i.imgur.com/8Km9tLL.png') no-repeat center;
+    background-size: contain;
 }
 
 /* Popup */
@@ -113,4 +48,18 @@ button {
     padding: 20px;
     border: 2px solid #4b2e1e;
     border-radius: 10px;
+    text-align: center;
+}
+
+.popup input {
+    margin: 10px;
+    padding: 8px;
+}
+
+.popup button {
+    padding: 8px 12px;
+    background: #4b2e1e;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
