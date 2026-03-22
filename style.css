@@ -1,59 +1,59 @@
 body {
     margin: 0;
-    display: flex;
     font-family: Arial;
     background: #f5efe6;
 }
 
-/* SIDEBAR AREA */
-.sidebar {
-    width: 150px;
-    height: 100vh;
-    background: #cbb89d;
+/* NAVBAR */
+.navbar {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     gap: 20px;
-    padding-left: 10px;
+    padding: 20px;
 }
 
-/* RIBBON STYLE 🔥 */
-.ribbon {
+/* RIBBON STYLE */
+.nav-item {
     position: relative;
-    background: linear-gradient(#e8d8b5, #d6c29a);
-    padding: 12px 20px;
+    padding: 12px 30px;
+    background: linear-gradient(#f0e0b8, #d2b98b);
     font-weight: bold;
+    border-radius: 8px;
     cursor: pointer;
-    width: 100px;
-    text-align: center;
-    
-    /* 3D SHADOW */
+
+    /* shadow */
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 
-/* TRIANGLE CUT (ribbon tail) */
-.ribbon::after {
+/* ribbon tail */
+.nav-item::before,
+.nav-item::after {
     content: "";
     position: absolute;
-    right: -15px;
     top: 0;
     border-top: 22px solid transparent;
     border-bottom: 22px solid transparent;
-    border-left: 15px solid #d6c29a;
 }
 
-/* HOVER EFFECT */
-.ribbon:hover {
-    transform: translateX(10px);
-    background: linear-gradient(#f0e0b8, #cdb07f);
+.nav-item::before {
+    left: -15px;
+    border-right: 15px solid #d2b98b;
 }
 
-/* MAIN CENTER */
+.nav-item::after {
+    right: -15px;
+    border-left: 15px solid #d2b98b;
+}
+
+/* hover */
+.nav-item:hover {
+    background: linear-gradient(#e8d8b5, #c5a774);
+}
+
+/* MAIN */
 .main {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
+    margin-top: 80px;
 }
 
 /* TITLE */
@@ -61,4 +61,5 @@ body {
     font-size: 50px;
     font-family: cursive;
     color: #5d4037;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
 }
