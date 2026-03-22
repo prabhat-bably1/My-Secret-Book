@@ -1,11 +1,9 @@
-function goHome() {
-    alert("Home clicked");
-}
+let currentPage = 0;
+const pages = document.querySelectorAll(".page");
 
-function goAbout() {
-    alert("About clicked");
-}
-
-function goLogin() {
-    alert("Login clicked");
+function nextPage() {
+    if (currentPage < pages.length) {
+        pages[currentPage].classList.remove("active");
+        currentPage++;
+    }
 }
