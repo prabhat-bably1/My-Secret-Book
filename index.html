@@ -24,21 +24,30 @@
 
 </div>
 <!-- BOOK IMAGE -->
-<div class="book-section">
-    <img src="closed-book.png" class="book-img">
+<div class="book-container">
 
-    <button class="next-btn" onclick="openPage()">Next ➜</button>
-</div>
+    <div class="book" id="book">
 
-<!-- HIDDEN PAGE -->
-<div id="page" class="hidden-page">
-    <h2>Welcome to your Secret World ✨</h2>
-    <p>
-        Start your journey here... <br>
-        Share your thoughts, jokes, shayari and feelings 💛 <br><br>
-        This is your personal space — <br>
-        stay happy and spread happiness ✨
-    </p>
+        <!-- COVER -->
+        <div class="cover">
+            <img src="closed-book.png">
+        </div>
+
+        <!-- PAGE -->
+        <div class="page" id="page">
+            <h2>Welcome to your Secret World ✨</h2>
+            <p>
+                Start your journey here...<br>
+                Share your thoughts, jokes, shayari and feelings 💛<br><br>
+                This is your personal space —<br>
+                stay happy and spread happiness ✨
+            </p>
+        </div>
+
+    </div>
+
+    <button class="next-btn" onclick="openBook()">Next ➜</button>
+
 </div>
 <script src="script.js"></script>
 </body>
