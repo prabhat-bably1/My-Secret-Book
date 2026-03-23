@@ -207,30 +207,24 @@ body {
     border-radius: 8px;
     font-size: 16px;
 }
-/* FULL SCREEN BOOK (HERO STYLE) */
+/* FULL SCREEN BOOK */
 .book-box {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 }
 
-/* IMAGE = FULL SCREEN COVER */
+/* BOOK IMAGE FULL COVER */
 .cover-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;   /* 🔥 full fill */
-
-    border-radius: 0;
-}
-.book-box::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.2); /* halka dark */
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;   /* IMPORTANT: full screen fill */
+  border-radius: 0;    /* no rounded corners */
+  box-shadow: none;    /* remove shadow */
 }
