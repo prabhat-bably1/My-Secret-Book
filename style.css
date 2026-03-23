@@ -92,3 +92,54 @@ body {
     border: none;
     border-radius: 6px;
 }
+.book-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* BOOK 3D */
+.book {
+    width: 200px;
+    height: 260px;
+    position: relative;
+    margin: auto;
+    perspective: 1000px;
+}
+
+/* COVER */
+.cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-origin: left;
+    transition: 1s;
+    z-index: 2;
+}
+
+.cover img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+/* PAGE */
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #fffdf8;
+    padding: 15px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+    transform: rotateY(0deg);
+    transition: 1s;
+    border-radius: 10px;
+}
+
+/* OPEN EFFECT */
+.book.open .cover {
+    transform: rotateY(-160deg);
+}
+
+.book.open .page {
+    transform: rotateY(0deg);
+}
