@@ -111,6 +111,42 @@ select.addEventListener("change", () => {
 loadLanguage();
 
 </script>
+<script>
+const data = {
 
+en: {
+greet: "Hi / Hello Dear ✨",
+text: `My Secret Book is your personal digital space where thoughts become stories and emotions find a safe home. It is designed for anyone who wants to express freely — whether it's your daily feelings, hidden thoughts, jokes, or heartfelt shayari. This book belongs only to you, a place where you can write without fear, without judgment, and without limit.<br><br>
+
+In a world full of noise, My Secret Book gives you silence and comfort. You can capture your memories, share your creativity, and explore your inner world in your own language. This platform is made to feel simple, peaceful, and personal — just like a real diary that understands you.`
+},
+
+hi: {
+greet: "नमस्ते प्रिय ✨",
+text: `My Secret Book आपका व्यक्तिगत डिजिटल स्थान है जहाँ विचार कहानियाँ बनते हैं और भावनाओं को एक सुरक्षित स्थान मिलता है। यह उन लोगों के लिए बनाया गया है जो बिना किसी डर और बिना किसी सीमा के अपने विचार व्यक्त करना चाहते हैं।<br><br>
+
+इस शोर भरी दुनिया में, My Secret Book आपको शांति और सुकून देता है।`
+},
+
+or: {
+greet: "ନମସ୍କାର ପ୍ରିୟ ✨",
+text: `My Secret Book ଆପଣଙ୍କର ବ୍ୟକ୍ତିଗତ ସ୍ଥାନ ଯେଉଁଠାରେ ଆପଣ ଭାବନା ଲେଖି ପାରିବେ।<br><br>ଏହା ଆପଣଙ୍କୁ ଶାନ୍ତି ଦେଇଥାଏ।`
+}
+
+};
+
+function changeLang(lang) {
+document.getElementById("about-text").innerHTML = data[lang].text;
+document.getElementById("greet").innerText = data[lang].greet;
+localStorage.setItem("lang", lang);
+}
+
+function loadLang() {
+let lang = localStorage.getItem("lang") || "en";
+changeLang(lang);
+}
+
+window.onload = loadLang;
+</script>
 </body>
 </html>
