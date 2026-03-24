@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #efe6d8;
+}
+
+/* NAVBAR */
+.navbar {
+  padding: 15px;
+}
+.navbar a {
+  margin-right: 10px;
+  text-decoration: none;
+  background: #d6b98c;
+  padding: 10px 15px;
+  border-radius: 6px;
+  color: black;
+}
+
+/* LOGIN BOX */
+.container {
+  width: 300px;
+  margin: 100px auto;
+  text-align: center;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: #5d4037;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+.switch span {
+  color: blue;
+  cursor: pointer;
+}
