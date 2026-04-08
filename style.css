@@ -115,3 +115,69 @@ body {
   border-radius: 8px;
   font-size: 16px;
 }
+/* NAVBAR UPGRADE */
+.navbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(145deg, #3b2418, #5a3a2a);
+  padding: 15px;
+  border-radius: 10px;
+  color: #f5e6c8;
+}
+
+.nav-left, .nav-right {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar a {
+  color: #f5e6c8;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  color: gold;
+}
+
+/* CENTER BOOK */
+.book-center {
+  position: absolute;
+  left: 50%;
+  top: -15px;
+  transform: translateX(-50%);
+  font-size: 30px;
+}
+
+/* TITLE WRAPPER */
+.title-wrapper {
+  position: relative;
+  text-align: center;
+}
+
+/* HANGING BOOK */
+.mini-book {
+  position: absolute;
+  left: 58%;  /* t ke niche adjust kar sakte ho */
+  top: 70px;
+  font-size: 25px;
+  transform-origin: top center;
+  animation: swing 3s infinite ease-in-out;
+}
+
+/* THREAD */
+.thread {
+  width: 2px;
+  height: 25px;
+  background: #5a3a2a;
+  margin: auto;
+}
+
+/* SWING ANIMATION */
+@keyframes swing {
+  0% { transform: rotate(8deg); }
+  50% { transform: rotate(-8deg); }
+  100% { transform: rotate(8deg); }
+}
