@@ -1,94 +1,833 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Secret Book</title>
-  <link rel="stylesheet" href="style.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;500;600&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --gold: #e3b35f;
+      --gold-soft: #f5d9a2;
+      --brown-1: #2a140d;
+      --brown-2: #4a2619;
+      --brown-3: #6f4228;
+      --cream: #f4e3c3;
+      --light: #fff3da;
+      --shadow: rgba(0,0,0,0.35);
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: 'Cinzel', serif;
+      color: var(--light);
+      background:
+        radial-gradient(circle at 50% 35%, rgba(255, 230, 180, 0.18), transparent 20%),
+        radial-gradient(circle at 20% 20%, rgba(255, 200, 120, 0.08), transparent 20%),
+        radial-gradient(circle at 80% 20%, rgba(255, 200, 120, 0.08), transparent 20%),
+        linear-gradient(180deg, #2a160f 0%, #5a2e1d 18%, #9b643b 42%, #d6b086 58%, #b67f50 74%, #4a2619 100%);
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 50%),
+        linear-gradient(rgba(255,255,255,0.02), rgba(255,255,255,0));
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+    }
+
+    /* ribbon */
+    .top-ribbon-wrap {
+      display: flex;
+      justify-content: center;
+      padding-top: 14px;
+      position: relative;
+      z-index: 20;
+    }
+
+    .top-ribbon {
+      width: min(1180px, calc(100% - 18px));
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      padding: 0 30px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #6a3c25 0%, #3d1f14 100%);
+      border: 2px solid rgba(235, 192, 112, 0.38);
+      box-shadow:
+        0 8px 20px rgba(0,0,0,0.35),
+        inset 0 1px 0 rgba(255,232,191,0.15);
+    }
+
+    .top-ribbon::before,
+    .top-ribbon::after {
+      content: "";
+      position: absolute;
+      top: 14px;
+      width: 80px;
+      height: 56px;
+      background: linear-gradient(180deg, #704229 0%, #452417 100%);
+      border: 2px solid rgba(235, 192, 112, 0.28);
+      z-index: -1;
+    }
+
+    .top-ribbon::before {
+      left: -34px;
+      clip-path: polygon(100% 0, 0 20%, 18% 50%, 0 80%, 100% 100%, 82% 50%);
+      border-radius: 14px 0 0 14px;
+    }
+
+    .top-ribbon::after {
+      right: -34px;
+      clip-path: polygon(0 0, 100% 20%, 82% 50%, 100% 80%, 0 100%, 18% 50%);
+      border-radius: 0 14px 14px 0;
+    }
+
+    .nav-group {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      flex: 1;
+    }
+
+    .nav-group.right {
+      justify-content: flex-end;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--gold-soft);
+      font-size: 1.05rem;
+      transition: 0.28s ease;
+      position: relative;
+      text-shadow: 0 0 10px rgba(255, 220, 150, 0.15);
+    }
+
+    .nav-link:hover {
+      color: #fff7e5;
+      transform: translateY(-1px);
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -6px;
+      width: 0;
+      height: 1.5px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transition: 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-sep {
+      color: rgba(248, 216, 156, 0.58);
+    }
+
+    .book-badge {
+      width: 110px;
+      height: 86px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .book-badge span {
+      font-size: 3rem;
+      animation: badgeFloat 3.5s ease-in-out infinite;
+      filter: drop-shadow(0 0 10px rgba(255, 223, 156, 0.22));
+    }
+
+    .book-badge::after {
+      content: "";
+      position: absolute;
+      bottom: 4px;
+      width: 14px;
+      height: 22px;
+      background: linear-gradient(180deg, #cb2c2c 0%, #7f1010 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 72%, 50% 100%, 0 72%);
+    }
+
+    @keyframes badgeFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+    }
+
+    /* main */
+    .hero {
+      min-height: calc(100vh - 98px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 26px 14px 40px;
+    }
+
+    .hero-inner {
+      width: 100%;
+      max-width: 1250px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .title {
+      margin-top: 16px;
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(3.6rem, 9vw, 7rem);
+      line-height: 0.95;
+      color: #ffdca4;
+      text-shadow:
+        0 0 10px rgba(255, 214, 130, 0.45),
+        0 0 24px rgba(255, 214, 130, 0.25),
+        0 0 50px rgba(255, 214, 130, 0.14);
+      font-weight: 400;
+    }
+
+    .title-divider {
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: #f6cf87;
+    }
+
+    .title-divider .line {
+      width: 92px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #e6ba66, transparent);
+      border-radius: 20px;
+    }
+
+    .title-divider .orn {
+      font-size: 1.7rem;
+      transform: translateY(-2px);
+    }
+
+    .book-stage {
+      position: relative;
+      width: 100%;
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      perspective: 1600px;
+    }
+
+    .glow-floor {
+      position: absolute;
+      bottom: 85px;
+      width: min(430px, 76vw);
+      height: 82px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 208, 110, 0.6) 0%, rgba(255, 208, 110, 0.18) 40%, transparent 72%);
+      filter: blur(18px);
+      animation: glowPulse 2.8s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { transform: scale(1); opacity: 0.85; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    .book-wrap {
+      position: relative;
+      width: min(520px, 84vw);
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform-style: preserve-3d;
+      animation: floating 4s ease-in-out infinite;
+      cursor: pointer;
+      z-index: 5;
+    }
+
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px) rotate(-11deg); }
+      50% { transform: translateY(-18px) rotate(-9deg); }
+    }
+
+    .book {
+      position: relative;
+      width: 100%;
+      transform-style: preserve-3d;
+      transition: transform 1.35s ease;
+      filter:
+        drop-shadow(0 18px 20px rgba(0,0,0,0.38))
+        drop-shadow(0 0 16px rgba(255, 214, 130, 0.12));
+    }
+
+    .book-wrap.flipped .book {
+      transform: rotateY(-165deg);
+    }
+
+    .book-front,
+    .book-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      transform-style: preserve-3d;
+    }
+
+    .book-front img {
+      width: 100%;
+      display: block;
+      object-fit: contain;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .book-back {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: rotateY(180deg);
+    }
+
+    .book-paper {
+      width: 92%;
+      min-height: 420px;
+      border-radius: 16px;
+      padding: 28px 22px;
+      background:
+        linear-gradient(180deg, rgba(255,247,229,0.98) 0%, rgba(246,230,202,0.98) 100%);
+      color: #5f3a28;
+      box-shadow:
+        inset 0 0 0 1px rgba(165,120,78,0.18),
+        inset 0 0 30px rgba(156,120,80,0.08),
+        0 14px 24px rgba(0,0,0,0.18);
+      transform: translateZ(-2px);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+      font-family: Georgia, serif;
+    }
+
+    .paper-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+      color: #8c5738;
+      margin-bottom: 6px;
+    }
+
+    .paper-text {
+      font-size: 1.02rem;
+      line-height: 1.9;
+      color: #6f4934;
+    }
+
+    .paper-sign {
+      margin-top: 8px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      color: #9b603f;
+    }
+
+    .controls {
+      margin-top: 10px;
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      min-width: 116px;
+      height: 48px;
+      border: none;
+      border-radius: 14px;
+      padding: 0 22px;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      color: #fff2d7;
+      background: linear-gradient(180deg, #74452b 0%, #4b281a 100%);
+      border: 1.5px solid rgba(238, 193, 116, 0.28);
+      box-shadow:
+        0 8px 18px rgba(0,0,0,0.22),
+        inset 0 1px 0 rgba(255,237,204,0.14);
+      transition: 0.28s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 12px 24px rgba(0,0,0,0.28),
+        0 0 16px rgba(255, 214, 130, 0.14);
+    }
+
+    /* popup */
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(23, 12, 8, 0.58);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.35s ease;
+      z-index: 100;
+    }
+
+    .popup-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .popup-card {
+      width: min(520px, 95vw);
+      border-radius: 24px;
+      padding: 28px 22px;
+      text-align: center;
+      background:
+        linear-gradient(180deg, rgba(255,248,234,0.98) 0%, rgba(244,227,199,0.98) 100%);
+      color: #5a3726;
+      box-shadow:
+        0 20px 40px rgba(0,0,0,0.35),
+        inset 0 0 0 1px rgba(177,132,87,0.2);
+      transform: scale(0.92) translateY(10px);
+      transition: 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .popup-overlay.show .popup-card {
+      transform: scale(1) translateY(0);
+    }
+
+    .popup-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top, rgba(255,220,160,0.22), transparent 34%);
+      pointer-events: none;
+    }
+
+    .popup-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: #8d5637;
+      margin-bottom: 10px;
+    }
+
+    .popup-text {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: #6d4832;
+      margin-bottom: 18px;
+    }
+
+    .popup-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn.light {
+      color: #6a442f;
+      background: linear-gradient(180deg, #f4dfba 0%, #e6c58d 100%);
+    }
+
+    /* roses */
+    .rose-side {
+      position: absolute;
+      top: 95px;
+      bottom: 70px;
+      width: 180px;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.9;
+    }
+
+    .rose-side.left {
+      left: 0;
+      background:
+        radial-gradient(circle at 28% 18%, rgba(149, 35, 48, 0.96) 0 10%, transparent 12%),
+        radial-gradient(circle at 18% 28%, rgba(106, 25, 35, 0.95) 0 7%, transparent 9%),
+        radial-gradient(circle at 38% 72%, rgba(158, 42, 56, 0.96) 0 9%, transparent 12%),
+        radial-gradient(circle at 16% 84%, rgba(118, 28, 38, 0.95) 0 7%, transparent 9%),
+        linear-gradient(120deg, transparent 34%, rgba(30, 58, 24, 0.86) 35%, transparent 37%),
+        linear-gradient(65deg, transparent 48%, rgba(30, 58, 24, 0.8) 49%, transparent 51%);
+    }
+
+    .rose-side.right {
+      right: 0;
+      background:
+        radial-gradient(circle at 72% 18%, rgba(149, 35, 48, 0.96) 0 10%, transparent 12%),
+        radial-gradient(circle at 82% 30%, rgba(106, 25, 35, 0.95) 0 7%, transparent 9%),
+        radial-gradient(circle at 66% 74%, rgba(158, 42, 56, 0.96) 0 9%, transparent 12%),
+        radial-gradient(circle at 84% 86%, rgba(118, 28, 38, 0.95) 0 7%, transparent 9%),
+        linear-gradient(240deg, transparent 34%, rgba(30, 58, 24, 0.86) 35%, transparent 37%),
+        linear-gradient(300deg, transparent 48%, rgba(30, 58, 24, 0.8) 49%, transparent 51%);
+    }
+
+    /* sparkles */
+    .effects {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 233, 180, 0.95);
+      box-shadow: 0 0 8px rgba(255, 216, 135, 0.7), 0 0 18px rgba(255, 216, 135, 0.35);
+      animation: twinkle linear infinite;
+    }
+
+    .sparkle.star {
+      width: 10px;
+      height: 10px;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .sparkle.star::before,
+    .sparkle.star::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 237, 200, 0.95);
+      border-radius: 40px;
+      box-shadow: 0 0 10px rgba(255, 216, 135, 0.55);
+    }
+
+    .sparkle.star::before {
+      width: 2px;
+      height: 16px;
+    }
+
+    .sparkle.star::after {
+      width: 16px;
+      height: 2px;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.15; transform: translateY(0) scale(0.7); }
+      50% { opacity: 1; transform: translateY(-10px) scale(1); }
+      100% { opacity: 0.2; transform: translateY(-18px) scale(0.75); }
+    }
+
+    .petal {
+      position: absolute;
+      width: 18px;
+      height: 10px;
+      background: linear-gradient(90deg, #dc8792, #bc5967);
+      border-radius: 80% 20% 70% 30%;
+      opacity: 0.75;
+      animation: fall linear infinite;
+      box-shadow: 0 0 10px rgba(255, 145, 165, 0.16);
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-30px) rotate(0deg); opacity: 0; }
+      15% { opacity: 0.85; }
+      100% { transform: translateY(110vh) translateX(50px) rotate(360deg); opacity: 0.2; }
+    }
+
+    @media (max-width: 900px) {
+      .nav-group {
+        gap: 14px;
+      }
+
+      .nav-link {
+        font-size: 0.95rem;
+      }
+
+      .book-badge {
+        width: 84px;
+      }
+
+      .book-badge span {
+        font-size: 2.4rem;
+      }
+
+      .title {
+        font-size: clamp(3rem, 12vw, 5.2rem);
+      }
+
+      .title-divider .line {
+        width: 64px;
+      }
+
+      .book-stage {
+        min-height: 560px;
+      }
+
+      .rose-side {
+        width: 110px;
+        opacity: 0.55;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .top-ribbon-wrap {
+        padding-top: 10px;
+      }
+
+      .top-ribbon {
+        width: calc(100% - 10px);
+        min-height: 72px;
+        padding: 0 12px;
+        border-radius: 16px;
+      }
+
+      .top-ribbon::before,
+      .top-ribbon::after {
+        width: 40px;
+        height: 40px;
+        top: 15px;
+      }
+
+      .top-ribbon::before {
+        left: -14px;
+      }
+
+      .top-ribbon::after {
+        right: -14px;
+      }
+
+      .nav-group {
+        gap: 9px;
+      }
+
+      .nav-link {
+        font-size: 0.78rem;
+      }
+
+      .nav-sep {
+        font-size: 0.75rem;
+      }
+
+      .book-badge {
+        width: 56px;
+        height: 62px;
+      }
+
+      .book-badge span {
+        font-size: 1.8rem;
+      }
+
+      .book-badge::after {
+        width: 10px;
+        height: 16px;
+      }
+
+      .hero {
+        padding: 16px 10px 36px;
+      }
+
+      .title {
+        font-size: clamp(2.6rem, 15vw, 4.2rem);
+        line-height: 0.92;
+      }
+
+      .title-divider {
+        gap: 10px;
+      }
+
+      .title-divider .line {
+        width: 44px;
+      }
+
+      .title-divider .orn {
+        font-size: 1.3rem;
+      }
+
+      .book-stage {
+        min-height: 450px;
+      }
+
+      .book-wrap {
+        width: min(330px, 89vw);
+      }
+
+      .book-paper {
+        min-height: 300px;
+        padding: 20px 14px;
+      }
+
+      .paper-title {
+        font-size: 2rem;
+      }
+
+      .paper-text {
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+
+      .paper-sign {
+        font-size: 1.7rem;
+      }
+
+      .btn {
+        min-width: 96px;
+        height: 44px;
+        font-size: 0.86rem;
+        border-radius: 12px;
+      }
+
+      .popup-title {
+        font-size: 2.3rem;
+      }
+
+      .popup-text {
+        font-size: 0.93rem;
+      }
+
+      .rose-side {
+        width: 65px;
+        opacity: 0.35;
+      }
+
+      .glow-floor {
+        width: min(260px, 72vw);
+        height: 54px;
+        bottom: 88px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="page">
+    <div class="effects" id="effects"></div>
 
-  <!-- Romantic glow particles -->
-  <div class="sparkles">
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span>
-  </div>
+    <div class="rose-side left"></div>
+    <div class="rose-side right"></div>
 
-  <!-- Ribbon Navbar -->
-  <header class="navbar-wrap">
-    <nav class="navbar">
-      <div class="ribbon-left"></div>
-      <div class="ribbon-right"></div>
+    <div class="top-ribbon-wrap">
+      <nav class="top-ribbon">
+        <div class="nav-group">
+          <a href="#" class="nav-link">Home</a>
+          <span class="nav-sep">+</span>
+          <a href="#" class="nav-link">About</a>
+        </div>
 
-      <div class="nav-side nav-left">
-        <a href="/My-Secret-Book/" class="active">Home</a>
-        <a href="/My-Secret-Book/about.html">About</a>
-      </div>
+        <div class="book-badge">
+          <span>📖</span>
+        </div>
 
-      <div class="nav-book">📖</div>
-
-      <div class="nav-side nav-right">
-        <a href="/My-Secret-Book/login.html">Login</a>
-        <a href="#">More</a>
-      </div>
-    </nav>
-  </header>
-
-  <!-- Main Hero -->
-  <main class="hero-section">
-
-    <!-- Title -->
-    <div class="title-area">
-      <h1 class="title">
-        <span class="line1">My Secret</span>
-        <span class="line2">Book</span>
-      </h1>
-
-      <!-- Hanging mini book -->
-      <div class="mini-book-wrap">
-        <div class="mini-thread"></div>
-        <div class="mini-book">📖</div>
-      </div>
+        <div class="nav-group right">
+          <a href="#" class="nav-link">Login</a>
+          <span class="nav-sep">+</span>
+          <a href="#" class="nav-link">More</a>
+        </div>
+      </nav>
     </div>
 
-    <!-- Big Book -->
-    <section class="book-container">
-      <div class="book-scene" onclick="flipBook()">
-        <div class="book" id="book">
+    <section class="hero">
+      <div class="hero-inner">
+        <h1 class="title">My Secret Book</h1>
 
-          <!-- Front Cover -->
-          <div class="book-face book-front">
-            <img src="closed-book.png" alt="Closed Book">
-          </div>
+        <div class="title-divider">
+          <span class="line"></span>
+          <span class="orn">ღ</span>
+          <span class="line"></span>
+        </div>
 
-          <!-- Inside Welcome Page -->
-          <div class="book-face book-back">
-            <div class="welcome-page">
-              <h2>Welcome to<br><span>My Secret Book</span></h2>
-              <p>
-                A beautiful place for your hidden feelings, sweet thoughts,
-                lovely memories, soft romance, shayari, and magical secrets.
-              </p>
-              <div class="welcome-note">Tap again to close the book ✨</div>
+        <div class="book-stage">
+          <div class="glow-floor"></div>
+
+          <div class="book-wrap" id="bookWrap">
+            <div class="book" id="book">
+              <div class="book-front">
+                <img src="book.png" alt="My Secret Book Cover">
+              </div>
+
+              <div class="book-back">
+                <div class="book-paper">
+                  <div class="paper-title">Welcome</div>
+                  <div class="paper-text">
+                    To my secret little world,<br>
+                    where memories glow softly,<br>
+                    feelings stay safe,<br>
+                    and every page hides a beautiful story.
+                  </div>
+                  <div class="paper-text">
+                    Open this book with love,<br>
+                    and let your heart read what words cannot say.
+                  </div>
+                  <div class="paper-sign">With Love ✨</div>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
 
+        <div class="controls">
+          <button class="btn" id="flipBtn">Next ➜</button>
+          <button class="btn" id="noteBtn">Welcome Note</button>
         </div>
       </div>
     </section>
+  </div>
 
-    <!-- Button -->
-    <div class="btn-wrap">
-      <button class="next-btn" onclick="flipBook()">Next ➜</button>
+  <div class="popup-overlay" id="popup">
+    <div class="popup-card">
+      <div class="popup-title">Welcome</div>
+      <div class="popup-text">
+        Welcome to <b>My Secret Book</b> 💖<br><br>
+        This is a soft and magical space where emotions, memories,
+        dreams and hidden feelings can live beautifully.<br><br>
+        May every page feel special, warm and unforgettable.
+      </div>
+      <div class="popup-btns">
+        <button class="btn light" id="closePopup">Close</button>
+        <button class="btn" id="popupFlipBtn">Open Book</button>
+      </div>
     </div>
+  </div>
 
-  </main>
-
-  <script src="script.js"></script>
-</body>
-</html>
+  <script>
+    const effects = document.getElementById("effects");
+    const bookWrap = document.getElementById("bookWrap");
+    const flipBtn = document.getElementById("flipBtn");
+    const noteBtn = document.getElementById("noteBtn");
+    const popup = document.getElementById("popup");
+    const cl
