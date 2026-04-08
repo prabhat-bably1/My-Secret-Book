@@ -1,65 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Secret Book</title>
-<link rel="stylesheet" href="style.css">
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Secret Book</title>
+  <link rel="stylesheet" href="style.css">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;500;600&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-  <div class="nav-left">
-    <a href="/My-Secret-Book/">Home</a>
-    <a href="/My-Secret-Book/about.html">About</a>
+  <!-- Romantic glow particles -->
+  <div class="sparkles">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span>
   </div>
 
-  <div class="book-center">📖</div>
+  <!-- Ribbon Navbar -->
+  <header class="navbar-wrap">
+    <nav class="navbar">
+      <div class="ribbon-left"></div>
+      <div class="ribbon-right"></div>
 
-  <div class="nav-right">
-    <a href="/My-Secret-Book/login.html">Login 🔒</a>
-    <a href="#">More</a>
-  </div>
-</div>
+      <div class="nav-side nav-left">
+        <a href="/My-Secret-Book/" class="active">Home</a>
+        <a href="/My-Secret-Book/about.html">About</a>
+      </div>
 
-<!-- TITLE -->
-<div class="main">
-  <h1 class="title">
-    My Secret <br>
-    <span class="book-text">Book</span>
-  </h1>
-</div>
+      <div class="nav-book">📖</div>
 
-<!-- FULL SCREEN BOOK -->
-<div class="book-container">
-  <div class="book" id="book">
+      <div class="nav-side nav-right">
+        <a href="/My-Secret-Book/login.html">Login</a>
+        <a href="#">More</a>
+      </div>
+    </nav>
+  </header>
 
-    <!-- COVER -->
-    <div class="cover">
-      <img src="closed-book.png" alt="book">
-    </div>
+  <!-- Main Hero -->
+  <main class="hero-section">
 
-    <!-- INSIDE PAGE -->
-    <div class="page">
-      <div class="page-content">
-        <h2>Welcome to your Secret World ✨</h2>
-        <p>
-          Start your journey here... <br>
-          Share your thoughts, jokes, shayari and feelings 💛 <br><br>
-          This is your personal space <br>
-          stay happy and spread happiness ✨
-        </p>
+    <!-- Title -->
+    <div class="title-area">
+      <h1 class="title">
+        <span class="line1">My Secret</span>
+        <span class="line2">Book</span>
+      </h1>
+
+      <!-- Hanging mini book -->
+      <div class="mini-book-wrap">
+        <div class="mini-thread"></div>
+        <div class="mini-book">📖</div>
       </div>
     </div>
 
-  </div>
-</div>
+    <!-- Big Book -->
+    <section class="book-container">
+      <div class="book-scene" onclick="flipBook()">
+        <div class="book" id="book">
 
-<!-- BUTTON -->
-<button class="next-btn" onclick="openBook()">Next ➜</button>
+          <!-- Front Cover -->
+          <div class="book-face book-front">
+            <img src="closed-book.png" alt="Closed Book">
+          </div>
 
-<script src="script.js"></script>
+          <!-- Inside Welcome Page -->
+          <div class="book-face book-back">
+            <div class="welcome-page">
+              <h2>Welcome to<br><span>My Secret Book</span></h2>
+              <p>
+                A beautiful place for your hidden feelings, sweet thoughts,
+                lovely memories, soft romance, shayari, and magical secrets.
+              </p>
+              <div class="welcome-note">Tap again to close the book ✨</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Button -->
+    <div class="btn-wrap">
+      <button class="next-btn" onclick="flipBook()">Next ➜</button>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
