@@ -7,104 +7,83 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="page">
-    <div class="bg-glow"></div>
+
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
     <div class="paper-noise"></div>
 
-    <header class="top-wrap">
-      <div class="ribbon left-roll"></div>
-      <div class="ribbon right-roll"></div>
+    <div class="sparkles" id="sparkles"></div>
+    <div class="petals" id="petals"></div>
 
-      <div class="topbar vintage">
-        <div class="nav nav-left">
-          <a href="#">Home</a>
-          <span>+</span>
-          <a href="#">About</a>
-        </div>
+    <header class="image-navbar">
+      <img src="vintage-navbar.png" alt="Vintage Navbar" class="navbar-image" />
 
-        <div class="mini-book">
-          <div class="mini-page left"></div>
-          <div class="mini-page right"></div>
-          <div class="mini-spine"></div>
-          <div class="mini-lock"></div>
-        </div>
+      <nav class="nav-overlay nav-left">
+        <a href="#">Home</a>
+        <span>+</span>
+        <a href="#">About</a>
+      </nav>
 
-        <div class="nav nav-right">
-          <a href="#">Login</a>
-          <span>+</span>
-          <a href="#">More</a>
-          <span class="arrow">▼</span>
-        </div>
-      </div>
+      <nav class="nav-overlay nav-right">
+        <a href="#">Login</a>
+        <span>+</span>
+        <a href="#">More</a>
+        <span class="arrow">▼</span>
+      </nav>
+
+      <button class="book-center-btn" aria-label="Open book"></button>
     </header>
 
     <main class="hero">
-      <h1 class="title">
-        My Secret<br />Book
-      </h1>
+      <h1 class="title">My Secret Book</h1>
 
-      <div class="book-zone">
+      <div class="title-line">
+        <span></span>
+        <div class="title-heart">❦</div>
+        <span></span>
+      </div>
+
+      <section class="book-scene">
+        <div class="ground-glow"></div>
         <div class="book-float" id="bookFloat">
-          <div class="book-card" id="bookCard">
+          <div class="flip-card" id="flipCard">
+
             <!-- FRONT -->
-            <div class="book-face front">
-              <div class="corner tl"></div>
-              <div class="corner tr"></div>
-              <div class="corner bl"></div>
-              <div class="corner br"></div>
-
-              <div class="strap strap-h"></div>
-              <div class="strap strap-v"></div>
-
-              <div class="buckle buckle-left"></div>
-              <div class="buckle buckle-right"></div>
-              <div class="buckle buckle-top"></div>
-              <div class="buckle buckle-bottom"></div>
-
-              <div class="front-title">
-                <div class="small">TOME OF</div>
-                <div class="big">ARCANE</div>
-                <div class="big">SECRETS</div>
-              </div>
-
-              <div class="sigil">
-                <div class="sigil-star">✶</div>
-              </div>
-
-              <div class="glyph g1">☾</div>
-              <div class="glyph g2">✦</div>
-              <div class="glyph g3">✧</div>
-              <div class="glyph g4">✧</div>
+            <div class="flip-face front-face">
+              <img src="book.png" alt="Arcane Secret Book" class="main-book" />
             </div>
 
             <!-- BACK -->
-            <div class="book-face back">
-              <div class="note-paper">
-                <div class="note-title">Welcome</div>
-                <p>
-                  Welcome to My Secret Book.
-                </p>
-                <p>
-                  Here your thoughts, memories, dreams and untold feelings
-                  can live safely like pages inside a magical diary.
-                </p>
-                <p>
-                  Write freely. Feel deeply. Keep your story close.
-                </p>
-
-                <button class="open-btn">Open My Book ✨</button>
+            <div class="flip-face back-face">
+              <div class="welcome-card">
+                <div class="welcome-inner">
+                  <h2>Welcome</h2>
+                  <p>
+                    Welcome to <strong>My Secret Book</strong>.
+                  </p>
+                  <p>
+                    Yeh tumhari personal magical diary hai jahan tum apne thoughts,
+                    feelings, dreams, memories aur secret writings save kar sakte ho.
+                  </p>
+                  <p>
+                    Yahan har page tumhari kahani ka hissa hai.
+                  </p>
+                  <button class="open-book-btn">Open My Book ✨</button>
+                </div>
               </div>
             </div>
+
           </div>
         </div>
 
-        <div class="shadow-floor"></div>
-      </div>
+        <div class="book-shadow"></div>
+      </section>
 
       <button class="next-btn" id="nextBtn">Next ➜</button>
     </main>
