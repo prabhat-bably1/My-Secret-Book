@@ -12,10 +12,9 @@
     }
 
     :root{
-      --bg1:#f8f0e6;
+      --bg1:#f7efe5;
       --bg2:#ead9c4;
       --maroon:#7c1f19;
-      --maroon-dark:#5b120d;
       --gold:#d2a157;
       --gold-light:#f4ddb1;
       --paper1:#f8efde;
@@ -24,59 +23,63 @@
       --text:#4a2d1a;
     }
 
+    html,body{
+      width:100%;
+      overflow-x:hidden;
+    }
+
     body{
       min-height:100vh;
       font-family: Georgia, "Times New Roman", serif;
-      background:
-        radial-gradient(circle at top, rgba(255,255,255,.55), transparent 24%),
-        linear-gradient(180deg,var(--bg1) 0%, #f1e4d3 45%, var(--bg2) 100%);
       color:var(--text);
-      overflow-x:hidden;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,.45), transparent 22%),
+        linear-gradient(180deg,var(--bg1) 0%, #f1e4d2 45%, var(--bg2) 100%);
     }
 
     .page{
       width:100%;
       min-height:100vh;
-      padding:0 10px 40px;
+      padding:0 0 40px;
     }
 
-    /* ================= TOP NAVBAR ================= */
+    /* ================= NAVBAR ================= */
     .nav-section{
       width:100%;
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
-      margin-top:0;
-      padding-top:0;
+      margin:0;
+      padding:0;
+      line-height:0;
     }
 
     .nav-image-wrap{
-      width:min(1500px, 100%);
+      width:100%;
+      max-width:100%;
+      margin:0;
       position:relative;
-      line-height:0;
+      overflow:hidden;
     }
 
     .nav-image{
       width:100%;
       display:block;
-      margin-top:0;
-      user-select:none;
-      pointer-events:none;
+      margin:0;
+      padding:0;
     }
 
     .nav-overlay{
       position:absolute;
       left:50%;
-      top:49%;
-      transform:translate(-50%,-50%);
+      top:50%;
+      transform:translate(-50%, -50%);
       width:100%;
       display:flex;
       justify-content:center;
       align-items:center;
-      gap:18px;
+      gap:16px;
       flex-wrap:wrap;
-      padding:0 20px;
-      z-index:3;
+      padding:0 12px;
+      z-index:5;
+      line-height:normal;
     }
 
     .nav-overlay a,
@@ -85,22 +88,23 @@
       color:#fff1d2;
       padding:10px 18px;
       border-radius:999px;
-      border:1.6px solid rgba(244,216,169,.65);
-      background:rgba(97,17,12,.16);
+      border:1.5px solid rgba(244,216,169,.75);
+      background:rgba(70, 12, 8, 0.18);
       font-size:1rem;
       letter-spacing:.4px;
       box-shadow:
         inset 0 0 8px rgba(255,255,255,.08),
-        0 4px 10px rgba(0,0,0,.10);
+        0 3px 8px rgba(0,0,0,.12);
       transition:.25s ease;
       cursor:pointer;
       font-family:inherit;
+      backdrop-filter: blur(1px);
     }
 
     .nav-overlay a:hover,
     .more-btn:hover{
       transform:translateY(-2px);
-      background:rgba(255,225,180,.14);
+      background:rgba(255,225,180,.18);
     }
 
     .dropdown{
@@ -118,7 +122,7 @@
       border-radius:16px;
       padding:8px;
       display:none;
-      z-index:20;
+      z-index:30;
       box-shadow:0 12px 22px rgba(0,0,0,.18);
     }
 
@@ -136,17 +140,21 @@
     .hero{
       max-width:1200px;
       margin:8px auto 0;
+      padding:0 12px;
       display:flex;
       flex-direction:column;
       align-items:center;
       text-align:center;
+      position:relative;
+      z-index:2;
     }
 
     .title-box{
       position:relative;
       display:inline-block;
-      margin-top:6px;
+      margin-top:0;
       margin-bottom:24px;
+      background:transparent;
     }
 
     .title-main{
@@ -154,10 +162,11 @@
       color:var(--maroon);
       font-weight:700;
       line-height:.94;
-      letter-spacing:1.5px;
+      letter-spacing:1.6px;
       text-shadow:
         0 2px 0 #fff7ea,
         0 8px 20px rgba(124,31,25,.16);
+      background:transparent;
     }
 
     .secret-part{
@@ -182,6 +191,7 @@
       transform-origin:top center;
       animation:swing 3.2s ease-in-out infinite;
       white-space:nowrap;
+      background:transparent;
     }
 
     .hanging-book-word::before{
@@ -203,14 +213,14 @@
       75%{ transform:translateX(-50%) rotate(-2deg); }
     }
 
-    /* decorative line */
     .title-line-wrap{
-      width:min(700px, 92vw);
-      margin:18px auto 8px;
+      width:min(760px, 94vw);
+      margin:18px auto 0;
       display:flex;
       align-items:center;
       justify-content:center;
       gap:14px;
+      background:transparent;
     }
 
     .title-line{
@@ -242,24 +252,25 @@
       font-size:1.15rem;
       letter-spacing:4px;
       text-shadow:0 1px 0 #fff7e8;
+      background:transparent;
     }
 
-    /* ================= BOOK FLIP ================= */
+    /* ================= BOOK ================= */
     .scene{
-      width:min(500px, 95vw);
-      perspective:2400px;
+      width:min(520px, 96vw);
+      perspective:2200px;
       position:relative;
-      margin-top:10px;
+      margin-top:14px;
     }
 
     .book-glow{
       position:absolute;
       left:50%;
-      bottom:105px;
+      bottom:100px;
       transform:translateX(-50%);
-      width:400px;
+      width:420px;
       height:130px;
-      background:radial-gradient(circle, rgba(255,220,160,.30), transparent 70%);
+      background:radial-gradient(circle, rgba(255,220,160,.28), transparent 70%);
       filter:blur(12px);
       pointer-events:none;
       z-index:0;
@@ -270,10 +281,9 @@
       height:760px;
       position:relative;
       transform-style:preserve-3d;
-      transition:transform 1.35s cubic-bezier(.2,.75,.12,1);
-      filter:drop-shadow(0 22px 30px rgba(0,0,0,.22));
-      z-index:2;
+      transition:transform 1.2s cubic-bezier(.2,.75,.12,1);
       transform-origin:left center;
+      z-index:2;
     }
 
     .flip-card.open{
@@ -284,16 +294,17 @@
       position:absolute;
       inset:0;
       backface-visibility:hidden;
+      -webkit-backface-visibility:hidden;
       border-radius:28px;
       overflow:hidden;
     }
 
     .front{
+      background:transparent;
       display:flex;
       flex-direction:column;
       align-items:center;
       justify-content:flex-start;
-      background:transparent;
     }
 
     .front-book-wrap{
@@ -302,16 +313,16 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding-top:8px;
+      padding-top:10px;
     }
 
     .front-book-wrap img{
       width:100%;
-      max-width:460px;
+      max-width:470px;
       height:auto;
       object-fit:contain;
+      filter:drop-shadow(0 18px 30px rgba(0,0,0,.22));
       animation:floatBook 3.8s ease-in-out infinite;
-      filter:drop-shadow(0 16px 28px rgba(0,0,0,.24));
       user-select:none;
       pointer-events:none;
     }
@@ -325,7 +336,7 @@
       width:100%;
       display:flex;
       justify-content:center;
-      padding-bottom:22px;
+      padding-bottom:24px;
     }
 
     .back{
@@ -336,8 +347,10 @@
       border:5px solid var(--paper-border);
       box-shadow:
         inset 0 0 0 2px rgba(255,255,255,.35),
-        inset 0 0 28px rgba(130,92,43,.10);
+        inset 0 0 28px rgba(130,92,43,.10),
+        0 15px 28px rgba(0,0,0,.18);
       padding:18px;
+      display:block;
     }
 
     .note-page{
@@ -358,13 +371,16 @@
       padding:26px 18px;
       overflow-y:auto;
       text-align:center;
-      scrollbar-width:thin;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
     }
 
     .note-page h2{
       font-size:clamp(1.5rem, 4vw, 2.2rem);
       color:#6f1d16;
       margin-bottom:12px;
+      display:block;
     }
 
     .intro{
@@ -372,6 +388,7 @@
       line-height:1.8;
       color:#6a432d;
       margin-bottom:14px;
+      display:block;
     }
 
     .quote{
@@ -379,6 +396,7 @@
       color:#7b3429;
       line-height:1.8;
       margin:12px 0 18px;
+      display:block;
     }
 
     .spark{
@@ -386,11 +404,13 @@
       color:#8b5d1d;
       margin:8px 0;
       font-size:1.05rem;
+      display:block;
     }
 
     .await{
       color:#6b4427;
       margin-bottom:10px;
+      display:block;
     }
 
     .welcome-title{
@@ -398,6 +418,7 @@
       color:#6e2018;
       font-weight:700;
       margin:8px 0;
+      display:block;
     }
 
     .letter{
@@ -407,6 +428,7 @@
       color:#4a2d1a;
       font-size:1rem;
       margin-top:10px;
+      display:block;
     }
 
     /* ================= BUTTONS ================= */
@@ -414,7 +436,7 @@
       border:none;
       outline:none;
       cursor:pointer;
-      padding:16px 38px;
+      padding:16px 40px;
       border-radius:999px;
       font-size:1.08rem;
       font-weight:700;
@@ -427,7 +449,7 @@
         inset 0 2px 8px rgba(255,255,255,.12);
       transition:.28s ease;
       font-family:inherit;
-      min-width:150px;
+      min-width:160px;
     }
 
     .btn:hover{
@@ -437,6 +459,7 @@
     .btn.secondary{
       background:linear-gradient(180deg,#86602a 0%, #654318 100%);
       margin-top:18px;
+      align-self:center;
     }
 
     /* ================= RESPONSIVE ================= */
@@ -452,25 +475,24 @@
       }
 
       .hero{
-        margin-top:2px;
+        margin-top:4px;
       }
     }
 
     @media (max-width: 600px){
-      .page{
-        padding:0 8px 34px;
-      }
-
       .nav-overlay{
-        top:49%;
         gap:10px;
-        padding:0 12px;
+        padding:0 8px;
       }
 
       .nav-overlay a,
       .more-btn{
         padding:8px 12px;
         font-size:.86rem;
+      }
+
+      .hero{
+        margin-top:0;
       }
 
       .title-box{
@@ -503,7 +525,7 @@
       }
 
       .btn{
-        min-width:140px;
+        min-width:145px;
         padding:15px 32px;
       }
     }
@@ -559,7 +581,7 @@
           <a href="#">Login</a>
 
           <div class="dropdown" id="moreDropdown">
-            <button class="more-btn" id="moreBtn">More</button>
+            <button class="more-btn" id="moreBtn" type="button">More</button>
             <div class="dropdown-menu">
               <a href="#">Shayari</a>
               <a href="#">Jokes</a>
@@ -591,17 +613,15 @@
         <div class="book-glow"></div>
 
         <div class="flip-card" id="flipCard">
-          <!-- FRONT -->
           <div class="face front">
             <div class="front-book-wrap">
               <img src="book.png" alt="My Secret Book">
             </div>
             <div class="front-controls">
-              <button class="btn" id="nextBtn">Next</button>
+              <button class="btn" id="nextBtn" type="button">Next</button>
             </div>
           </div>
 
-          <!-- BACK -->
           <div class="face back">
             <div class="note-page">
               <h2>Welcome to your Secret World ✨</h2>
@@ -641,7 +661,7 @@ Aage barhiye, kyunki yeh kitaab sirf aapki hai...
 
 — My Secret Book</div>
 
-              <button class="btn secondary" id="backBtn">Back</button>
+              <button class="btn secondary" id="backBtn" type="button">Back</button>
             </div>
           </div>
         </div>
@@ -656,20 +676,20 @@ Aage barhiye, kyunki yeh kitaab sirf aapki hai...
     const moreBtn = document.getElementById("moreBtn");
     const moreDropdown = document.getElementById("moreDropdown");
 
-    nextBtn.addEventListener("click", () => {
+    nextBtn.addEventListener("click", function () {
       flipCard.classList.add("open");
     });
 
-    backBtn.addEventListener("click", () => {
+    backBtn.addEventListener("click", function () {
       flipCard.classList.remove("open");
     });
 
-    moreBtn.addEventListener("click", (e) => {
+    moreBtn.addEventListener("click", function (e) {
       e.stopPropagation();
       moreDropdown.classList.toggle("open");
     });
 
-    document.addEventListener("click", (e) => {
+    document.addEventListener("click", function (e) {
       if (!moreDropdown.contains(e.target)) {
         moreDropdown.classList.remove("open");
       }
