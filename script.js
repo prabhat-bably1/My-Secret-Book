@@ -5,7 +5,8 @@ const centerBookBtn = document.querySelector(".book-center-btn");
 const sparkles = document.getElementById("sparkles");
 const petals = document.getElementById("petals");
 
-function toggleFlip() {
+function toggleFlip(e) {
+  if (e) e.stopPropagation();
   flipCard.classList.toggle("flipped");
 }
 
@@ -14,7 +15,8 @@ bookFloat.addEventListener("click", toggleFlip);
 centerBookBtn.addEventListener("click", toggleFlip);
 
 function createSparkles() {
-  const count = 32;
+  sparkles.innerHTML = "";
+  const count = 22;
 
   for (let i = 0; i < count; i++) {
     const dot = document.createElement("span");
@@ -35,7 +37,8 @@ function createSparkles() {
 }
 
 function createPetals() {
-  const count = 8;
+  petals.innerHTML = "";
+  const count = 5;
 
   for (let i = 0; i < count; i++) {
     const petal = document.createElement("span");
