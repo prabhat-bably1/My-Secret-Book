@@ -12,11 +12,11 @@
     }
 
     :root{
-      --bg1:#f7efe5;
-      --bg2:#ead9c4;
-      --maroon:#7c1f19;
-      --gold:#d2a157;
-      --gold-light:#f4ddb1;
+      --page-bg:#efe2d0;
+      --maroon:#7e1f19;
+      --maroon-dark:#5c120d;
+      --gold:#c99547;
+      --gold-light:#f2d8ad;
       --paper1:#f8efde;
       --paper2:#ead8bf;
       --paper-border:#a36f37;
@@ -25,22 +25,21 @@
 
     html,body{
       width:100%;
+      min-height:100%;
       overflow-x:hidden;
+      background:var(--page-bg);
     }
 
     body{
-      min-height:100vh;
       font-family: Georgia, "Times New Roman", serif;
       color:var(--text);
-      background:
-        radial-gradient(circle at top, rgba(255,255,255,.45), transparent 22%),
-        linear-gradient(180deg,var(--bg1) 0%, #f1e4d2 45%, var(--bg2) 100%);
     }
 
     .page{
       width:100%;
       min-height:100vh;
-      padding:0 0 40px;
+      background:var(--page-bg);
+      padding:0 0 50px;
     }
 
     /* ================= NAVBAR ================= */
@@ -48,15 +47,16 @@
       width:100%;
       margin:0;
       padding:0;
+      background:var(--page-bg);
       line-height:0;
     }
 
     .nav-image-wrap{
       width:100%;
-      max-width:100%;
-      margin:0;
       position:relative;
+      margin:0;
       overflow:hidden;
+      background:transparent;
     }
 
     .nav-image{
@@ -68,43 +68,70 @@
 
     .nav-overlay{
       position:absolute;
-      left:50%;
-      top:50%;
-      transform:translate(-50%, -50%);
-      width:100%;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      pointer-events:none;
+    }
+
+    .nav-menu{
+      width:min(78%, 720px);
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      align-items:center;
+      pointer-events:auto;
+      margin-top:8px;
+    }
+
+    .nav-item{
       display:flex;
       justify-content:center;
       align-items:center;
-      gap:16px;
-      flex-wrap:wrap;
-      padding:0 12px;
-      z-index:5;
-      line-height:normal;
     }
 
-    .nav-overlay a,
+    .nav-item.left{
+      justify-content:flex-start;
+      padding-left:10px;
+    }
+
+    .nav-item.right{
+      justify-content:flex-end;
+      padding-right:10px;
+    }
+
+    .nav-item.center-left{
+      transform:translateX(-10px);
+    }
+
+    .nav-item.center-right{
+      transform:translateX(10px);
+    }
+
+    .nav-menu a,
     .more-btn{
       text-decoration:none;
-      color:#fff1d2;
+      color:#fff2d7;
       padding:10px 18px;
       border-radius:999px;
-      border:1.5px solid rgba(244,216,169,.75);
-      background:rgba(70, 12, 8, 0.18);
+      border:1.5px solid rgba(244,216,169,.78);
+      background:rgba(72, 11, 8, 0.16);
       font-size:1rem;
       letter-spacing:.4px;
       box-shadow:
         inset 0 0 8px rgba(255,255,255,.08),
-        0 3px 8px rgba(0,0,0,.12);
+        0 3px 10px rgba(0,0,0,.12);
       transition:.25s ease;
       cursor:pointer;
       font-family:inherit;
       backdrop-filter: blur(1px);
+      white-space:nowrap;
     }
 
-    .nav-overlay a:hover,
+    .nav-menu a:hover,
     .more-btn:hover{
       transform:translateY(-2px);
-      background:rgba(255,225,180,.18);
+      background:rgba(255,225,180,.20);
     }
 
     .dropdown{
@@ -140,68 +167,83 @@
     .hero{
       max-width:1200px;
       margin:8px auto 0;
-      padding:0 12px;
+      padding:0 14px;
       display:flex;
       flex-direction:column;
       align-items:center;
       text-align:center;
-      position:relative;
-      z-index:2;
+      background:transparent;
     }
 
     .title-box{
       position:relative;
       display:inline-block;
-      margin-top:0;
-      margin-bottom:24px;
+      margin-top:8px;
+      margin-bottom:28px;
       background:transparent;
     }
 
     .title-main{
-      font-size:clamp(3rem, 7vw, 6.6rem);
+      font-size:clamp(3.2rem, 7vw, 7rem);
       color:var(--maroon);
       font-weight:700;
-      line-height:.94;
+      line-height:.92;
       letter-spacing:1.6px;
       text-shadow:
         0 2px 0 #fff7ea,
-        0 8px 20px rgba(124,31,25,.16);
+        0 8px 18px rgba(126,31,25,.15),
+        0 0 18px rgba(201,149,71,.10);
       background:transparent;
+      position:relative;
+    }
+
+    .title-main::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:54%;
+      transform:translate(-50%,-50%);
+      width:72%;
+      height:60%;
+      background:radial-gradient(circle, rgba(255,245,226,0.30), transparent 70%);
+      pointer-events:none;
+      z-index:-1;
+      filter:blur(8px);
     }
 
     .secret-part{
       position:relative;
       display:inline-block;
-      padding-right:8px;
+      padding-right:10px;
     }
 
     .hanging-book-word{
       position:absolute;
       left:76%;
       top:100%;
-      margin-top:3px;
+      margin-top:4px;
       transform:translateX(-50%);
-      font-size:clamp(2.3rem, 5.3vw, 4.5rem);
-      color:#8c281f;
+      font-size:clamp(2.3rem, 5.2vw, 4.7rem);
+      color:#8b281f;
       font-weight:700;
       line-height:1;
       text-shadow:
         0 2px 0 #fff0dc,
-        0 6px 16px rgba(0,0,0,.16);
+        0 6px 16px rgba(0,0,0,.16),
+        0 0 10px rgba(201,149,71,.12);
       transform-origin:top center;
       animation:swing 3.2s ease-in-out infinite;
       white-space:nowrap;
-      background:transparent;
     }
 
     .hanging-book-word::before{
       content:"";
       position:absolute;
-      top:-26px;
+      top:-28px;
       left:50%;
       transform:translateX(-50%);
       width:2px;
-      height:26px;
+      height:28px;
       background:linear-gradient(180deg,#b9874c,#6f451f);
       box-shadow:0 0 3px rgba(0,0,0,.15);
     }
@@ -214,63 +256,66 @@
     }
 
     .title-line-wrap{
-      width:min(760px, 94vw);
-      margin:18px auto 0;
+      width:min(780px, 94vw);
+      margin:22px auto 0;
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:14px;
+      gap:16px;
       background:transparent;
     }
 
     .title-line{
       flex:1;
       height:2px;
-      background:linear-gradient(90deg, transparent, #b27a39, #f0d5aa, #b27a39, transparent);
+      background:linear-gradient(90deg, transparent, #b27a39, #f1dab3, #b27a39, transparent);
       position:relative;
     }
 
-    .title-line::before{
-      content:"✦";
+    .title-line.left::before,
+    .title-line.right::before{
+      content:"❦";
       position:absolute;
       top:50%;
       transform:translateY(-50%);
-      color:#8f5d1f;
+      color:#9a6a2c;
       font-size:1rem;
+      text-shadow:0 1px 0 #fff5e3;
     }
 
     .title-line.left::before{
-      right:18px;
+      right:24px;
     }
 
     .title-line.right::before{
-      left:18px;
+      left:24px;
     }
 
     .title-center-ornament{
-      color:#8a5b20;
-      font-size:1.15rem;
-      letter-spacing:4px;
+      color:#9a6a2c;
+      font-size:1.18rem;
+      letter-spacing:5px;
       text-shadow:0 1px 0 #fff7e8;
-      background:transparent;
+      padding:0 4px;
     }
 
     /* ================= BOOK ================= */
     .scene{
-      width:min(520px, 96vw);
+      width:min(530px, 96vw);
       perspective:2200px;
       position:relative;
-      margin-top:14px;
+      margin-top:12px;
+      background:transparent;
     }
 
     .book-glow{
       position:absolute;
       left:50%;
-      bottom:100px;
+      bottom:105px;
       transform:translateX(-50%);
-      width:420px;
+      width:430px;
       height:130px;
-      background:radial-gradient(circle, rgba(255,220,160,.28), transparent 70%);
+      background:radial-gradient(circle, rgba(255,220,160,.22), transparent 70%);
       filter:blur(12px);
       pointer-events:none;
       z-index:0;
@@ -278,7 +323,7 @@
 
     .flip-card{
       width:100%;
-      height:760px;
+      height:770px;
       position:relative;
       transform-style:preserve-3d;
       transition:transform 1.2s cubic-bezier(.2,.75,.12,1);
@@ -313,15 +358,15 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding-top:10px;
+      padding-top:8px;
     }
 
     .front-book-wrap img{
       width:100%;
-      max-width:470px;
+      max-width:480px;
       height:auto;
       object-fit:contain;
-      filter:drop-shadow(0 18px 30px rgba(0,0,0,.22));
+      filter:drop-shadow(0 18px 30px rgba(0,0,0,.20));
       animation:floatBook 3.8s ease-in-out infinite;
       user-select:none;
       pointer-events:none;
@@ -336,7 +381,7 @@
       width:100%;
       display:flex;
       justify-content:center;
-      padding-bottom:24px;
+      padding-bottom:26px;
     }
 
     .back{
@@ -348,7 +393,7 @@
       box-shadow:
         inset 0 0 0 2px rgba(255,255,255,.35),
         inset 0 0 28px rgba(130,92,43,.10),
-        0 15px 28px rgba(0,0,0,.18);
+        0 15px 28px rgba(0,0,0,.16);
       padding:18px;
       display:block;
     }
@@ -380,7 +425,6 @@
       font-size:clamp(1.5rem, 4vw, 2.2rem);
       color:#6f1d16;
       margin-bottom:12px;
-      display:block;
     }
 
     .intro{
@@ -388,7 +432,6 @@
       line-height:1.8;
       color:#6a432d;
       margin-bottom:14px;
-      display:block;
     }
 
     .quote{
@@ -396,7 +439,6 @@
       color:#7b3429;
       line-height:1.8;
       margin:12px 0 18px;
-      display:block;
     }
 
     .spark{
@@ -404,13 +446,11 @@
       color:#8b5d1d;
       margin:8px 0;
       font-size:1.05rem;
-      display:block;
     }
 
     .await{
       color:#6b4427;
       margin-bottom:10px;
-      display:block;
     }
 
     .welcome-title{
@@ -418,7 +458,6 @@
       color:#6e2018;
       font-weight:700;
       margin:8px 0;
-      display:block;
     }
 
     .letter{
@@ -428,7 +467,6 @@
       color:#4a2d1a;
       font-size:1rem;
       margin-top:10px;
-      display:block;
     }
 
     /* ================= BUTTONS ================= */
@@ -436,20 +474,20 @@
       border:none;
       outline:none;
       cursor:pointer;
-      padding:16px 40px;
+      padding:17px 42px;
       border-radius:999px;
-      font-size:1.08rem;
+      font-size:1.1rem;
       font-weight:700;
       letter-spacing:.5px;
       color:#fff3dc;
       background:linear-gradient(180deg,#8b2a20 0%, #651510 100%);
       border:2px solid var(--gold);
       box-shadow:
-        0 10px 18px rgba(0,0,0,.16),
+        0 10px 18px rgba(0,0,0,.14),
         inset 0 2px 8px rgba(255,255,255,.12);
       transition:.28s ease;
       font-family:inherit;
-      min-width:160px;
+      min-width:165px;
     }
 
     .btn:hover{
@@ -464,56 +502,64 @@
 
     /* ================= RESPONSIVE ================= */
     @media (max-width: 900px){
-      .nav-overlay{
-        gap:12px;
+      .nav-menu{
+        width:min(84%, 650px);
       }
 
-      .nav-overlay a,
+      .nav-menu a,
       .more-btn{
         padding:8px 14px;
         font-size:.92rem;
       }
-
-      .hero{
-        margin-top:4px;
-      }
     }
 
     @media (max-width: 600px){
-      .nav-overlay{
-        gap:10px;
-        padding:0 8px;
+      .nav-menu{
+        width:min(88%, 500px);
+        margin-top:6px;
       }
 
-      .nav-overlay a,
+      .nav-item.left{
+        padding-left:6px;
+      }
+
+      .nav-item.right{
+        padding-right:6px;
+      }
+
+      .nav-item.center-left{
+        transform:translateX(-8px);
+      }
+
+      .nav-item.center-right{
+        transform:translateX(8px);
+      }
+
+      .nav-menu a,
       .more-btn{
         padding:8px 12px;
         font-size:.86rem;
       }
 
       .hero{
-        margin-top:0;
-      }
-
-      .title-box{
-        margin-bottom:20px;
+        margin-top:2px;
       }
 
       .hanging-book-word{
         left:77%;
-        font-size:clamp(2rem, 5vw, 3.4rem);
+        font-size:clamp(2rem, 5vw, 3.5rem);
       }
 
       .scene{
-        width:min(460px, 96vw);
+        width:min(470px, 96vw);
       }
 
       .flip-card{
-        height:720px;
+        height:730px;
       }
 
       .front-book-wrap img{
-        max-width:420px;
+        max-width:430px;
       }
 
       .note-page{
@@ -531,18 +577,18 @@
     }
 
     @media (max-width: 420px){
-      .nav-overlay{
-        gap:8px;
+      .nav-menu{
+        width:90%;
       }
 
-      .nav-overlay a,
+      .nav-menu a,
       .more-btn{
         padding:7px 10px;
         font-size:.8rem;
       }
 
       .title-main{
-        font-size:clamp(2.5rem, 7vw, 4rem);
+        font-size:clamp(2.6rem, 7vw, 4.1rem);
       }
 
       .hanging-book-word{
@@ -555,11 +601,11 @@
       }
 
       .flip-card{
-        height:690px;
+        height:700px;
       }
 
       .front-book-wrap img{
-        max-width:390px;
+        max-width:395px;
       }
 
       .btn{
@@ -576,17 +622,20 @@
         <img src="navigationbar.png" alt="Vintage Navigation Bar" class="nav-image">
 
         <div class="nav-overlay">
-          <a href="#">Home</a>
-          <a href="#">About</a>
-          <a href="#">Login</a>
-
-          <div class="dropdown" id="moreDropdown">
-            <button class="more-btn" id="moreBtn" type="button">More</button>
-            <div class="dropdown-menu">
-              <a href="#">Shayari</a>
-              <a href="#">Jokes</a>
-              <a href="#">Feelings</a>
-              <a href="#">Diary</a>
+          <div class="nav-menu">
+            <div class="nav-item left"><a href="#">Home</a></div>
+            <div class="nav-item center-left"><a href="#">About</a></div>
+            <div class="nav-item center-right"><a href="#">Login</a></div>
+            <div class="nav-item right">
+              <div class="dropdown" id="moreDropdown">
+                <button class="more-btn" id="moreBtn" type="button">More</button>
+                <div class="dropdown-menu">
+                  <a href="#">Shayari</a>
+                  <a href="#">Jokes</a>
+                  <a href="#">Feelings</a>
+                  <a href="#">Diary</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -604,7 +653,7 @@
 
         <div class="title-line-wrap">
           <div class="title-line left"></div>
-          <div class="title-center-ornament">✦ ❦ ✦</div>
+          <div class="title-center-ornament">❦ ✦ ❦</div>
           <div class="title-line right"></div>
         </div>
       </div>
