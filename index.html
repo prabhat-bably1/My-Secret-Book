@@ -4,46 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Secret Book</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="page">
-    <div class="bg-overlay"></div>
-    <div class="paper-texture"></div>
-    <div class="sparkles" id="sparkles"></div>
-    <div class="petals" id="petals"></div>
+    <div class="bg-glow"></div>
+    <div class="paper-noise"></div>
 
-    <div class="vines vine-left-top"></div>
-    <div class="vines vine-right-top"></div>
-    <div class="vines vine-left-bottom"></div>
-    <div class="vines vine-right-bottom"></div>
+    <header class="top-wrap">
+      <div class="ribbon left-roll"></div>
+      <div class="ribbon right-roll"></div>
 
-    <div class="rose rose-left-top"></div>
-    <div class="rose rose-left-bottom"></div>
-    <div class="rose rose-right-mid"></div>
-    <div class="rose rose-right-bottom"></div>
-
-    <header class="topbar-wrap">
-      <div class="ribbon left-ribbon"></div>
-      <div class="ribbon right-ribbon"></div>
-
-      <div class="topbar">
+      <div class="topbar vintage">
         <div class="nav nav-left">
           <a href="#">Home</a>
           <span>+</span>
           <a href="#">About</a>
         </div>
 
-        <div class="book-icon-wrap">
-          <div class="book-icon">
-            <div class="book-page left"></div>
-            <div class="book-page right"></div>
-            <div class="book-spine"></div>
-            <div class="bookmark"></div>
-          </div>
+        <div class="mini-book">
+          <div class="mini-page left"></div>
+          <div class="mini-page right"></div>
+          <div class="mini-spine"></div>
+          <div class="mini-lock"></div>
         </div>
 
         <div class="nav nav-right">
@@ -56,52 +44,69 @@
     </header>
 
     <main class="hero">
-      <h1 class="title">My Secret Book</h1>
+      <h1 class="title">
+        My Secret<br />Book
+      </h1>
 
-      <div class="title-line">
-        <span></span>
-        <div class="title-heart">❦</div>
-        <span></span>
-      </div>
+      <div class="book-zone">
+        <div class="book-float" id="bookFloat">
+          <div class="book-card" id="bookCard">
+            <!-- FRONT -->
+            <div class="book-face front">
+              <div class="corner tl"></div>
+              <div class="corner tr"></div>
+              <div class="corner bl"></div>
+              <div class="corner br"></div>
 
-      <div class="book-stage">
-        <div class="ground-glow"></div>
-        <div class="shadow-floor"></div>
+              <div class="strap strap-h"></div>
+              <div class="strap strap-v"></div>
 
-        <div class="magic-book">
-          <div class="gold-corner tl"></div>
-          <div class="gold-corner tr"></div>
-          <div class="gold-corner bl"></div>
-          <div class="gold-corner br"></div>
+              <div class="buckle buckle-left"></div>
+              <div class="buckle buckle-right"></div>
+              <div class="buckle buckle-top"></div>
+              <div class="buckle buckle-bottom"></div>
 
-          <div class="book-strap-horizontal"></div>
-          <div class="book-strap-vertical"></div>
+              <div class="front-title">
+                <div class="small">TOME OF</div>
+                <div class="big">ARCANE</div>
+                <div class="big">SECRETS</div>
+              </div>
 
-          <div class="buckle buckle-left"></div>
-          <div class="buckle buckle-right"></div>
-          <div class="buckle buckle-top"></div>
-          <div class="buckle buckle-bottom"></div>
+              <div class="sigil">
+                <div class="sigil-star">✶</div>
+              </div>
 
-          <div class="book-inner"></div>
+              <div class="glyph g1">☾</div>
+              <div class="glyph g2">✦</div>
+              <div class="glyph g3">✧</div>
+              <div class="glyph g4">✧</div>
+            </div>
 
-          <div class="book-heading">
-            <div class="small">TOME OF</div>
-            <div class="big">ARCANE</div>
-            <div class="big">SECRETS</div>
+            <!-- BACK -->
+            <div class="book-face back">
+              <div class="note-paper">
+                <div class="note-title">Welcome</div>
+                <p>
+                  Welcome to My Secret Book.
+                </p>
+                <p>
+                  Here your thoughts, memories, dreams and untold feelings
+                  can live safely like pages inside a magical diary.
+                </p>
+                <p>
+                  Write freely. Feel deeply. Keep your story close.
+                </p>
+
+                <button class="open-btn">Open My Book ✨</button>
+              </div>
+            </div>
           </div>
-
-          <div class="book-circle">
-            <div class="star">✶</div>
-          </div>
-
-          <div class="book-symbol symbol-1">☾</div>
-          <div class="book-symbol symbol-2">✦</div>
-          <div class="book-symbol symbol-3">✧</div>
-          <div class="book-symbol symbol-4">✧</div>
         </div>
+
+        <div class="shadow-floor"></div>
       </div>
 
-      <button class="next-btn">Next ➜</button>
+      <button class="next-btn" id="nextBtn">Next ➜</button>
     </main>
   </div>
 
