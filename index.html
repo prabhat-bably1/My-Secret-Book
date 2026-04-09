@@ -1,82 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>My Secret Book</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="page">
 
-    <div class="bg-glow glow-1"></div>
-    <div class="bg-glow glow-2"></div>
-    <div class="paper-noise"></div>
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="nav-left">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+    </div>
 
-    <div class="sparkles" id="sparkles"></div>
-    <div class="petals" id="petals"></div>
+    <div class="book-logo">
+      <img src="book.png" alt="book">
+    </div>
 
-    <header class="image-navbar">
-      <img src="vintage-navbar.png" alt="Vintage Navbar" class="navbar-image" />
-      <button class="book-center-btn" aria-label="Open book"></button>
-    </header>
-
-    <main class="hero">
-      <div class="title-wrap">
-        <h1 class="title">
-          <span class="line1">My Secret</span>
-          <span class="line2">Book</span>
-        </h1>
-
-        <div class="title-line">
-          <span></span>
-          <div class="title-heart">❦</div>
-          <span></span>
-        </div>
-      </div>
-
-      <section class="book-scene">
-        <div class="ground-glow"></div>
-
-        <div class="book-float" id="bookFloat">
-          <div class="flip-card" id="flipCard">
-
-            <div class="flip-face front-face">
-              <img src="book.png" alt="Arcane Secret Book" class="main-book" />
-            </div>
-
-            <div class="flip-face back-face">
-              <div class="welcome-card">
-                <div class="welcome-inner">
-                  <h2>Welcome</h2>
-                  <p>Welcome to <strong>My Secret Book</strong>.</p>
-                  <p>
-                    Yeh tumhari personal diary hai jahan tum apne thoughts,
-                    feelings, memories aur secret writings save kar sakte ho.
-                  </p>
-                  <p>
-                    Har page tumhari kahani ka ek hissa hai.
-                  </p>
-                  <button class="open-book-btn">Open My Book ✨</button>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="book-shadow"></div>
-      </section>
-
-      <button class="next-btn" id="nextBtn">Next ➜</button>
-    </main>
+    <div class="nav-right">
+      <a href="#">Login</a>
+      <a href="#">More ▼</a>
+    </div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="overlay"></div>
+
+    <h1>My Secret Book</h1>
+    <button>Next →</button>
+  </section>
+
 </body>
 </html>
