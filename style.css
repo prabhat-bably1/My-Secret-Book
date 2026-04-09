@@ -1,333 +1,183 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-family: "Georgia", serif;
-}
-
 body {
-  background: #1f120c;
+  margin: 0;
+  background: #efe6d8;
+  font-family: sans-serif;
+  overflow-x: hidden;
 }
 
-.romantic-bg {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-
-  /* Main warm parchment background */
-  background:
-    radial-gradient(circle at 50% 40%, rgba(255, 241, 211, 0.95) 0%, rgba(245, 215, 177, 0.88) 22%, rgba(194, 138, 95, 0.42) 55%, rgba(50, 26, 17, 0.88) 100%),
-    linear-gradient(to bottom, #4f2d1f 0%, #d9b18c 35%, #efd6b4 55%, #b07a56 78%, #3c2218 100%);
+/* NAVBAR */
+.navbar {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+}
+.navbar {
+    position: relative;
+    z-index: 1000;
+}
+.navbar button {
+  background: #d6b98c;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
 }
 
-/* Old paper texture */
-.paper-texture {
-  position: absolute;
-  inset: 0;
-  opacity: 0.18;
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      rgba(90, 45, 22, 0.05) 0px,
-      rgba(90, 45, 22, 0.05) 2px,
-      transparent 2px,
-      transparent 6px
-    ),
-    radial-gradient(circle at 20% 30%, rgba(120, 70, 40, 0.10), transparent 25%),
-    radial-gradient(circle at 80% 60%, rgba(120, 70, 40, 0.09), transparent 22%),
-    radial-gradient(circle at 60% 80%, rgba(100, 50, 25, 0.07), transparent 24%);
-  mix-blend-mode: multiply;
+/* TITLE */
+.main {
+  text-align: center;
+}
+.title {
+  font-size: 50px;
+  font-family: cursive;
+  color: #5d4037;
 }
 
-/* Big light glows */
-.light-glow {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(60px);
-  pointer-events: none;
+/* SWING BOOK WORD */
+.book-text {
+  display: inline-block;
+  animation: swing 2s infinite ease-in-out;
+}
+@keyframes swing {
+  0% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg); }
+  100% { transform: rotate(-8deg); }
 }
 
-.glow-1 {
-  width: 340px;
-  height: 340px;
-  top: 20%;
-  left: 25%;
-  background: rgba(255, 239, 210, 0.28);
+/* BOOK NORMAL */
+.book-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+/* BOOK SIZE (FULL LOOK) */
+.book {
+  width: 90vw;
+  height: 65vh;
+  position: relative;
+  perspective: 1500px;
 }
 
-.glow-2 {
-  width: 300px;
-  height: 300px;
-  top: 18%;
-  right: 20%;
-  background: rgba(255, 220, 170, 0.22);
+/* COVER */
+.cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-origin: left;
+  transition: 1s;
+  z-index: 2;
+}
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-.glow-3 {
-  width: 420px;
-  height: 420px;
-  bottom: 8%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255, 210, 140, 0.18);
+/* PAGE */
+.page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #fffdf8;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 1s;
 }
 
-/* Corner shadow leaves feeling */
-.corner {
-  position: absolute;
-  width: 260px;
-  height: 260px;
-  filter: blur(2px);
-  opacity: 0.38;
-  pointer-events: none;
+/* PAGE CONTENT */
+.page-content {
+  text-align: center;
+  margin-top: 50px;
 }
 
-.corner::before,
-.corner::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 30% 25%, rgba(35, 20, 14, 0.65) 0 12%, transparent 13%),
-    radial-gradient(circle at 55% 40%, rgba(35, 20, 14, 0.55) 0 11%, transparent 12%),
-    radial-gradient(circle at 75% 65%, rgba(35, 20, 14, 0.60) 0 10%, transparent 11%),
-    radial-gradient(circle at 45% 75%, rgba(35, 20, 14, 0.45) 0 9%, transparent 10%);
-  transform: rotate(20deg);
+/* OPEN EFFECT */
+.book.open .cover {
+  transform: rotateY(-160deg);
+}
+.book.open .page {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.corner::after {
-  opacity: 0.7;
-  transform: rotate(-18deg) scale(1.05);
+/* NEXT BUTTON */
+.next-btn {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 25px;
+  background: #5d4037;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+}
+/* NAVBAR UPGRADE */
+.navbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(145deg, #3b2418, #5a3a2a);
+  padding: 15px;
+  border-radius: 10px;
+  color: #f5e6c8;
 }
 
-.corner-top-left {
-  top: -40px;
-  left: -20px;
+.nav-left, .nav-right {
+  display: flex;
+  gap: 15px;
 }
 
-.corner-top-right {
-  top: -40px;
-  right: -20px;
-  transform: scaleX(-1);
+.navbar a {
+  color: #f5e6c8;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-.corner-bottom-left {
-  bottom: -40px;
-  left: -20px;
-  transform: scaleY(-1);
+.navbar a:hover {
+  color: gold;
 }
 
-.corner-bottom-right {
-  bottom: -40px;
-  right: -20px;
-  transform: scale(-1);
+/* CENTER BOOK */
+.book-center {
+  position: absolute;
+  left: 50%;
+  top: -15px;
+  transform: translateX(-50%);
+  font-size: 30px;
 }
 
-/* Rose style circles */
-.rose {
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 50% 50%, #ffd1dc 0%, #cc6b84 20%, #9b334f 42%, #5c1f2f 60%, transparent 61%),
-    radial-gradient(circle at 35% 35%, rgba(255, 214, 224, 0.9) 0%, transparent 30%),
-    radial-gradient(circle at 70% 65%, rgba(130, 30, 55, 0.6) 0%, transparent 28%);
-  box-shadow:
-    0 0 30px rgba(255, 166, 190, 0.12),
-    inset 0 0 20px rgba(255, 255, 255, 0.08);
-  opacity: 0.75;
-  filter: blur(0.4px);
+/* TITLE WRAPPER */
+.title-wrapper {
+  position: relative;
+  text-align: center;
 }
 
-.rose::before,
-.rose::after {
-  content: "";
-  position: absolute;
-  background: radial-gradient(circle, rgba(49, 75, 35, 0.75) 0%, rgba(25, 48, 17, 0.9) 60%, transparent 62%);
-  border-radius: 50%;
-  width: 55px;
-  height: 28px;
-  z-index: -1;
+/* HANGING BOOK */
+.mini-book {
+  position: absolute;
+  left: 58%;  /* t ke niche adjust kar sakte ho */
+  top: 70px;
+  font-size: 25px;
+  transform-origin: top center;
+  animation: swing 3s infinite ease-in-out;
 }
 
-.rose::before {
-  left: -12px;
-  bottom: 10px;
-  transform: rotate(-28deg);
+/* THREAD */
+.thread {
+  width: 2px;
+  height: 25px;
+  background: #5a3a2a;
+  margin: auto;
 }
 
-.rose::after {
-  right: -10px;
-  bottom: 18px;
-  transform: rotate(26deg);
-}
-
-.rose-left-top {
-  top: 120px;
-  left: -20px;
-  transform: scale(0.9);
-}
-
-.rose-left-mid {
-  bottom: 140px;
-  left: -25px;
-  transform: scale(1.05);
-}
-
-.rose-right-bottom {
-  bottom: 60px;
-  right: -20px;
-  transform: scale(0.95);
-}
-
-.rose-right-mid {
-  top: 240px;
-  right: -18px;
-  transform: scale(0.82);
-}
-
-/* Magical sparkle layer */
-.sparkles {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    radial-gradient(circle, rgba(255, 245, 210, 0.95) 0 1.2px, transparent 2px),
-    radial-gradient(circle, rgba(255, 228, 160, 0.9) 0 1.5px, transparent 2.2px),
-    radial-gradient(circle, rgba(255, 255, 255, 0.75) 0 1px, transparent 1.8px),
-    radial-gradient(circle, rgba(255, 216, 130, 0.85) 0 2px, transparent 3px);
-  background-size: 180px 180px, 240px 240px, 120px 120px, 300px 300px;
-  background-position: 20px 40px, 80px 120px, 50px 30px, 140px 200px;
-  animation: twinkle 6s linear infinite;
-  opacity: 0.9;
-}
-
-/* Falling petals */
-.petals {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.petals span {
-  position: absolute;
-  display: block;
-  width: 18px;
-  height: 12px;
-  background: linear-gradient(135deg, #f9b6c5, #d8748f, #a44b66);
-  border-radius: 60% 40% 60% 40%;
-  opacity: 0.78;
-  filter: blur(0.2px);
-  animation: fall linear infinite;
-}
-
-.petals span:nth-child(1) {
-  left: 8%;
-  top: -10%;
-  animation-duration: 12s;
-  animation-delay: 0s;
-}
-
-.petals span:nth-child(2) {
-  left: 22%;
-  top: -15%;
-  animation-duration: 15s;
-  animation-delay: 2s;
-}
-
-.petals span:nth-child(3) {
-  left: 40%;
-  top: -8%;
-  animation-duration: 13s;
-  animation-delay: 4s;
-}
-
-.petals span:nth-child(4) {
-  left: 58%;
-  top: -12%;
-  animation-duration: 16s;
-  animation-delay: 1s;
-}
-
-.petals span:nth-child(5) {
-  left: 72%;
-  top: -14%;
-  animation-duration: 14s;
-  animation-delay: 3s;
-}
-
-.petals span:nth-child(6) {
-  left: 84%;
-  top: -10%;
-  animation-duration: 17s;
-  animation-delay: 5s;
-}
-
-.petals span:nth-child(7) {
-  left: 50%;
-  top: -18%;
-  animation-duration: 11s;
-  animation-delay: 6s;
-}
-
-.petals span:nth-child(8) {
-  left: 30%;
-  top: -20%;
-  animation-duration: 18s;
-  animation-delay: 2.5s;
-}
-
-@keyframes fall {
-  0% {
-    transform: translateY(-20px) translateX(0) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.85;
-  }
-  50% {
-    transform: translateY(50vh) translateX(30px) rotate(160deg);
-  }
-  100% {
-    transform: translateY(110vh) translateX(-40px) rotate(320deg);
-    opacity: 0;
-  }
-}
-
-@keyframes twinkle {
-  0%, 100% {
-    opacity: 0.72;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.02);
-  }
-}
-
-/* Mobile fix */
-@media (max-width: 768px) {
-  .rose {
-    width: 90px;
-    height: 90px;
-  }
-
-  .corner {
-    width: 180px;
-    height: 180px;
-  }
-
-  .glow-1,
-  .glow-2,
-  .glow-3 {
-    filter: blur(45px);
-  }
+/* SWING ANIMATION */
+@keyframes swing {
+  0% { transform: rotate(8deg); }
+  50% { transform: rotate(-8deg); }
+  100% { transform: rotate(8deg); }
 }
