@@ -13,14 +13,14 @@
 
     :root{
       --page-bg:#efe2d0;
-      --maroon:#7e1f19;
-      --maroon-dark:#5c120d;
-      --gold:#c99547;
-      --gold-light:#f2d8ad;
-      --paper1:#f8efde;
-      --paper2:#ead8bf;
-      --paper-border:#a36f37;
-      --text:#4a2d1a;
+      --maroon:#7d1f19;
+      --maroon-dark:#5a120d;
+      --gold:#c99648;
+      --gold-light:#f2dbb2;
+      --paper:#fffaf2;
+      --paper-edge:#ead7bc;
+      --paper-border:#b48a57;
+      --text:#4c2d19;
     }
 
     html,body{
@@ -45,123 +45,53 @@
     /* ================= NAVBAR ================= */
     .nav-section{
       width:100%;
-      margin:0;
-      padding:0;
-      background:var(--page-bg);
       line-height:0;
+      background:var(--page-bg);
     }
 
     .nav-image-wrap{
       width:100%;
       position:relative;
-      margin:0;
       overflow:hidden;
-      background:transparent;
     }
 
     .nav-image{
       width:100%;
       display:block;
-      margin:0;
-      padding:0;
     }
 
-    .nav-overlay{
+    .nav-buttons{
       position:absolute;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      pointer-events:none;
+      left:0;
+      right:0;
+      top:52%;
+      transform:translateY(-50%);
+      height:0;
+      z-index:10;
     }
 
-    .nav-menu{
-      width:min(78%, 720px);
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      align-items:center;
-      pointer-events:auto;
-      margin-top:8px;
-    }
-
-    .nav-item{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
-
-    .nav-item.left{
-      justify-content:flex-start;
-      padding-left:10px;
-    }
-
-    .nav-item.right{
-      justify-content:flex-end;
-      padding-right:10px;
-    }
-
-    .nav-item.center-left{
-      transform:translateX(-10px);
-    }
-
-    .nav-item.center-right{
-      transform:translateX(10px);
-    }
-
-    .nav-menu a,
-    .more-btn{
+    .nav-btn{
+      position:absolute;
       text-decoration:none;
-      color:#fff2d7;
-      padding:10px 18px;
+      color:#fff3da;
+      padding:9px 18px;
       border-radius:999px;
-      border:1.5px solid rgba(244,216,169,.78);
-      background:rgba(72, 11, 8, 0.16);
-      font-size:1rem;
+      border:1.5px solid rgba(245,219,175,.78);
+      background:rgba(70,12,8,.17);
+      font-size:.98rem;
       letter-spacing:.4px;
       box-shadow:
         inset 0 0 8px rgba(255,255,255,.08),
         0 3px 10px rgba(0,0,0,.12);
-      transition:.25s ease;
-      cursor:pointer;
       font-family:inherit;
-      backdrop-filter: blur(1px);
       white-space:nowrap;
+      line-height:1;
     }
 
-    .nav-menu a:hover,
-    .more-btn:hover{
-      transform:translateY(-2px);
-      background:rgba(255,225,180,.20);
-    }
-
-    .dropdown{
-      position:relative;
-    }
-
-    .dropdown-menu{
-      position:absolute;
-      top:calc(100% + 10px);
-      left:50%;
-      transform:translateX(-50%);
-      min-width:180px;
-      background:linear-gradient(180deg,#7a211b 0%, #54110c 100%);
-      border:2px solid var(--gold);
-      border-radius:16px;
-      padding:8px;
-      display:none;
-      z-index:30;
-      box-shadow:0 12px 22px rgba(0,0,0,.18);
-    }
-
-    .dropdown.open .dropdown-menu{
-      display:block;
-    }
-
-    .dropdown-menu a{
-      display:block;
-      margin:5px 0;
-      text-align:center;
-    }
+    .nav-btn.home{ left:14%; }
+    .nav-btn.about{ left:37%; transform:translateX(-50%); }
+    .nav-btn.login{ left:60%; transform:translateX(-50%); }
+    .nav-btn.more{ right:13%; }
 
     /* ================= HERO ================= */
     .hero{
@@ -172,15 +102,13 @@
       flex-direction:column;
       align-items:center;
       text-align:center;
-      background:transparent;
     }
 
     .title-box{
       position:relative;
       display:inline-block;
-      margin-top:8px;
+      margin-top:10px;
       margin-bottom:28px;
-      background:transparent;
     }
 
     .title-main{
@@ -191,24 +119,9 @@
       letter-spacing:1.6px;
       text-shadow:
         0 2px 0 #fff7ea,
-        0 8px 18px rgba(126,31,25,.15),
-        0 0 18px rgba(201,149,71,.10);
-      background:transparent;
+        0 7px 18px rgba(125,31,25,.14),
+        0 0 18px rgba(201,150,72,.08);
       position:relative;
-    }
-
-    .title-main::after{
-      content:"";
-      position:absolute;
-      left:50%;
-      top:54%;
-      transform:translate(-50%,-50%);
-      width:72%;
-      height:60%;
-      background:radial-gradient(circle, rgba(255,245,226,0.30), transparent 70%);
-      pointer-events:none;
-      z-index:-1;
-      filter:blur(8px);
     }
 
     .secret-part{
@@ -224,13 +137,12 @@
       margin-top:4px;
       transform:translateX(-50%);
       font-size:clamp(2.3rem, 5.2vw, 4.7rem);
-      color:#8b281f;
+      color:#8a281f;
       font-weight:700;
       line-height:1;
       text-shadow:
         0 2px 0 #fff0dc,
-        0 6px 16px rgba(0,0,0,.16),
-        0 0 10px rgba(201,149,71,.12);
+        0 6px 16px rgba(0,0,0,.16);
       transform-origin:top center;
       animation:swing 3.2s ease-in-out infinite;
       white-space:nowrap;
@@ -245,7 +157,6 @@
       width:2px;
       height:28px;
       background:linear-gradient(180deg,#b9874c,#6f451f);
-      box-shadow:0 0 3px rgba(0,0,0,.15);
     }
 
     @keyframes swing{
@@ -262,7 +173,6 @@
       align-items:center;
       justify-content:center;
       gap:16px;
-      background:transparent;
     }
 
     .title-line{
@@ -280,311 +190,283 @@
       transform:translateY(-50%);
       color:#9a6a2c;
       font-size:1rem;
-      text-shadow:0 1px 0 #fff5e3;
     }
 
-    .title-line.left::before{
-      right:24px;
-    }
-
-    .title-line.right::before{
-      left:24px;
-    }
+    .title-line.left::before{ right:24px; }
+    .title-line.right::before{ left:24px; }
 
     .title-center-ornament{
       color:#9a6a2c;
       font-size:1.18rem;
       letter-spacing:5px;
-      text-shadow:0 1px 0 #fff7e8;
       padding:0 4px;
     }
 
-    /* ================= BOOK ================= */
+    /* ================= BOOK AREA ================= */
     .scene{
-      width:min(530px, 96vw);
-      perspective:2200px;
+      width:min(560px, 96vw);
       position:relative;
-      margin-top:12px;
-      background:transparent;
-    }
-
-    .book-glow{
-      position:absolute;
-      left:50%;
-      bottom:105px;
-      transform:translateX(-50%);
-      width:430px;
-      height:130px;
-      background:radial-gradient(circle, rgba(255,220,160,.22), transparent 70%);
-      filter:blur(12px);
-      pointer-events:none;
-      z-index:0;
-    }
-
-    .flip-card{
-      width:100%;
-      height:770px;
-      position:relative;
-      transform-style:preserve-3d;
-      transition:transform 1.2s cubic-bezier(.2,.75,.12,1);
-      transform-origin:left center;
-      z-index:2;
-    }
-
-    .flip-card.open{
-      transform:rotateY(-180deg);
-    }
-
-    .face{
-      position:absolute;
-      inset:0;
-      backface-visibility:hidden;
-      -webkit-backface-visibility:hidden;
-      border-radius:28px;
-      overflow:hidden;
-    }
-
-    .front{
-      background:transparent;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:flex-start;
-    }
-
-    .front-book-wrap{
-      width:100%;
-      flex:1;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding-top:8px;
-    }
-
-    .front-book-wrap img{
-      width:100%;
-      max-width:480px;
-      height:auto;
-      object-fit:contain;
-      filter:drop-shadow(0 18px 30px rgba(0,0,0,.20));
-      animation:floatBook 3.8s ease-in-out infinite;
-      user-select:none;
-      pointer-events:none;
-    }
-
-    @keyframes floatBook{
-      0%,100%{ transform:translateY(0) rotate(-1deg); }
-      50%{ transform:translateY(-10px) rotate(1deg); }
-    }
-
-    .front-controls{
-      width:100%;
-      display:flex;
-      justify-content:center;
-      padding-bottom:26px;
-    }
-
-    .back{
-      transform:rotateY(180deg);
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,.55), transparent 25%),
-        linear-gradient(180deg,var(--paper1) 0%, var(--paper2) 100%);
-      border:5px solid var(--paper-border);
-      box-shadow:
-        inset 0 0 0 2px rgba(255,255,255,.35),
-        inset 0 0 28px rgba(130,92,43,.10),
-        0 15px 28px rgba(0,0,0,.16);
-      padding:18px;
-      display:block;
-    }
-
-    .note-page{
-      width:100%;
-      height:100%;
-      border-radius:18px;
-      border:2px solid rgba(145,100,55,.28);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,.10)),
-        repeating-linear-gradient(
-          to bottom,
-          rgba(160,120,60,.10) 0px,
-          rgba(160,120,60,.10) 1px,
-          transparent 1px,
-          transparent 31px
-        );
-      box-shadow:inset 0 0 18px rgba(140,95,40,.08);
-      padding:26px 18px;
-      overflow-y:auto;
-      text-align:center;
-      display:flex;
-      flex-direction:column;
-      justify-content:flex-start;
-    }
-
-    .note-page h2{
-      font-size:clamp(1.5rem, 4vw, 2.2rem);
-      color:#6f1d16;
-      margin-bottom:12px;
-    }
-
-    .intro{
-      font-size:1rem;
-      line-height:1.8;
-      color:#6a432d;
-      margin-bottom:14px;
-    }
-
-    .quote{
-      font-style:italic;
-      color:#7b3429;
-      line-height:1.8;
-      margin:12px 0 18px;
-    }
-
-    .spark{
-      letter-spacing:5px;
-      color:#8b5d1d;
-      margin:8px 0;
-      font-size:1.05rem;
-    }
-
-    .await{
-      color:#6b4427;
-      margin-bottom:10px;
-    }
-
-    .welcome-title{
-      font-size:1.35rem;
-      color:#6e2018;
-      font-weight:700;
-      margin:8px 0;
-    }
-
-    .letter{
-      text-align:left;
-      white-space:pre-line;
-      line-height:1.88;
-      color:#4a2d1a;
-      font-size:1rem;
       margin-top:10px;
     }
 
+    .book-stage{
+      position:relative;
+      width:100%;
+      min-height:760px;
+    }
+
+    /* CLOSED BOOK */
+    .closed-view{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      transition:opacity .5s ease, transform .6s ease;
+    }
+
+    .closed-view.hide{
+      opacity:0;
+      transform:scale(.96);
+      pointer-events:none;
+      position:absolute;
+      inset:0;
+    }
+
+    .closed-book-wrap{
+      width:100%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding-top:8px;
+    }
+
+    .closed-book-wrap img{
+      width:100%;
+      max-width:500px;
+      height:auto;
+      display:block;
+      filter:drop-shadow(0 18px 28px rgba(0,0,0,.18));
+    }
+
+    /* OPEN BOOK */
+    .open-view{
+      position:absolute;
+      inset:0;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      opacity:0;
+      pointer-events:none;
+      transform:perspective(1800px) rotateY(-90deg);
+      transform-origin:left center;
+      transition:transform 1s cubic-bezier(.2,.75,.12,1), opacity .45s ease;
+    }
+
+    .open-view.show{
+      opacity:1;
+      pointer-events:auto;
+      transform:perspective(1800px) rotateY(0deg);
+    }
+
+    .open-book{
+      width:min(100%, 540px);
+      min-height:700px;
+      background:
+        linear-gradient(90deg,
+          #d6b892 0%,
+          #efdfc7 3%,
+          #fffaf3 10%,
+          #fffdf9 50%,
+          #fffaf3 90%,
+          #efdfc7 97%,
+          #d6b892 100%);
+      border:4px solid #a97a45;
+      border-radius:20px;
+      box-shadow:
+        0 20px 30px rgba(0,0,0,.16),
+        inset 0 0 0 2px rgba(255,255,255,.35);
+      position:relative;
+      overflow:hidden;
+      margin-top:8px;
+    }
+
+    .open-book::before{
+      content:"";
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:50%;
+      width:14px;
+      transform:translateX(-50%);
+      background:linear-gradient(90deg,
+        rgba(120,80,40,.25),
+        rgba(255,255,255,.35),
+        rgba(120,80,40,.22));
+      box-shadow:
+        inset 0 0 8px rgba(0,0,0,.15),
+        0 0 8px rgba(0,0,0,.05);
+    }
+
+    .pages{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      min-height:700px;
+      position:relative;
+      z-index:2;
+    }
+
+    .page-left,
+    .page-right{
+      padding:28px 20px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,250,240,.96));
+    }
+
+    .page-left{
+      border-right:1px solid rgba(160,120,70,.18);
+    }
+
+    .page-right{
+      border-left:1px solid rgba(160,120,70,.10);
+      text-align:left;
+      overflow-y:auto;
+    }
+
+    .page-title{
+      color:#6f1d16;
+      font-size:1.9rem;
+      margin-bottom:14px;
+      text-align:center;
+    }
+
+    .page-intro{
+      color:#6b432d;
+      line-height:1.8;
+      text-align:center;
+      margin-bottom:18px;
+      font-size:.98rem;
+    }
+
+    .page-quote{
+      color:#7a352a;
+      font-style:italic;
+      line-height:1.8;
+      text-align:center;
+      margin:14px 0 20px;
+    }
+
+    .spark{
+      color:#8b5d1d;
+      letter-spacing:5px;
+      text-align:center;
+      margin:8px 0;
+    }
+
+    .await{
+      text-align:center;
+      color:#6b4427;
+      margin-bottom:14px;
+    }
+
+    .welcome-title{
+      text-align:center;
+      color:#6d2018;
+      font-size:1.35rem;
+      margin:8px 0 14px;
+      font-weight:700;
+    }
+
+    .letter{
+      white-space:pre-line;
+      line-height:1.9;
+      font-size:.98rem;
+      color:#4a2d1a;
+    }
+
     /* ================= BUTTONS ================= */
+    .controls{
+      display:flex;
+      justify-content:center;
+      padding-top:22px;
+    }
+
     .btn{
       border:none;
       outline:none;
       cursor:pointer;
       padding:17px 42px;
       border-radius:999px;
-      font-size:1.1rem;
+      font-size:1.08rem;
       font-weight:700;
-      letter-spacing:.5px;
       color:#fff3dc;
       background:linear-gradient(180deg,#8b2a20 0%, #651510 100%);
       border:2px solid var(--gold);
       box-shadow:
         0 10px 18px rgba(0,0,0,.14),
         inset 0 2px 8px rgba(255,255,255,.12);
-      transition:.28s ease;
       font-family:inherit;
       min-width:165px;
     }
 
-    .btn:hover{
-      transform:translateY(-3px) scale(1.02);
-    }
-
     .btn.secondary{
       background:linear-gradient(180deg,#86602a 0%, #654318 100%);
-      margin-top:18px;
-      align-self:center;
+      margin-top:20px;
+      display:block;
+      margin-left:auto;
+      margin-right:auto;
     }
 
     /* ================= RESPONSIVE ================= */
     @media (max-width: 900px){
-      .nav-menu{
-        width:min(84%, 650px);
-      }
-
-      .nav-menu a,
-      .more-btn{
+      .nav-btn{
+        font-size:.9rem;
         padding:8px 14px;
-        font-size:.92rem;
       }
     }
 
     @media (max-width: 600px){
-      .nav-menu{
-        width:min(88%, 500px);
-        margin-top:6px;
-      }
-
-      .nav-item.left{
-        padding-left:6px;
-      }
-
-      .nav-item.right{
-        padding-right:6px;
-      }
-
-      .nav-item.center-left{
-        transform:translateX(-8px);
-      }
-
-      .nav-item.center-right{
-        transform:translateX(8px);
-      }
-
-      .nav-menu a,
-      .more-btn{
-        padding:8px 12px;
+      .nav-btn{
         font-size:.86rem;
+        padding:7px 12px;
       }
 
-      .hero{
-        margin-top:2px;
-      }
+      .nav-btn.home{ left:11%; }
+      .nav-btn.about{ left:40%; }
+      .nav-btn.login{ left:60%; }
+      .nav-btn.more{ right:10%; }
 
       .hanging-book-word{
         left:77%;
         font-size:clamp(2rem, 5vw, 3.5rem);
       }
 
-      .scene{
-        width:min(470px, 96vw);
-      }
-
-      .flip-card{
-        height:730px;
-      }
-
-      .front-book-wrap img{
+      .closed-book-wrap img{
         max-width:430px;
       }
 
-      .note-page{
-        padding:20px 14px;
+      .open-book{
+        min-height:760px;
       }
 
-      .letter{
-        font-size:.95rem;
+      .pages{
+        grid-template-columns:1fr;
+        min-height:auto;
       }
 
-      .btn{
-        min-width:145px;
-        padding:15px 32px;
+      .open-book::before{
+        display:none;
+      }
+
+      .page-left{
+        border-right:none;
+        border-bottom:1px solid rgba(160,120,70,.18);
       }
     }
 
     @media (max-width: 420px){
-      .nav-menu{
-        width:90%;
-      }
-
-      .nav-menu a,
-      .more-btn{
-        padding:7px 10px;
+      .nav-btn{
         font-size:.8rem;
+        padding:7px 10px;
       }
 
       .title-main{
@@ -593,24 +475,20 @@
 
       .hanging-book-word{
         left:78%;
-        margin-top:1px;
       }
 
-      .scene{
-        width:96vw;
-      }
-
-      .flip-card{
-        height:700px;
-      }
-
-      .front-book-wrap img{
-        max-width:395px;
+      .closed-book-wrap img{
+        max-width:390px;
       }
 
       .btn{
-        min-width:132px;
-        font-size:1rem;
+        min-width:135px;
+        padding:15px 30px;
+      }
+
+      .page-left,
+      .page-right{
+        padding:22px 14px;
       }
     }
   </style>
@@ -621,23 +499,11 @@
       <div class="nav-image-wrap">
         <img src="navigationbar.png" alt="Vintage Navigation Bar" class="nav-image">
 
-        <div class="nav-overlay">
-          <div class="nav-menu">
-            <div class="nav-item left"><a href="#">Home</a></div>
-            <div class="nav-item center-left"><a href="#">About</a></div>
-            <div class="nav-item center-right"><a href="#">Login</a></div>
-            <div class="nav-item right">
-              <div class="dropdown" id="moreDropdown">
-                <button class="more-btn" id="moreBtn" type="button">More</button>
-                <div class="dropdown-menu">
-                  <a href="#">Shayari</a>
-                  <a href="#">Jokes</a>
-                  <a href="#">Feelings</a>
-                  <a href="#">Diary</a>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="nav-buttons">
+          <a href="#" class="nav-btn home">Home</a>
+          <a href="#" class="nav-btn about">About</a>
+          <a href="#" class="nav-btn login">Login</a>
+          <a href="#" class="nav-btn more">More</a>
         </div>
       </div>
     </div>
@@ -659,41 +525,46 @@
       </div>
 
       <div class="scene">
-        <div class="book-glow"></div>
-
-        <div class="flip-card" id="flipCard">
-          <div class="face front">
-            <div class="front-book-wrap">
-              <img src="book.png" alt="My Secret Book">
+        <div class="book-stage">
+          <!-- CLOSED BOOK -->
+          <div class="closed-view" id="closedView">
+            <div class="closed-book-wrap">
+              <img src="book.png" alt="Closed Secret Book">
             </div>
-            <div class="front-controls">
+
+            <div class="controls">
               <button class="btn" id="nextBtn" type="button">Next</button>
             </div>
           </div>
 
-          <div class="face back">
-            <div class="note-page">
-              <h2>Welcome to your Secret World ✨</h2>
+          <!-- OPEN BOOK -->
+          <div class="open-view" id="openView">
+            <div class="open-book">
+              <div class="pages">
+                <div class="page-left">
+                  <div class="page-title">Welcome to your Secret World ✨</div>
 
-              <div class="intro">
-                Start your journey here<br>
-                Share your thoughts, jokes, shayari and feelings 💛<br>
-                This is your personal space<br>
-                stay happy and spread happiness ✨
-              </div>
+                  <div class="page-intro">
+                    Start your journey here<br>
+                    Share your thoughts, jokes, shayari and feelings 💛<br>
+                    This is your personal space<br>
+                    stay happy and spread happiness ✨
+                  </div>
 
-              <div class="quote">
-                “Every page holds a secret,<br>
-                every word a mystery...”
-              </div>
+                  <div class="page-quote">
+                    “Every page holds a secret,<br>
+                    every word a mystery...”
+                  </div>
 
-              <div class="spark">✦ ✦ ✦</div>
-              <div class="await">The secrets await...</div>
-              <div class="spark">✦</div>
-              <div class="welcome-title">Welcome Note</div>
-              <div class="spark">✦</div>
+                  <div class="spark">✦ ✦ ✦</div>
+                  <div class="await">The secrets await...</div>
+                  <div class="spark">✦</div>
+                  <div class="welcome-title">Welcome Note</div>
+                  <div class="spark">✦</div>
+                </div>
 
-              <div class="letter">Pyare dost,
+                <div class="page-right">
+                  <div class="letter">Pyare dost,
 
 Is raz ki kitaab mein aapka dil se swaagat hai.
 
@@ -710,7 +581,9 @@ Aage barhiye, kyunki yeh kitaab sirf aapki hai...
 
 — My Secret Book</div>
 
-              <button class="btn secondary" id="backBtn" type="button">Back</button>
+                  <button class="btn secondary" id="backBtn" type="button">Back</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -719,29 +592,23 @@ Aage barhiye, kyunki yeh kitaab sirf aapki hai...
   </div>
 
   <script>
-    const flipCard = document.getElementById("flipCard");
     const nextBtn = document.getElementById("nextBtn");
     const backBtn = document.getElementById("backBtn");
-    const moreBtn = document.getElementById("moreBtn");
-    const moreDropdown = document.getElementById("moreDropdown");
+    const closedView = document.getElementById("closedView");
+    const openView = document.getElementById("openView");
 
     nextBtn.addEventListener("click", function () {
-      flipCard.classList.add("open");
+      closedView.classList.add("hide");
+      setTimeout(() => {
+        openView.classList.add("show");
+      }, 180);
     });
 
     backBtn.addEventListener("click", function () {
-      flipCard.classList.remove("open");
-    });
-
-    moreBtn.addEventListener("click", function (e) {
-      e.stopPropagation();
-      moreDropdown.classList.toggle("open");
-    });
-
-    document.addEventListener("click", function (e) {
-      if (!moreDropdown.contains(e.target)) {
-        moreDropdown.classList.remove("open");
-      }
+      openView.classList.remove("show");
+      setTimeout(() => {
+        closedView.classList.remove("hide");
+      }, 350);
     });
   </script>
 </body>
