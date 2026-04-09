@@ -1,7 +1,6 @@
 body {
   margin: 0;
   font-family: 'Georgia', serif;
-  overflow: hidden;
 }
 
 /* NAVBAR */
@@ -10,8 +9,8 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 20px 50px;
-  color: gold;
   z-index: 10;
 }
 
@@ -20,16 +19,17 @@ body {
   text-decoration: none;
   margin: 0 15px;
   font-weight: bold;
+  font-size: 18px;
 }
 
-.logo {
-  font-size: 40px;
+.logo img {
+  width: 90px;
 }
 
 /* HERO */
 .hero {
   height: 100vh;
-  background: url('your-image.jpg') no-repeat center/cover;
+  background: url('book.png') no-repeat center/cover;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,7 +58,7 @@ body {
 }
 
 .content p {
-  color: #fff;
+  color: white;
   font-size: 20px;
 }
 
@@ -96,7 +96,7 @@ button:hover {
   animation-direction: reverse;
 }
 
-/* ANIMATIONS */
+/* ANIMATION */
 @keyframes move {
   from { transform: translateY(0); }
   to { transform: translateY(-100px); }
