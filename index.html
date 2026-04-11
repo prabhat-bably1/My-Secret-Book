@@ -18,17 +18,18 @@
 
     :root{
       --cream:#e8d9c2;
-      --cream-soft:#efe4d2;
+      --cream-soft:#f1e7d7;
       --gold:#cf9a35;
-      --gold-soft:#f3ddb0;
+      --gold-soft:#f5e2b8;
       --brown:#4a2d1a;
       --paper:#fffdfa;
-      --paper-edge:#d6b991;
+      --paper-2:#f8f2e7;
+      --paper-border:#cda97b;
       --btn1:#a02f24;
       --btn2:#62130e;
       --rose1:#cc4b6a;
-      --rose2:#d96a82;
-      --rose3:#f1a5b7;
+      --rose2:#e08aa0;
+      --shadow:rgba(0,0,0,.16);
     }
 
     html,body{
@@ -42,7 +43,7 @@
       font-family: Georgia, "Times New Roman", serif;
       color:var(--brown);
       background:
-        radial-gradient(circle at top, rgba(255,255,255,0.22), transparent 28%),
+        radial-gradient(circle at top, rgba(255,255,255,.22), transparent 28%),
         linear-gradient(180deg, var(--cream-soft) 0%, var(--cream) 100%);
     }
 
@@ -51,10 +52,9 @@
       min-height:100vh;
       position:relative;
       overflow:hidden;
-      padding:24px 14px 60px;
+      padding:18px 14px 60px;
     }
 
-    /* petals */
     .petals{
       position:fixed;
       inset:0;
@@ -69,8 +69,8 @@
       width:18px;
       height:26px;
       border-radius:70% 30% 70% 30%;
-      opacity:.85;
-      filter:drop-shadow(0 4px 8px rgba(0,0,0,.12));
+      opacity:.82;
+      filter:drop-shadow(0 4px 8px rgba(0,0,0,.10));
       animation-name:fall;
       animation-timing-function:linear;
       animation-iteration-count:infinite;
@@ -81,39 +81,29 @@
       position:absolute;
       inset:0;
       border-radius:inherit;
-      background:linear-gradient(180deg,var(--rose3),var(--rose1));
+      background:linear-gradient(180deg,#f3a8b8,var(--rose1));
       transform:rotate(18deg);
     }
 
-    .petal:nth-child(1){left:5%;animation-duration:13s;animation-delay:-2s;transform:scale(.9);}
-    .petal:nth-child(2){left:12%;animation-duration:16s;animation-delay:-7s;transform:scale(1.1);}
-    .petal:nth-child(3){left:20%;animation-duration:12s;animation-delay:-4s;transform:scale(.8);}
-    .petal:nth-child(4){left:28%;animation-duration:18s;animation-delay:-10s;transform:scale(1);}
-    .petal:nth-child(5){left:36%;animation-duration:14s;animation-delay:-1s;transform:scale(1.15);}
-    .petal:nth-child(6){left:44%;animation-duration:17s;animation-delay:-8s;transform:scale(.95);}
-    .petal:nth-child(7){left:52%;animation-duration:15s;animation-delay:-5s;transform:scale(1.05);}
-    .petal:nth-child(8){left:60%;animation-duration:19s;animation-delay:-11s;transform:scale(.85);}
-    .petal:nth-child(9){left:68%;animation-duration:13s;animation-delay:-3s;transform:scale(1.12);}
-    .petal:nth-child(10){left:76%;animation-duration:16s;animation-delay:-9s;transform:scale(.92);}
-    .petal:nth-child(11){left:84%;animation-duration:14s;animation-delay:-6s;transform:scale(1.08);}
-    .petal:nth-child(12){left:92%;animation-duration:18s;animation-delay:-12s;transform:scale(.88);}
+    .petal:nth-child(1){left:6%;animation-duration:13s;animation-delay:-2s;transform:scale(.9);}
+    .petal:nth-child(2){left:14%;animation-duration:16s;animation-delay:-7s;transform:scale(1.1);}
+    .petal:nth-child(3){left:22%;animation-duration:12s;animation-delay:-4s;transform:scale(.8);}
+    .petal:nth-child(4){left:30%;animation-duration:18s;animation-delay:-10s;transform:scale(1);}
+    .petal:nth-child(5){left:38%;animation-duration:14s;animation-delay:-1s;transform:scale(1.15);}
+    .petal:nth-child(6){left:46%;animation-duration:17s;animation-delay:-8s;transform:scale(.95);}
+    .petal:nth-child(7){left:54%;animation-duration:15s;animation-delay:-5s;transform:scale(1.05);}
+    .petal:nth-child(8){left:62%;animation-duration:19s;animation-delay:-11s;transform:scale(.85);}
+    .petal:nth-child(9){left:70%;animation-duration:13s;animation-delay:-3s;transform:scale(1.12);}
+    .petal:nth-child(10){left:78%;animation-duration:16s;animation-delay:-9s;transform:scale(.92);}
+    .petal:nth-child(11){left:86%;animation-duration:14s;animation-delay:-6s;transform:scale(1.08);}
+    .petal:nth-child(12){left:94%;animation-duration:18s;animation-delay:-12s;transform:scale(.88);}
 
     @keyframes fall{
-      0%{
-        transform:translateY(-80px) translateX(0) rotate(0deg);
-      }
-      25%{
-        transform:translateY(25vh) translateX(18px) rotate(80deg);
-      }
-      50%{
-        transform:translateY(50vh) translateX(-16px) rotate(160deg);
-      }
-      75%{
-        transform:translateY(75vh) translateX(22px) rotate(240deg);
-      }
-      100%{
-        transform:translateY(110vh) translateX(-12px) rotate(320deg);
-      }
+      0%{transform:translateY(-80px) translateX(0) rotate(0deg);}
+      25%{transform:translateY(25vh) translateX(18px) rotate(80deg);}
+      50%{transform:translateY(50vh) translateX(-16px) rotate(160deg);}
+      75%{transform:translateY(75vh) translateX(22px) rotate(240deg);}
+      100%{transform:translateY(110vh) translateX(-12px) rotate(320deg);}
     }
 
     .content{
@@ -121,20 +111,67 @@
       z-index:2;
       max-width:1100px;
       margin:0 auto;
-      text-align:center;
     }
 
-    /* title */
+    /* NAVBAR */
+    .nav{
+      width:min(920px, 96vw);
+      margin:4px auto 18px;
+      padding:10px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      border-radius:999px;
+      background:rgba(255,248,237,.28);
+      border:1px solid rgba(207,154,53,.22);
+      box-shadow:
+        0 10px 20px rgba(0,0,0,.06),
+        inset 0 0 0 1px rgba(255,255,255,.18);
+      backdrop-filter: blur(4px);
+    }
+
+    .nav-left,
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .nav-btn{
+      text-decoration:none;
+      padding:10px 18px;
+      border-radius:999px;
+      color:var(--gold);
+      font-family:"Cinzel", serif;
+      font-size:.88rem;
+      border:1px solid rgba(207,154,53,.35);
+      background:rgba(60,25,10,.10);
+      text-shadow:0 0 6px rgba(255,215,120,.22);
+      box-shadow:0 4px 10px rgba(0,0,0,.05);
+      transition:.2s ease;
+      white-space:nowrap;
+    }
+
+    .nav-btn:hover{
+      transform:translateY(-2px);
+      color:#fff1c8;
+      background:rgba(110,45,20,.30);
+      border-color:rgba(255,215,120,.55);
+    }
+
+    /* TITLE */
     .title-wrap{
-      margin-top:14px;
-      margin-bottom:26px;
+      margin-top:8px;
+      margin-bottom:22px;
+      text-align:center;
     }
 
     .title{
       position:relative;
       display:inline-block;
       font-family:"Great Vibes", cursive;
-      font-size:clamp(3.4rem, 9vw, 7rem);
+      font-size:clamp(3.3rem, 9vw, 7rem);
       line-height:1.04;
       color:var(--gold);
       text-shadow:
@@ -232,16 +269,16 @@
       white-space:nowrap;
     }
 
-    /* front book */
+    /* BOOK AREA */
     .scene{
-      width:min(700px,96vw);
-      margin:34px auto 0;
+      width:min(720px,96vw);
+      margin:26px auto 0;
       position:relative;
     }
 
     .book-stage{
       position:relative;
-      min-height:970px;
+      min-height:1000px;
       width:100%;
     }
 
@@ -275,7 +312,7 @@
 
     .front-book img{
       width:100%;
-      max-width:590px;
+      max-width:600px;
       height:auto;
       display:block;
       filter:drop-shadow(0 22px 30px rgba(0,0,0,.18));
@@ -320,7 +357,7 @@
       margin-top:22px;
     }
 
-    /* open book */
+    /* OPEN BOOK */
     .open-view{
       opacity:0;
       pointer-events:none;
@@ -334,8 +371,8 @@
 
     .open-shell{
       width:100%;
-      max-width:650px;
-      min-height:860px;
+      max-width:680px;
+      min-height:900px;
       margin:0 auto;
       position:relative;
       perspective:2200px;
@@ -343,20 +380,20 @@
 
     .open-book{
       width:100%;
-      min-height:860px;
-      border-radius:22px;
+      min-height:900px;
+      border-radius:24px;
       border:4px solid #a67843;
       background:
         linear-gradient(90deg,
-          #d0ae82 0%,
-          #ead7b6 3%,
+          #cfad82 0%,
+          #e8d4b4 3%,
           #fffaf2 10%,
           #fffefb 50%,
           #fffaf2 90%,
-          #ead7b6 97%,
-          #d0ae82 100%);
+          #e8d4b4 97%,
+          #cfad82 100%);
       box-shadow:
-        0 22px 34px rgba(0,0,0,.17),
+        0 24px 38px rgba(0,0,0,.18),
         inset 0 0 0 2px rgba(255,255,255,.35);
       overflow:hidden;
       position:relative;
@@ -368,13 +405,13 @@
       left:50%;
       top:0;
       bottom:0;
-      width:16px;
+      width:18px;
       transform:translateX(-50%);
       background:linear-gradient(
         90deg,
-        rgba(120,80,40,.24),
+        rgba(120,80,40,.26),
         rgba(255,255,255,.40),
-        rgba(120,80,40,.22)
+        rgba(120,80,40,.24)
       );
       box-shadow:
         inset 0 0 8px rgba(0,0,0,.14),
@@ -385,15 +422,15 @@
     .pages{
       display:grid;
       grid-template-columns:1fr 1fr;
-      min-height:860px;
+      min-height:900px;
       position:relative;
       z-index:3;
     }
 
     .page-left,
     .page-right{
-      padding:34px 24px;
-      background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,250,241,.99));
+      padding:36px 26px;
+      background:linear-gradient(180deg, rgba(255,255,255,.97), rgba(255,250,241,.99));
     }
 
     .page-left{
@@ -410,11 +447,12 @@
       overflow-y:auto;
     }
 
+    /* flipping front page */
     .flip-page{
       position:absolute;
       top:20px;
       left:50%;
-      width:calc(50% - 24px);
+      width:calc(50% - 26px);
       height:calc(100% - 40px);
       transform-origin:left center;
       transform-style:preserve-3d;
@@ -446,15 +484,15 @@
 
     .page-title{
       font-family:"Cinzel", serif;
-      font-size:1.9rem;
+      font-size:2rem;
       color:#6d1f18;
       line-height:1.3;
       margin-bottom:18px;
     }
 
     .page-intro{
-      font-size:1.02rem;
-      line-height:1.95;
+      font-size:1.03rem;
+      line-height:2;
       color:#6b432d;
       margin-bottom:20px;
     }
@@ -462,7 +500,7 @@
     .page-quote{
       font-style:italic;
       color:#7a352a;
-      line-height:1.9;
+      line-height:1.95;
       font-size:1rem;
       margin:16px 0 22px;
     }
@@ -483,7 +521,7 @@
 
     .welcome-title{
       color:#6d2018;
-      font-size:1.38rem;
+      font-size:1.42rem;
       font-weight:700;
       text-align:center;
       margin:8px 0 16px;
@@ -492,40 +530,50 @@
 
     .letter{
       white-space:pre-line;
-      line-height:1.95;
-      font-size:1.02rem;
+      line-height:2;
+      font-size:1.03rem;
       color:#4a2d1a;
     }
 
     @media (max-width: 900px){
-      .hero{
-        margin:0 auto 0;
+      .nav{
+        width:96vw;
       }
 
-      .title-main{
-        font-size:clamp(3rem,8vw,5.6rem);
+      .title{
+        font-size:clamp(3rem,8vw,5.8rem);
       }
 
-      .hanging-book{
+      .book-hang{
         font-size:clamp(2rem,4.8vw,3.8rem);
       }
 
       .front-book img{
-        max-width:530px;
+        max-width:540px;
       }
     }
 
     @media (max-width: 600px){
-      .hero{
-        padding:0 10px;
+      .nav{
+        padding:10px;
       }
 
-      .title-main{
+      .nav-left,
+      .nav-right{
+        gap:8px;
+      }
+
+      .nav-btn{
+        padding:8px 12px;
+        font-size:.78rem;
+      }
+
+      .title{
         font-size:clamp(2.8rem,8vw,4.8rem);
         line-height:1.04;
       }
 
-      .hanging-book{
+      .book-hang{
         font-size:clamp(1.95rem,5vw,3.4rem);
         margin-top:-6px;
       }
@@ -536,7 +584,7 @@
       }
 
       .book-stage{
-        min-height:1120px;
+        min-height:1140px;
       }
 
       .front-book img{
@@ -551,7 +599,7 @@
 
       .open-shell,
       .open-book{
-        min-height:950px;
+        min-height:980px;
       }
 
       .open-book::before{
@@ -593,11 +641,21 @@
     }
 
     @media (max-width: 420px){
-      .title-main{
+      .nav{
+        width:96vw;
+        padding:8px;
+      }
+
+      .nav-btn{
+        padding:7px 10px;
+        font-size:.72rem;
+      }
+
+      .title{
         font-size:clamp(2.5rem,8vw,4.1rem);
       }
 
-      .hanging-book{
+      .book-hang{
         font-size:clamp(1.8rem,5vw,2.9rem);
       }
 
@@ -607,7 +665,7 @@
       }
 
       .book-stage{
-        min-height:1040px;
+        min-height:1080px;
       }
 
       .front-book img{
@@ -622,7 +680,7 @@
 
       .open-shell,
       .open-book{
-        min-height:900px;
+        min-height:920px;
       }
 
       .page-left,
@@ -653,9 +711,35 @@
   </style>
 </head>
 <body>
-  <div class="page">
+  <div class="petals">
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+  </div>
 
+  <div class="page">
     <div class="content">
+
+      <nav class="nav">
+        <div class="nav-left">
+          <a href="#" class="nav-btn">Home</a>
+          <a href="#" class="nav-btn">About</a>
+        </div>
+        <div class="nav-right">
+          <a href="#" class="nav-btn">Login</a>
+          <a href="#" class="nav-btn">More</a>
+        </div>
+      </nav>
+
       <div class="title-wrap">
         <div class="title">
           My <span class="secret-wrap">Secre<span class="t-anchor">t<span class="book-hang">Book</span></span></span>
@@ -741,23 +825,8 @@ Aage barhiye, kyunki yeh kitaab sirf aapki hai...
 
         </div>
       </div>
-    </div>
 
-    <div class="petals">
-      <span class="petal"></span>
-      <span class="petal"></span>
-      <span class="petal"></span>
-      <span class="petal"></span>
-      <span class="petal"></span>
-      <span class="petal"></span>
-      <span class="petal"></span>
-      <span class="petal"></span>
-      <span class="petal"></span>
-      <span class="petal"></span>
-      <span class="petal"></span>
-      <span class="petal"></span>
     </div>
-
   </div>
 
   <script>
@@ -779,65 +848,13 @@ Aage barhiye, kyunki yeh kitaab sirf aapki hai...
       }, 180);
     });
 
-    backBtn.addEventListener("click", function () {
+        backBtn.addEventListener("click", function () {
       openView.classList.remove("show");
       setTimeout(function () {
         closedView.classList.remove("hide");
       }, 350);
     });
   </script>
-
-  <style>
-    .petals{
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      z-index:1;
-      overflow:hidden;
-    }
-
-    .petal{
-      position:absolute;
-      top:-80px;
-      width:18px;
-      height:26px;
-      border-radius:70% 30% 70% 30%;
-      opacity:.82;
-      filter:drop-shadow(0 4px 8px rgba(0,0,0,.10));
-      animation-name:fall;
-      animation-timing-function:linear;
-      animation-iteration-count:infinite;
-    }
-
-    .petal::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius:inherit;
-      background:linear-gradient(180deg,#f1a5b7,#cc4b6a);
-      transform:rotate(18deg);
-    }
-
-    .petal:nth-child(1){left:6%;animation-duration:13s;animation-delay:-2s;transform:scale(.9);}
-    .petal:nth-child(2){left:14%;animation-duration:16s;animation-delay:-7s;transform:scale(1.1);}
-    .petal:nth-child(3){left:22%;animation-duration:12s;animation-delay:-4s;transform:scale(.8);}
-    .petal:nth-child(4){left:30%;animation-duration:18s;animation-delay:-10s;transform:scale(1);}
-    .petal:nth-child(5){left:38%;animation-duration:14s;animation-delay:-1s;transform:scale(1.15);}
-    .petal:nth-child(6){left:46%;animation-duration:17s;animation-delay:-8s;transform:scale(.95);}
-    .petal:nth-child(7){left:54%;animation-duration:15s;animation-delay:-5s;transform:scale(1.05);}
-    .petal:nth-child(8){left:62%;animation-duration:19s;animation-delay:-11s;transform:scale(.85);}
-    .petal:nth-child(9){left:70%;animation-duration:13s;animation-delay:-3s;transform:scale(1.12);}
-    .petal:nth-child(10){left:78%;animation-duration:16s;animation-delay:-9s;transform:scale(.92);}
-    .petal:nth-child(11){left:86%;animation-duration:14s;animation-delay:-6s;transform:scale(1.08);}
-    .petal:nth-child(12){left:94%;animation-duration:18s;animation-delay:-12s;transform:scale(.88);}
-
-    @keyframes fall{
-      0%{transform:translateY(-80px) translateX(0) rotate(0deg);}
-      25%{transform:translateY(25vh) translateX(18px) rotate(80deg);}
-      50%{transform:translateY(50vh) translateX(-16px) rotate(160deg);}
-      75%{transform:translateY(75vh) translateX(22px) rotate(240deg);}
-      100%{transform:translateY(110vh) translateX(-12px) rotate(320deg);}
-    }
-  </style>
 </body>
 </html>
+       
