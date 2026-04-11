@@ -1,91 +1,495 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About - My Secret Book</title>
-<link rel="stylesheet" href="about.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - My Secret Book</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+      --cream:#e8d9c2;
+      --cream-soft:#f1e7d7;
+      --gold:#cf9a35;
+      --brown:#4a2d1a;
+      --paper:#fffdfa;
+      --paper-soft:#fbf5ea;
+      --paper-border:#cda97b;
+      --rose1:#cc4b6a;
+    }
+
+    html,body{
+      width:100%;
+      min-height:100%;
+      overflow-x:hidden;
+      background:var(--cream);
+    }
+
+    body{
+      font-family: Georgia, "Times New Roman", serif;
+      color:var(--brown);
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,.22), transparent 28%),
+        linear-gradient(180deg, var(--cream-soft) 0%, var(--cream) 100%);
+    }
+
+    .page{
+      width:100%;
+      min-height:100vh;
+      position:relative;
+      overflow:hidden;
+      padding:18px 14px 60px;
+    }
+
+    .petals{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:1;
+      overflow:hidden;
+    }
+
+    .petal{
+      position:absolute;
+      top:-80px;
+      width:18px;
+      height:26px;
+      border-radius:70% 30% 70% 30%;
+      opacity:.82;
+      filter:drop-shadow(0 4px 8px rgba(0,0,0,.10));
+      animation-name:fall;
+      animation-timing-function:linear;
+      animation-iteration-count:infinite;
+    }
+
+    .petal::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      background:linear-gradient(180deg,#f3a8b8,var(--rose1));
+      transform:rotate(18deg);
+    }
+
+    .petal:nth-child(1){left:6%;animation-duration:13s;animation-delay:-2s;transform:scale(.9);}
+    .petal:nth-child(2){left:14%;animation-duration:16s;animation-delay:-7s;transform:scale(1.1);}
+    .petal:nth-child(3){left:22%;animation-duration:12s;animation-delay:-4s;transform:scale(.8);}
+    .petal:nth-child(4){left:30%;animation-duration:18s;animation-delay:-10s;transform:scale(1);}
+    .petal:nth-child(5){left:38%;animation-duration:14s;animation-delay:-1s;transform:scale(1.15);}
+    .petal:nth-child(6){left:46%;animation-duration:17s;animation-delay:-8s;transform:scale(.95);}
+    .petal:nth-child(7){left:54%;animation-duration:15s;animation-delay:-5s;transform:scale(1.05);}
+    .petal:nth-child(8){left:62%;animation-duration:19s;animation-delay:-11s;transform:scale(.85);}
+    .petal:nth-child(9){left:70%;animation-duration:13s;animation-delay:-3s;transform:scale(1.12);}
+    .petal:nth-child(10){left:78%;animation-duration:16s;animation-delay:-9s;transform:scale(.92);}
+    .petal:nth-child(11){left:86%;animation-duration:14s;animation-delay:-6s;transform:scale(1.08);}
+    .petal:nth-child(12){left:94%;animation-duration:18s;animation-delay:-12s;transform:scale(.88);}
+
+    @keyframes fall{
+      0%{transform:translateY(-80px) translateX(0) rotate(0deg);}
+      25%{transform:translateY(25vh) translateX(18px) rotate(80deg);}
+      50%{transform:translateY(50vh) translateX(-16px) rotate(160deg);}
+      75%{transform:translateY(75vh) translateX(22px) rotate(240deg);}
+      100%{transform:translateY(110vh) translateX(-12px) rotate(320deg);}
+    }
+
+    .content{
+      position:relative;
+      z-index:2;
+      max-width:1100px;
+      margin:0 auto;
+    }
+
+    /* NAV */
+    .nav{
+      width:min(920px, 96vw);
+      margin:4px auto 18px;
+      padding:10px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      border-radius:999px;
+      background:rgba(255,248,237,.28);
+      border:1px solid rgba(207,154,53,.22);
+      box-shadow:
+        0 10px 20px rgba(0,0,0,.06),
+        inset 0 0 0 1px rgba(255,255,255,.18);
+      backdrop-filter: blur(4px);
+    }
+
+    .nav-left,.nav-right{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .nav-btn{
+      text-decoration:none;
+      padding:10px 18px;
+      border-radius:999px;
+      color:var(--gold);
+      font-family:"Cinzel", serif;
+      font-size:.88rem;
+      border:1px solid rgba(207,154,53,.35);
+      background:rgba(60,25,10,.10);
+      text-shadow:0 0 6px rgba(255,215,120,.22);
+      box-shadow:0 4px 10px rgba(0,0,0,.05);
+      transition:.2s ease;
+      white-space:nowrap;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active{
+      transform:translateY(-2px);
+      color:#fff1c8;
+      background:rgba(110,45,20,.30);
+      border-color:rgba(255,215,120,.55);
+    }
+
+    /* TITLE */
+    .title-wrap{
+      margin-top:8px;
+      margin-bottom:20px;
+      text-align:center;
+    }
+
+    .title{
+      position:relative;
+      display:inline-block;
+      font-family:"Great Vibes", cursive;
+      font-size:clamp(3.3rem, 9vw, 7rem);
+      line-height:1.04;
+      color:var(--gold);
+      text-shadow:
+        0 1px 0 #fff6da,
+        0 0 10px rgba(255,223,140,.45),
+        0 0 22px rgba(207,154,53,.25),
+        0 6px 18px rgba(90,55,20,.18);
+      padding:8px 8px 0;
+    }
+
+    .secret-wrap{
+      position:relative;
+      display:inline-block;
+    }
+
+    .t-anchor{
+      position:relative;
+      display:inline-block;
+    }
+
+    .book-hang{
+      position:absolute;
+      left:46%;
+      top:100%;
+      transform:translateX(-50%);
+      margin-top:-8px;
+      font-family:"Great Vibes", cursive;
+      font-size:clamp(2.2rem, 5.4vw, 4.4rem);
+      color:var(--gold);
+      white-space:nowrap;
+      transform-origin:top center;
+      text-shadow:
+        0 1px 0 #fff6da,
+        0 0 8px rgba(255,223,140,.4),
+        0 0 18px rgba(207,154,53,.22),
+        0 5px 14px rgba(90,55,20,.16);
+      animation:swing 3.4s ease-in-out infinite;
+    }
+
+    .book-hang::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:-24px;
+      transform:translateX(-50%);
+      width:2px;
+      height:24px;
+      background:linear-gradient(180deg,#ddb76f,#94601f);
+      box-shadow:0 0 4px rgba(0,0,0,.12);
+    }
+
+    @keyframes swing{
+      0%,100%{transform:translateX(-50%) rotate(2deg);}
+      25%{transform:translateX(-50%) rotate(-4deg);}
+      50%{transform:translateX(-50%) rotate(3deg);}
+      75%{transform:translateX(-50%) rotate(-2deg);}
+    }
+
+    .ornament{
+      width:min(860px,95vw);
+      margin:14px auto 0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+    }
+
+    .orn-line{
+      flex:1;
+      height:2px;
+      background:linear-gradient(90deg, transparent, var(--gold), #fff1c9, var(--gold), transparent);
+      box-shadow:0 0 10px rgba(200,150,60,.18);
+      position:relative;
+    }
+
+    .orn-line.left::after,
+    .orn-line.right::after{
+      content:"❦";
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      color:#ab7428;
+      font-size:1rem;
+    }
+
+    .orn-line.left::after{right:18px;}
+    .orn-line.right::after{left:18px;}
+
+    .orn-center{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      color:#ab7428;
+      font-size:1rem;
+      white-space:nowrap;
+    }
+
+    /* ABOUT CARD */
+    .about-section{
+      max-width:900px;
+      margin:34px auto 0;
+    }
+
+    .about-heading{
+      text-align:center;
+      font-family:"Cinzel", serif;
+      font-size:clamp(1.6rem, 4vw, 2.3rem);
+      color:#7a3520;
+      margin-bottom:18px;
+      text-shadow:0 2px 8px rgba(0,0,0,.08);
+    }
+
+    .about-card{
+      background:linear-gradient(180deg, rgba(255,253,248,.95), rgba(250,242,230,.96));
+      border:2px solid rgba(205,169,123,.65);
+      border-radius:24px;
+      padding:26px 22px;
+      box-shadow:
+        0 18px 30px rgba(0,0,0,.10),
+        inset 0 0 0 1px rgba(255,255,255,.35);
+    }
+
+    .about-card p{
+      font-size:1.02rem;
+      line-height:2;
+      color:#5a3821;
+      margin-bottom:14px;
+    }
+
+    .about-card p:last-child{
+      margin-bottom:0;
+    }
+
+    .about-highlight{
+      color:#8a2e1f;
+      font-weight:700;
+    }
+
+    .about-list{
+      margin-top:16px;
+      display:grid;
+      gap:12px;
+    }
+
+    .about-item{
+      background:rgba(255,248,238,.72);
+      border:1px solid rgba(207,154,53,.18);
+      border-radius:16px;
+      padding:14px 16px;
+      color:#5a3821;
+      line-height:1.8;
+    }
+
+    @media (max-width: 900px){
+      .nav{
+        width:96vw;
+      }
+
+      .title{
+        font-size:clamp(3rem,8vw,5.8rem);
+      }
+
+      .book-hang{
+        font-size:clamp(2rem,4.8vw,3.8rem);
+      }
+    }
+
+    @media (max-width: 600px){
+      .nav{
+        padding:10px;
+      }
+
+      .nav-left,
+      .nav-right{
+        gap:8px;
+      }
+
+      .nav-btn{
+        padding:8px 12px;
+        font-size:.78rem;
+      }
+
+      .title{
+        font-size:clamp(2.8rem,8vw,4.8rem);
+        line-height:1.04;
+      }
+
+      .book-hang{
+        font-size:clamp(1.95rem,5vw,3.4rem);
+        margin-top:-6px;
+      }
+
+      .about-section{
+        margin-top:26px;
+      }
+
+      .about-card{
+        padding:22px 16px;
+      }
+
+      .about-card p,
+      .about-item{
+        font-size:.96rem;
+        line-height:1.9;
+      }
+    }
+
+    @media (max-width: 420px){
+      .nav{
+        width:96vw;
+        padding:8px;
+      }
+
+      .nav-btn{
+        padding:7px 10px;
+        font-size:.72rem;
+      }
+
+      .title{
+        font-size:clamp(2.5rem,8vw,4.1rem);
+      }
+
+      .book-hang{
+        font-size:clamp(1.8rem,5vw,2.9rem);
+      }
+
+      .about-heading{
+        font-size:1.45rem;
+      }
+
+      .about-card p,
+      .about-item{
+        font-size:.92rem;
+      }
+    }
+  </style>
 </head>
-
 <body>
-
-<!-- NAVBAR -->
-<div class="navbar">
-  <a href="/My-Secret-Book/index.html">Home</a>
-  <a href="/My-Secret-Book/about.html">About</a>
-  <a href="/My-Secret-Book/login.html">Login 🔐</a>
-</div>
-
-<!-- TITLE -->
-<h1 class="title">My Secret Book</h1>
-
-<!-- LANGUAGE SELECT -->
-<div class="languages">
-  <select id="langSelect" onchange="changeLang(this.value)">
-    <option value="en">English</option>
-    <option value="hi">Hindi</option>
-    <option value="or">Odia</option>
-    <option value="bn">Bengali</option>
-    <option value="ta">Tamil</option>
-    <option value="te">Telugu</option>
-    <option value="ml">Malayalam</option>
-    <option value="kn">Kannada</option>
-    <option value="gu">Gujarati</option>
-    <option value="pa">Punjabi</option>
-    <option value="mr">Marathi</option>
-    <option value="ur">Urdu</option>
-  </select>
-</div>
-
-  <div class="about-box">
-
-  <h2 class="about-title">About</h2>
-
-  <h3 id="greet">Hi / Hello Dear ✨</h3>
-
-  <p id="about-text">
-  </p>
-
+  <div class="petals">
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
+    <span class="petal"></span>
   </div>
 
-<!-- SCRIPT -->
-<script>
+  <div class="page">
+    <div class="content">
 
-const data = {
-  en: {
-    greet: "Hi / Hello Dear ✨",
-    text: "My Secret Book is your personal digital space..."
-  },
-  hi: {
-    greet: "नमस्ते प्रिय ✨",
-    text: "My Secret Book आपका व्यक्तिगत डिजिटल स्थान है..."
-  },
-  or: {
-    greet: "ନମସ୍କାର ପ୍ରିୟ ✨",
-    text: "My Secret Book ଆପଣଙ୍କର ଏକ ବ୍ୟକ୍ତିଗତ ସ୍ଥାନ..."
-  }
-};
+      <nav class="nav">
+        <div class="nav-left">
+          <a href="index.html" class="nav-btn">Home</a>
+          <a href="about.html" class="nav-btn active">About</a>
+        </div>
+        <div class="nav-right">
+          <a href="login.html" class="nav-btn">Login</a>
+          <a href="#" class="nav-btn">More</a>
+        </div>
+      </nav>
 
-function changeLang(lang) {
-  document.getElementById("about-text").innerHTML = data[lang].text;
-  document.getElementById("greet").innerText = data[lang].greet;
-  localStorage.setItem("lang", lang);
-}
+      <div class="title-wrap">
+        <div class="title">
+          My <span class="secret-wrap">Secre<span class="t-anchor">t<span class="book-hang">Book</span></span></span>
+        </div>
 
-function loadLang() {
-  let lang = localStorage.getItem("lang") || "en";
-  changeLang(lang);
-  document.getElementById("langSelect").value = lang; // 👈 yahi add karna tha
-}
+        <div class="ornament">
+          <div class="orn-line left"></div>
+          <div class="orn-center">❦ ✦ ❦</div>
+          <div class="orn-line right"></div>
+        </div>
+      </div>
 
-// 👇 ye bhi hona chahiye
-document.getElementById("langSelect").addEventListener("change", function() {
-  changeLang(this.value);
-});
+      <section class="about-section">
+        <h2 class="about-heading">About</h2>
 
-// 👇 page load pe run hoga
-loadLang();
+        <div class="about-card">
+          <p>
+            <span class="about-highlight">My Secret Book</span> ek romantic aur personal website hai jahan har user apne dil ki baatein,
+            thoughts, jokes, shayari, feelings aur yaadein likh sakta hai. Ye ek simple website nahi, balki
+            ek <span class="about-highlight">private emotional space</span> hai jahan alfaaz apni alag duniya banate hain.
+          </p>
 
-</script>
+          <p>
+            Is website ka purpose hai ek aisi jagah dena jahan user khud ko freely express kar sake.
+            Yahan likha gaya har page ek secret ki tarah special feel deta hai, aur har note ek yaad ki tarah
+            sambhal kar rakha ja sakta hai.
+          </p>
+
+          <p>
+            Iska design vintage, soft aur premium romantic style me banaya gaya hai taki user ko ek magical
+            book ka feel aaye — jaise koi purani secret diary ho jo sirf khaas logon ke liye ho.
+          </p>
+
+          <div class="about-list">
+            <div class="about-item">
+              ✨ Personal thoughts aur feelings likhne ke liye ek beautiful jagah
+            </div>
+            <div class="about-item">
+              ✨ Shayari, jokes aur memories ko save karne ka romantic style
+            </div>
+            <div class="about-item">
+              ✨ Secret diary jaisa premium vintage experience
+            </div>
+            <div class="about-item">
+              ✨ Har page me warmth, emotion aur personal touch
+            </div>
+          </div>
+
+          <p style="margin-top:16px;">
+            <span class="about-highlight">My Secret Book</span> un logon ke liye hai jo words ko feel karte hain,
+            yaadon ko sambhalte hain, aur apni chhoti chhoti baaton ko bhi khaas banana chahte hain.
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </div>
 </body>
 </html>
