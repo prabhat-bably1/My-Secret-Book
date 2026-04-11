@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
 
   <style>
     *{
@@ -17,286 +17,325 @@
     }
 
     :root{
-      --page-bg:#e9decd;
+      --bg:#e9decd;
       --gold:#c8922e;
-      --gold-soft:#f3dbab;
-      --ink:#4a2d1a;
-      --paper:#fffdf9;
+      --gold-soft:#f5dfb3;
+      --ink:#4b2d1a;
+      --paper:#fffdf8;
       --paper-soft:#fbf5ea;
-      --paper-edge:#d2b286;
-      --shadow:rgba(0,0,0,.16);
+      --paper-border:#cda97b;
+      --btn1:#9d3024;
+      --btn2:#5e120d;
     }
 
     html,body{
       width:100%;
       min-height:100%;
       overflow-x:hidden;
-      background:var(--page-bg);
+      background:var(--bg);
     }
 
     body{
       font-family: Georgia, "Times New Roman", serif;
+      background:var(--bg);
       color:var(--ink);
-      background:var(--page-bg);
     }
 
     .page{
       width:100%;
       min-height:100vh;
-      background:var(--page-bg);
+      background:var(--bg);
       padding-bottom:60px;
     }
 
     /* ================= NAVBAR ================= */
-.nav-section{
-  width:100%;
-  position:relative;
-  background:var(--page-bg);
-  line-height:0;
-  z-index:20;
-  margin:0;
-  padding:0;
-}
+    .nav-section{
+      width:100%;
+      background:var(--bg);
+      position:relative;
+      z-index:10;
+    }
 
-.nav-image-wrap{
-  width:100%;
-  position:relative;
-  overflow:hidden;
-  margin:0;
-  padding:0;
-  background:var(--page-bg);
-}
+    .nav-shell{
+      width:100%;
+      position:relative;
+      overflow:hidden;
+      line-height:0;
+      background:var(--bg);
+    }
 
-.nav-image{
-  width:100%;
-  display:block;
-  margin:0;
-  padding:0;
-  transform:none;
-  user-select:none;
-  pointer-events:none;
-}
+    .nav-image{
+      width:100%;
+      display:block;
+      user-select:none;
+      pointer-events:none;
+    }
 
-.nav-buttons{
-  position:absolute;
-  inset:0;
-  z-index:25;
-  pointer-events:none;
-}
+    .nav-buttons{
+      position:absolute;
+      inset:0;
+      z-index:3;
+      pointer-events:none;
+    }
 
-.nav-btn{
-  position:absolute;
-  transform:translate(-50%,-50%);
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  text-decoration:none;
-  color:#fff4df;
-  background:rgba(78,16,10,.18);
-  border:1.6px solid rgba(245,219,175,.86);
-  border-radius:999px;
-  padding:10px 20px;
-  min-width:78px;
-  line-height:1;
-  font-size:.96rem;
-  letter-spacing:.25px;
-  box-shadow:
-    inset 0 0 8px rgba(255,255,255,.08),
-    0 3px 8px rgba(0,0,0,.10);
-  backdrop-filter:blur(1px);
-  transition:.22s ease;
-  pointer-events:auto;
-  white-space:nowrap;
-}
+    .nav-btn{
+      position:absolute;
+      transform:translate(-50%, -50%);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:78px;
+      padding:10px 18px;
+      border-radius:999px;
+      text-decoration:none;
+      color:#fff5e4;
+      border:1.5px solid rgba(245,219,175,.82);
+      background:rgba(78, 16, 10, 0.18);
+      box-shadow:
+        inset 0 0 8px rgba(255,255,255,.08),
+        0 3px 8px rgba(0,0,0,.10);
+      backdrop-filter: blur(1px);
+      white-space:nowrap;
+      font-size:.96rem;
+      line-height:1;
+      letter-spacing:.2px;
+      pointer-events:auto;
+      transition:.2s ease;
+    }
 
-.nav-btn:hover{
-  transform:translate(-50%,-50%) translateY(-2px);
-  background:rgba(255,225,180,.18);
-}
+    .nav-btn:hover{
+      transform:translate(-50%, -50%) translateY(-2px);
+      background:rgba(255,225,180,.18);
+    }
 
-.nav-btn.home{ left:13.2%; top:38.8%; }
-.nav-btn.about{ left:38.2%; top:50.3%; }
-.nav-btn.login{ left:61.6%; top:50.3%; }
-.nav-btn.more{ left:82.8%; top:38.8%; }
+    .nav-btn.home{ left:13.2%; top:38.8%; }
+    .nav-btn.about{ left:38.2%; top:50.3%; }
+    .nav-btn.login{ left:61.6%; top:50.3%; }
+    .nav-btn.more{ left:82.8%; top:38.8%; }
 
-/* title block */
-.hero{
-  width:100%;
-  max-width:1200px;
-  margin:-6px auto 0;
-  padding:0 14px;
-  position:relative;
-  z-index:5;
-  text-align:center;
-  background:var(--page-bg);
-}
+    /* ================= TITLE ================= */
+    .hero{
+      width:100%;
+      max-width:1200px;
+      margin:-6px auto 0;
+      padding:0 12px;
+      text-align:center;
+      position:relative;
+      z-index:5;
+      background:var(--bg);
+    }
 
-.title-box{
-  position:relative;
-  display:inline-block;
-  margin-top:0;
-  margin-bottom:18px;
-  padding-top:10px;
-  overflow:visible;
-}
+    .title-box{
+      display:inline-block;
+      position:relative;
+      padding-top:8px;
+      margin-bottom:14px;
+      overflow:visible;
+    }
 
-.title-main{
-  position:relative;
-  display:inline-block;
-  font-family:"Great Vibes", cursive;
-  font-size:clamp(3.5rem, 8vw, 6.8rem);
-  line-height:1.08;
-  color:var(--gold);
-  letter-spacing:1px;
-  text-shadow:
-    0 2px 0 #fff3c4,
-    0 0 10px rgba(255, 215, 120, .6),
-    0 0 25px rgba(215,162,74,.5),
-    0 6px 18px rgba(70,35,10,.35);
-  padding:10px 10px 0;
-  overflow:visible;
-}
+    .title-main{
+      position:relative;
+      display:inline-block;
+      font-family:"Great Vibes", cursive;
+      font-size:clamp(3.1rem, 8vw, 6.8rem);
+      line-height:1.08;
+      color:var(--gold);
+      letter-spacing:.5px;
+      padding:8px 8px 0;
+      overflow:visible;
+      text-shadow:
+        0 2px 0 #fff3c4,
+        0 0 10px rgba(255, 215, 120, .55),
+        0 0 25px rgba(215,162,74,.35),
+        0 6px 18px rgba(70,35,10,.28);
+    }
 
-.hanging-book{
-  position:absolute;
-  left:46%;
-  top:100%;
-  transform:translateX(-50%);
-  margin-top:-8px;
-  font-family:"Great Vibes", cursive;
-  font-size:clamp(2.2rem, 5vw, 4.3rem);
-  line-height:1;
-  color:var(--gold);
-  white-space:nowrap;
-  text-shadow:
-    0 2px 0 #fff3c4,
-    0 0 8px rgba(255, 215, 120, .45),
-    0 0 18px rgba(215,162,74,.35),
-    0 4px 12px rgba(70,35,10,.25);
-  transform-origin:top center;
-  animation:swing 3.4s ease-in-out infinite;
-}
+    .secret-wrap{
+      position:relative;
+      display:inline-block;
+    }
 
-.orn-line{
-  flex:1;
-  height:2px;
-  background:linear-gradient(90deg, transparent, #c8922e, #fff0c9, #c8922e, transparent);
-  box-shadow:0 0 10px rgba(200,150,60,.3);
-  position:relative;
-}
+    .t-anchor{
+      position:relative;
+      display:inline-block;
+    }
 
-.scene{
-  width:min(680px, 96vw);
-  margin:26px auto 0;
-  position:relative;
-  z-index:6;
-  background:var(--page-bg);
-}
+    .hanging-book{
+      position:absolute;
+      left:46%;
+      top:100%;
+      transform:translateX(-50%);
+      margin-top:-8px;
+      font-family:"Great Vibes", cursive;
+      font-size:clamp(2.15rem, 5vw, 4.2rem);
+      line-height:1;
+      color:var(--gold);
+      white-space:nowrap;
+      text-shadow:
+        0 2px 0 #fff3c4,
+        0 0 8px rgba(255, 215, 120, .45),
+        0 0 18px rgba(215,162,74,.30),
+        0 4px 12px rgba(70,35,10,.22);
+      transform-origin:top center;
+      animation:swing 3.2s ease-in-out infinite;
+    }
 
-/* responsive */
-@media (max-width: 900px){
-  .nav-btn{
-    padding:8px 15px;
-    min-width:68px;
-    font-size:.88rem;
-  }
+    .hanging-book::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:-24px;
+      transform:translateX(-50%);
+      width:2px;
+      height:24px;
+      background:linear-gradient(180deg,#e4bd74,#8a5b20);
+      box-shadow:0 0 4px rgba(0,0,0,.14);
+    }
 
-  .hero{
-    margin:-2px auto 0;
-  }
+    @keyframes swing{
+      0%,100%{ transform:translateX(-50%) rotate(2deg); }
+      25%{ transform:translateX(-50%) rotate(-4deg); }
+      50%{ transform:translateX(-50%) rotate(3deg); }
+      75%{ transform:translateX(-50%) rotate(-2deg); }
+    }
 
-  .title-box{
-    padding-top:10px;
-  }
+    .ornament{
+      width:min(860px, 95vw);
+      margin:16px auto 0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+    }
 
-  .title-main{
-    font-size:clamp(3.2rem, 8vw, 5.6rem);
-    line-height:1.08;
-    padding:8px 8px 0;
-  }
+    .orn-line{
+      flex:1;
+      height:2px;
+      background:linear-gradient(90deg, transparent, #c8922e, #fff0c9, #c8922e, transparent);
+      box-shadow:0 0 10px rgba(200,150,60,.18);
+      position:relative;
+    }
 
-  .hanging-book{
-    font-size:clamp(2rem, 4.8vw, 3.8rem);
-    margin-top:-8px;
-  }
+    .orn-line.left::after,
+    .orn-line.right::after{
+      content:"❦";
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      color:#a26d28;
+      font-size:1rem;
+      text-shadow:0 1px 0 #fff7e7;
+    }
 
-  .scene{
-    width:min(600px, 96vw);
-    margin:24px auto 0;
-  }
-}
+    .orn-line.left::after{ right:20px; }
+    .orn-line.right::after{ left:20px; }
 
-@media (max-width: 600px){
-  .nav-btn{
-    padding:8px 13px;
-    min-width:62px;
-    font-size:.82rem;
-  }
+    .orn-center{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      color:#a26d28;
+      font-size:1rem;
+      text-shadow:0 1px 0 #fff7e7;
+      white-space:nowrap;
+    }
 
-  .hero{
-    margin:0 auto 0;
-    padding:0 10px;
-  }
+    /* ================= BOOK FRONT ================= */
+    .scene{
+      width:min(690px, 96vw);
+      margin:26px auto 0;
+      position:relative;
+      z-index:6;
+      background:var(--bg);
+    }
 
-  .title-box{
-    padding-top:8px;
-    margin-bottom:16px;
-  }
+    .book-stage{
+      width:100%;
+      min-height:980px;
+      position:relative;
+    }
 
-  .title-main{
-    font-size:clamp(3rem, 8.2vw, 4.8rem);
-    line-height:1.06;
-    padding:8px 6px 0;
-  }
+    .closed-view,
+    .open-view{
+      position:absolute;
+      inset:0 auto auto 0;
+      width:100%;
+    }
 
-  .hanging-book{
-    font-size:clamp(1.95rem, 5vw, 3.4rem);
-    margin-top:-6px;
-  }
+    .closed-view{
+      opacity:1;
+      pointer-events:auto;
+      transition:opacity .45s ease, transform .95s cubic-bezier(.2,.75,.12,1);
+      transform-origin:left center;
+      transform:perspective(1800px) rotateY(0deg);
+    }
 
-  .scene{
-    width:min(540px, 96vw);
-    margin-top:22px;
-  }
-}
+    .closed-view.hide{
+      opacity:0;
+      pointer-events:none;
+      transform:perspective(1800px) rotateY(-88deg);
+    }
 
-@media (max-width: 420px){
-  .nav-btn{
-    padding:7px 11px;
-    min-width:58px;
-    font-size:.76rem;
-  }
+    .closed-book-wrap{
+      width:100%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding-top:8px;
+    }
 
-  .hero{
-    margin:0 auto 0;
-    padding:0 8px;
-  }
+    .closed-book-wrap img{
+      width:100%;
+      max-width:585px;
+      height:auto;
+      display:block;
+      filter:drop-shadow(0 22px 30px rgba(0,0,0,.18));
+      user-select:none;
+      pointer-events:none;
+    }
 
-  .title-box{
-    padding-top:6px;
-    margin-bottom:14px;
-  }
+    .controls{
+      display:flex;
+      justify-content:center;
+      padding-top:26px;
+    }
 
-  .title-main{
-    font-size:clamp(2.7rem, 8vw, 4.1rem);
-    line-height:1.04;
-    padding:6px 4px 0;
-  }
+    .btn{
+      border:none;
+      outline:none;
+      cursor:pointer;
+      min-width:190px;
+      padding:18px 48px;
+      border-radius:999px;
+      color:#fff4e2;
+      font-family:"Cinzel", serif;
+      font-size:1.08rem;
+      font-weight:700;
+      letter-spacing:.4px;
+      background:linear-gradient(180deg,var(--btn1) 0%, #751a13 55%, var(--btn2) 100%);
+      border:2px solid var(--gold);
+      box-shadow:
+        0 12px 20px rgba(0,0,0,.16),
+        inset 0 2px 10px rgba(255,255,255,.14),
+        0 0 18px rgba(201,150,72,.10);
+      transition:.22s ease;
+    }
 
-  .hanging-book{
-    font-size:clamp(1.85rem, 5vw, 2.9rem);
-    margin-top:-5px;
-  }
+    .btn:hover{
+      transform:translateY(-2px) scale(1.02);
+    }
 
-  .scene{
-    width:96vw;
-    margin-top:20px;
-  }
+    .btn.secondary{
+      min-width:155px;
+      background:linear-gradient(180deg,#8b6532 0%, #68461c 100%);
+      margin-top:22px;
+    }
+
     /* ================= OPEN BOOK ================= */
     .open-view{
       opacity:0;
       pointer-events:none;
-      transition:opacity .5s ease;
+      transition:opacity .45s ease;
     }
 
     .open-view.show{
@@ -304,19 +343,18 @@
       pointer-events:auto;
     }
 
-    .open-book-shell{
+    .open-shell{
       width:100%;
       max-width:640px;
-      min-height:840px;
+      min-height:860px;
       margin:0 auto;
       position:relative;
       perspective:2200px;
     }
 
-    .open-book-base{
+    .open-book{
       width:100%;
-      min-height:840px;
-      position:relative;
+      min-height:860px;
       border-radius:22px;
       border:4px solid #a67843;
       background:
@@ -332,15 +370,16 @@
         0 22px 34px rgba(0,0,0,.17),
         inset 0 0 0 2px rgba(255,255,255,.35);
       overflow:hidden;
+      position:relative;
     }
 
-    .open-book-base::before{
+    .open-book::before{
       content:"";
       position:absolute;
       left:50%;
       top:0;
       bottom:0;
-      width:18px;
+      width:16px;
       transform:translateX(-50%);
       background:linear-gradient(
         90deg,
@@ -354,22 +393,21 @@
       z-index:2;
     }
 
-    .book-pages{
+    .pages{
       display:grid;
       grid-template-columns:1fr 1fr;
-      min-height:840px;
+      min-height:860px;
       position:relative;
       z-index:3;
     }
 
-    .left-page,
-    .right-page{
+    .page-left,
+    .page-right{
       padding:34px 24px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,250,241,.99));
+      background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,250,241,.99));
     }
 
-    .left-page{
+    .page-left{
       border-right:1px solid rgba(160,120,70,.18);
       text-align:center;
       display:flex;
@@ -377,7 +415,7 @@
       justify-content:flex-start;
     }
 
-    .right-page{
+    .page-right{
       border-left:1px solid rgba(160,120,70,.10);
       text-align:left;
       overflow-y:auto;
@@ -392,21 +430,19 @@
       transform-origin:left center;
       transform-style:preserve-3d;
       z-index:8;
-      animation:pageFlip 1.1s ease forwards;
       pointer-events:none;
+      animation:pageFlip 1.05s ease forwards;
     }
 
     .flip-page-face,
     .flip-page-back{
       position:absolute;
       inset:0;
+      border-radius:10px;
       backface-visibility:hidden;
       -webkit-backface-visibility:hidden;
-      border-radius:10px;
-      overflow:hidden;
+      background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,250,242,.98));
       border:1px solid rgba(170,130,80,.16);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,250,242,.98));
       box-shadow:0 4px 12px rgba(0,0,0,.06);
     }
 
@@ -423,8 +459,8 @@
       font-family:"Cinzel", serif;
       font-size:1.9rem;
       color:#6d1f18;
-      margin-bottom:18px;
       line-height:1.3;
+      margin-bottom:18px;
     }
 
     .page-intro{
@@ -458,7 +494,7 @@
 
     .welcome-title{
       color:#6d2018;
-      font-size:1.4rem;
+      font-size:1.38rem;
       font-weight:700;
       text-align:center;
       margin:8px 0 16px;
@@ -468,11 +504,11 @@
     .letter{
       white-space:pre-line;
       line-height:1.95;
-      font-size:1.03rem;
+      font-size:1.02rem;
       color:#4a2d1a;
     }
 
-    /* ================= RESPONSIVE COMPLETE REPLACE ================= */
+    /* ================= RESPONSIVE ================= */
     @media (max-width: 900px){
       .nav-btn{
         padding:8px 15px;
@@ -481,66 +517,31 @@
       }
 
       .hero{
-       margin-top:120px;
+        margin:-2px auto 0;
       }
 
       .title-box{
-        padding-top:14px;
+        padding-top:10px;
       }
 
       .title-main{
-        font-size:clamp(3.5rem, 8vw, 6rem);
-        line-height:1.1;
-        padding:10px 8px 0;
+        font-size:clamp(3.2rem, 8vw, 5.6rem);
+        line-height:1.08;
+        padding:8px 8px 0;
       }
 
       .hanging-book{
-        font-size:clamp(2.2rem, 4.8vw, 4rem);
+        font-size:clamp(2rem, 4.8vw, 3.8rem);
         margin-top:-8px;
       }
 
-      .ornament{
-        width:min(820px, 94vw);
-        margin:14px auto 0;
-      }
-
       .scene{
-        width:min(600px, 96vw);
-        margin:28px auto 0;
-      }
-
-      .book-stage{
-        min-height:980px;
+        width:min(610px, 96vw);
+        margin:24px auto 0;
       }
 
       .closed-book-wrap img{
-        max-width:520px;
-      }
-
-      .btn{
-        min-width:180px;
-        padding:17px 42px;
-        font-size:1.04rem;
-      }
-
-      .open-book-shell,
-      .open-book-base{
-        max-width:600px;
-        min-height:860px;
-      }
-
-      .book-pages{
-        min-height:860px;
-      }
-
-      .page-title{
-        font-size:1.8rem;
-      }
-
-      .page-intro,
-      .page-quote,
-      .letter{
-        font-size:1rem;
+        max-width:530px;
       }
     }
 
@@ -551,46 +552,30 @@
         font-size:.82rem;
       }
 
-      .nav-btn.home{ left:13.2%; top:38.8%; }
-      .nav-btn.about{ left:38.2%; top:50.3%; }
-      .nav-btn.login{ left:61.6%; top:50.3%; }
-      .nav-btn.more{ left:82.8%; top:38.8%; }
-
       .hero{
-        margin:-24px auto 0;
+        margin:0 auto 0;
         padding:0 10px;
       }
 
       .title-box{
-        padding-top:14px;
+        padding-top:8px;
         margin-bottom:16px;
       }
 
       .title-main{
-        font-size:clamp(3rem, 8.6vw, 4.8rem);
-        line-height:1.1;
-        padding:10px 8px 0;
+        font-size:clamp(3rem, 8.2vw, 4.8rem);
+        line-height:1.06;
+        padding:8px 6px 0;
       }
 
       .hanging-book{
-        font-size:clamp(2rem, 5vw, 3.5rem);
-        margin-top:-8px;
+        font-size:clamp(1.95rem, 5vw, 3.4rem);
+        margin-top:-6px;
       }
 
       .hanging-book::before{
-        height:24px;
-        top:-24px;
-      }
-
-      .ornament{
-        width:95vw;
-        margin:12px auto 0;
-        gap:10px;
-      }
-
-      .orn-center{
-        font-size:1rem;
-        gap:8px;
+        height:22px;
+        top:-22px;
       }
 
       .scene{
@@ -602,16 +587,8 @@
         min-height:1120px;
       }
 
-      .closed-book-wrap{
-        padding-top:8px;
-      }
-
       .closed-book-wrap img{
         max-width:470px;
-      }
-
-      .controls{
-        padding-top:24px;
       }
 
       .btn{
@@ -620,36 +597,31 @@
         font-size:1rem;
       }
 
-      .btn.secondary{
-        min-width:150px;
-        margin-top:20px;
-      }
-
-      .open-book-shell,
-      .open-book-base{
+      .open-shell,
+      .open-book{
         min-height:950px;
       }
 
-      .open-book-base::before{
+      .open-book::before{
         display:none;
       }
 
-      .book-pages{
+      .pages{
         grid-template-columns:1fr;
         min-height:auto;
       }
 
-      .left-page{
+      .page-left{
         border-right:none;
         border-bottom:1px solid rgba(160,120,70,.18);
       }
 
-      .right-page{
+      .page-right{
         border-left:none;
       }
 
-      .left-page,
-      .right-page{
+      .page-left,
+      .page-right{
         padding:24px 16px;
       }
 
@@ -661,23 +633,10 @@
         font-size:1.65rem;
       }
 
-      .page-intro{
-        font-size:.98rem;
-        line-height:1.85;
-      }
-
-      .page-quote{
-        font-size:.96rem;
-        line-height:1.85;
-      }
-
-      .welcome-title{
-        font-size:1.28rem;
-      }
-
+      .page-intro,
+      .page-quote,
       .letter{
         font-size:.98rem;
-        line-height:1.9;
       }
     }
 
@@ -688,51 +647,25 @@
         font-size:.76rem;
       }
 
-      .nav-btn.home{ left:13.2%; top:38.8%; }
-      .nav-btn.about{ left:38.2%; top:50.3%; }
-      .nav-btn.login{ left:61.6%; top:50.3%; }
-      .nav-btn.more{ left:82.8%; top:38.8%; }
-
       .hero{
-        margin:-18px auto 0;
+        margin:0 auto 0;
         padding:0 8px;
       }
 
       .title-box{
-        padding-top:12px;
+        padding-top:6px;
         margin-bottom:14px;
       }
 
       .title-main{
-        font-size:clamp(2.7rem, 8.4vw, 4.1rem);
-        line-height:1.08;
-        padding:8px 6px 0;
+        font-size:clamp(2.7rem, 8vw, 4.1rem);
+        line-height:1.04;
+        padding:6px 4px 0;
       }
 
       .hanging-book{
-        font-size:clamp(1.9rem, 5vw, 3rem);
-        margin-top:-6px;
-      }
-
-      .hanging-book::before{
-        height:22px;
-        top:-22px;
-      }
-
-      .ornament{
-        width:96vw;
-        margin:10px auto 0;
-        gap:8px;
-      }
-
-      .orn-center{
-        font-size:.92rem;
-        gap:6px;
-      }
-
-      .orn-line.left::after,
-      .orn-line.right::after{
-        font-size:.86rem;
+        font-size:clamp(1.85rem, 5vw, 2.9rem);
+        margin-top:-5px;
       }
 
       .scene{
@@ -748,27 +681,19 @@
         max-width:425px;
       }
 
-      .controls{
-        padding-top:22px;
-      }
-
       .btn{
         min-width:150px;
         padding:15px 30px;
         font-size:.96rem;
       }
 
-      .btn.secondary{
-        min-width:140px;
-      }
-
-      .open-book-shell,
-      .open-book-base{
+      .open-shell,
+      .open-book{
         min-height:900px;
       }
 
-      .left-page,
-      .right-page{
+      .page-left,
+      .page-right{
         padding:20px 14px;
       }
 
@@ -778,21 +703,18 @@
 
       .page-intro{
         font-size:.94rem;
-        line-height:1.8;
       }
 
       .page-quote{
         font-size:.92rem;
-        line-height:1.8;
       }
 
       .welcome-title{
-        font-size:1.2rem;
+        font-size:1.18rem;
       }
 
       .letter{
         font-size:.94rem;
-        line-height:1.82;
       }
     }
   </style>
@@ -800,11 +722,9 @@
 <body>
   <div class="page">
 
-    <!-- NAVBAR -->
     <div class="nav-section">
-      <div class="nav-image-wrap">
+      <div class="nav-shell">
         <img src="navigationbar.png" alt="Vintage Navigation Bar" class="nav-image">
-
         <div class="nav-buttons">
           <a href="#" class="nav-btn home">Home</a>
           <a href="#" class="nav-btn about">About</a>
@@ -814,7 +734,6 @@
       </div>
     </div>
 
-    <!-- TITLE -->
     <section class="hero">
       <div class="title-box">
         <div class="title-main">
@@ -829,7 +748,6 @@
       </div>
     </section>
 
-    <!-- BOOK -->
     <div class="scene">
       <div class="book-stage">
 
@@ -844,16 +762,16 @@
         </div>
 
         <div class="open-view" id="openView">
-          <div class="open-book-shell">
-            <div class="open-book-base">
+          <div class="open-shell">
+            <div class="open-book">
 
               <div class="flip-page" id="flipPage">
                 <div class="flip-page-face"></div>
                 <div class="flip-page-back"></div>
               </div>
 
-              <div class="book-pages">
-                <div class="left-page">
+              <div class="pages">
+                <div class="page-left">
                   <div class="page-title">Welcome to your Secret World ✨</div>
 
                   <div class="page-intro">
@@ -875,7 +793,7 @@
                   <div class="spark">✦</div>
                 </div>
 
-                <div class="right-page">
+                <div class="page-right">
                   <div class="letter">Pyare dost,
 
 Is raz ki kitaab mein aapka dil se swaagat hai.
@@ -920,7 +838,7 @@ Aage barhiye, kyunki yeh kitaab sirf aapki hai...
         if (flipPage) {
           flipPage.style.animation = "none";
           flipPage.offsetHeight;
-          flipPage.style.animation = "pageFlip 1.1s ease forwards";
+          flipPage.style.animation = "pageFlip 1.05s ease forwards";
         }
       }, 180);
     });
