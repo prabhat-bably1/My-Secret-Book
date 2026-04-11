@@ -51,7 +51,7 @@
     /* ================= NAVBAR ================= */
 .nav-section{
   width:100%;
-  background:var(--bg);
+  background:#e6d3b3;
   position:relative;
   z-index:20;
   margin:0;
@@ -63,7 +63,7 @@
   height:325px;              /* yahi white area crop karega */
   overflow:hidden;
   position:relative;
-  background:var(--bg);
+  background:#e6d3b3;
   line-height:0;
 }
 
@@ -94,12 +94,12 @@
   padding:10px 18px;
   border-radius:999px;
   text-decoration:none;
-  color:#fff5e4;
-  border:1.5px solid rgba(245,219,175,.82);
-  background:rgba(78, 16, 10, 0.18);
-  box-shadow:
-    inset 0 0 8px rgba(255,255,255,.08),
-    0 3px 8px rgba(0,0,0,.10);
+  color:#d4af37; /* golden */
+  border:1px solid rgba(212,175,55,0.6);
+  background:rgba(0,0,0,0.2);
+  text-shadow:
+    0 0 5px rgba(255,215,0,0.5),
+    0 0 10px rgba(255,215,0,0.3);
   backdrop-filter: blur(1px);
   white-space:nowrap;
   font-size:.96rem;
@@ -110,8 +110,9 @@
 }
 
 .nav-btn:hover{
-  transform:translate(-50%, -50%) translateY(-2px);
-  background:rgba(255,225,180,.18);
+  color:#fff5cc;
+  border-color:#ffd700;
+  box-shadow:0 0 10px rgba(255,215,0,0.6);
 }
 
 .nav-btn.home{ left:10%; top:29%; }
