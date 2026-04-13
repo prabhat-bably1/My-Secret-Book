@@ -118,54 +118,53 @@
 ================================== */
 .nav.ribbon-nav{
   width:min(980px, 96vw);
-  height:82px;
-  margin:8px auto 16px;
+  height:66px;
+  margin:10px auto 14px;
   padding:0 34px;
   position:relative;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:18px;
-  border-radius:12px;
+  border-radius:8px;
   background:
     linear-gradient(180deg,
       #fffdf7 0%,
-      #f8efd9 14%,
-      #efdcb8 34%,
-      #e6c99a 64%,
-      #d9b37b 100%);
-  border:2px solid #cc983a;
+      #f8edd6 18%,
+      #efdcb8 48%,
+      #e3c796 78%,
+      #d6b27c 100%);
+  border:2px solid #c99534;
   box-shadow:
-    0 10px 20px rgba(0,0,0,.16),
+    0 8px 14px rgba(0,0,0,.12),
     inset 0 2px 0 rgba(255,255,255,.95),
-    inset 0 10px 16px rgba(255,255,255,.28),
-    inset 0 -8px 14px rgba(128,86,28,.16),
-    0 0 0 1px rgba(255,230,170,.35);
+    inset 0 -6px 10px rgba(125,85,28,.14);
   overflow:visible;
 }
-
+  .nav.ribbon-nav .ribbon-curve{
+  display:none;
+  }
 /* top highlight */
 .nav.ribbon-nav::before{
   content:"";
   position:absolute;
-  left:10px;
-  right:10px;
-  top:6px;
-  height:3px;
+  left:12px;
+  right:12px;
+  top:5px;
+  height:2px;
   border-radius:999px;
-  background:linear-gradient(90deg, transparent, #fffef9, #f8e3a5, #fffef9, transparent);
+  background:linear-gradient(90deg, transparent, #fffef9, #f6df9d, #fffef9, transparent);
   opacity:1;
 }
-
 .nav.ribbon-nav::after{
   content:"";
   position:absolute;
   left:14px;
   right:14px;
-  bottom:6px;
-  height:3px;
+  bottom:5px;
+  height:2px;
   border-radius:999px;
-  background:linear-gradient(90deg, transparent, #b97e21, #f5d17d, #b97e21, transparent);
+  background:linear-gradient(90deg, transparent, #bb8228, #f3d27b, #bb8228, transparent);
   opacity:1;
 }
 
@@ -173,27 +172,48 @@
 .ribbon-tail{
   position:absolute;
   top:50%;
-  width:42px;
-  height:34px;
+  width:46px;
+  height:30px;
   transform:translateY(-50%);
-  background:linear-gradient(180deg,#efdcb9 0%, #d8af73 100%);
-  border:2px solid #cc983a;
-  z-index:-1;
+  background:linear-gradient(180deg,#edd9b5 0%, #d5af76 100%);
+  border:2px solid #c99534;
   box-shadow:
-    0 5px 10px rgba(0,0,0,.12),
-    inset 0 2px 4px rgba(255,255,255,.35);
+    0 4px 8px rgba(0,0,0,.10),
+    inset 0 2px 3px rgba(255,255,255,.35);
+  z-index:-1;
 }
 
 .ribbon-tail.left{
-  left:-16px;
-  clip-path:polygon(100% 0, 0 50%, 100% 100%, 84% 50%);
+  left:-28px;
+  clip-path:polygon(100% 0, 28% 0, 0 50%, 28% 100%, 100% 100%, 82% 50%);
   border-right:none;
+  border-radius:6px 0 0 6px;
 }
 
 .ribbon-tail.right{
-  right:-16px;
-  clip-path:polygon(0 0, 100% 50%, 0 100%, 16% 50%);
+  right:-28px;
+  clip-path:polygon(0 0, 72% 0, 100% 50%, 72% 100%, 0 100%, 18% 50%);
   border-left:none;
+  border-radius:0 6px 6px 0;
+}
+    .ribbon-tail.left::after,
+.ribbon-tail.right::after{
+  content:"";
+  position:absolute;
+  top:4px;
+  bottom:4px;
+  width:10px;
+  background:linear-gradient(180deg, rgba(255,255,255,.28), rgba(120,80,25,.12));
+}
+
+.ribbon-tail.left::after{
+  right:6px;
+  clip-path:polygon(100% 0, 0 50%, 100% 100%);
+}
+
+.ribbon-tail.right::after{
+  left:6px;
+  clip-path:polygon(0 0, 100% 50%, 0 100%);
 }
 
 /* tassels */
@@ -716,22 +736,22 @@
 
     @media (max-width: 600px){
 .nav.ribbon-nav{
-  height:66px;
+  height:58px;
   padding:0 14px;
   margin:8px auto 12px;
 }
 
 .ribbon-tail{
-  width:26px;
-  height:22px;
+  width:28px;
+  height:20px;
 }
 
 .ribbon-tail.left{
-  left:-10px;
+  left:-16px;
 }
 
 .ribbon-tail.right{
-  right:-10px;
+  right:-16px;
 }
 
 .ribbon-tassel{
@@ -838,21 +858,21 @@
     @media (max-width: 420px){
 .nav.ribbon-nav{
   width:96vw;
-  height:58px;
+  height:54px;
   padding:0 10px;
 }
 
 .ribbon-tail{
-  width:20px;
-  height:18px;
+  width:22px;
+  height:16px;
 }
 
 .ribbon-tail.left{
-  left:-8px;
+  left:-12px;
 }
 
 .ribbon-tail.right{
-  right:-8px;
+  right:-12px;
 }
 
 .ribbon-tassel{
