@@ -113,190 +113,157 @@
     }
 
     /* NAV */
-    /* =========================
-   ULTRA PREMIUM RIBBON NAV
-========================= */
+/* ==================================
+   CREAM GOLD RIBBON NAVBAR
+================================== */
 .nav.ribbon-nav{
   width:min(980px, 96vw);
-  min-height:86px;
-  margin:8px auto 24px;
+  height:74px;
+  margin:8px auto 14px;
   padding:0 34px;
+  position:relative;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:18px;
-  position:relative;
-  border-radius:18px;
+  border-radius:10px;
   background:
-    linear-gradient(180deg,#fff9ef 0%,#f5ead6 22%,#ead9bc 50%,#ddc4a0 78%,#cfb089 100%);
-  border:2px solid #c89b44;
+    linear-gradient(180deg,
+      #fffaf0 0%,
+      #f4e7cf 18%,
+      #ead7b2 48%,
+      #e3c99e 78%,
+      #d9b988 100%);
+  border:2px solid #d1a24b;
   box-shadow:
-    0 14px 28px rgba(0,0,0,.16),
-    inset 0 2px 10px rgba(255,255,255,.75),
-    inset 0 -10px 16px rgba(117,84,39,.14),
-    0 0 18px rgba(212,172,93,.10);
+    0 8px 18px rgba(0,0,0,.12),
+    inset 0 2px 8px rgba(255,255,255,.75),
+    inset 0 -5px 10px rgba(122,88,34,.14);
   overflow:visible;
 }
 
+/* top highlight */
 .nav.ribbon-nav::before{
   content:"";
   position:absolute;
-  left:14px;
-  right:14px;
-  top:7px;
+  left:12px;
+  right:12px;
+  top:5px;
   height:2px;
   border-radius:999px;
-  background:linear-gradient(90deg, transparent, #e0b85d, #fff8d8, #e0b85d, transparent);
+  background:linear-gradient(90deg, transparent, #fffdf7, #f8e7b7, #fffdf7, transparent);
   opacity:.95;
 }
 
+/* bottom golden shine */
 .nav.ribbon-nav::after{
   content:"";
   position:absolute;
-  left:20px;
-  right:20px;
-  bottom:7px;
+  left:16px;
+  right:16px;
+  bottom:5px;
   height:2px;
   border-radius:999px;
-  background:linear-gradient(90deg, transparent, #c89635, #f9e0a0, #c89635, transparent);
-  opacity:.9;
+  background:linear-gradient(90deg, transparent, #c79136, #f6dd9b, #c79136, transparent);
+  opacity:.95;
 }
 
-.ribbon-fold{
+/* folded ribbon ends */
+.ribbon-tail{
   position:absolute;
   top:50%;
-  width:68px;
-  height:44px;
-  background:linear-gradient(180deg,#ead7b6 0%,#d3b086 100%);
-  border:2px solid #c89b44;
+  width:34px;
+  height:28px;
+  transform:translateY(-50%);
+  background:linear-gradient(180deg,#ecd8b4 0%, #d5b07b 100%);
+  border:2px solid #d1a24b;
   z-index:-1;
-  box-shadow:0 8px 14px rgba(0,0,0,.10);
+  box-shadow:0 4px 8px rgba(0,0,0,.10);
 }
 
-.ribbon-fold.left{
-  left:-20px;
-  transform:translateY(-50%) skewX(-28deg);
-  border-top-left-radius:12px;
-  border-bottom-left-radius:8px;
+.ribbon-tail.left{
+  left:-14px;
+  clip-path:polygon(100% 0, 0 50%, 100% 100%, 82% 50%);
+  border-right:none;
 }
 
-.ribbon-fold.right{
-  right:-20px;
-  transform:translateY(-50%) skewX(28deg);
-  border-top-right-radius:12px;
-  border-bottom-right-radius:8px;
+.ribbon-tail.right{
+  right:-14px;
+  clip-path:polygon(0 0, 100% 50%, 0 100%, 18% 50%);
+  border-left:none;
 }
 
-.ribbon-fold.left::before,
-.ribbon-fold.right::before{
-  content:"";
-  position:absolute;
-  top:50%;
-  width:24px;
-  height:24px;
-  background:linear-gradient(180deg,#d3b086,#b98a55);
-  border:2px solid #b68435;
-  transform:translateY(-50%) rotate(45deg);
-}
-
-.ribbon-fold.left::before{
-  left:-8px;
-}
-
-.ribbon-fold.right::before{
-  right:-8px;
-}
-
+/* tassels */
 .ribbon-tassel{
   position:absolute;
+  bottom:-42px;
   width:18px;
-  height:46px;
-  z-index:2;
+  height:42px;
+  background-image:url("tassel.png");
+  background-repeat:no-repeat;
+  background-position:center top;
+  background-size:contain;
+  pointer-events:none;
+  z-index:3;
 }
 
-.ribbon-tassel::before{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:0;
-  transform:translateX(-50%);
-  width:2px;
-  height:14px;
-  background:linear-gradient(180deg,#c89635,#8b6427);
+.ribbon-tassel.left{
+  left:20px;
 }
 
-.ribbon-tassel::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:12px;
-  transform:translateX(-50%);
-  width:18px;
-  height:28px;
-  border-radius:10px 10px 12px 12px;
-  background:linear-gradient(180deg,#f2d88c 0%,#d4a64a 45%,#b57f24 100%);
-  box-shadow:
-    inset 0 2px 3px rgba(255,255,255,.35),
-    0 3px 6px rgba(0,0,0,.12);
-  clip-path:polygon(30% 0%, 70% 0%, 100% 30%, 85% 100%, 15% 100%, 0% 30%);
+.ribbon-tassel.right{
+  right:20px;
+  transform:scaleX(-1);
 }
 
-.tassel-left{
-  left:32px;
-  bottom:-38px;
-}
-
-.tassel-right{
-  right:32px;
-  bottom:-38px;
-}
-
+/* menu groups */
 .nav-left,
 .nav-right{
   display:flex;
   align-items:center;
-  gap:18px;
+  gap:22px;
   position:relative;
-  z-index:3;
+  z-index:2;
 }
 
+/* buttons */
 .nav-btn{
-  position:relative;
   text-decoration:none;
-  padding:12px 10px;
-  color:#8f6421;
+  position:relative;
+  padding:8px 10px;
+  color:#8b6524;
   font-family:"Cinzel", serif;
-  font-size:1rem;
+  font-size:.95rem;
   font-weight:700;
-  letter-spacing:1px;
   text-transform:uppercase;
-  background:transparent;
+  letter-spacing:1px;
+  white-space:nowrap;
   border:none;
+  background:transparent;
   border-radius:0;
   box-shadow:none;
   text-shadow:
-    0 1px 0 #fffdf4,
-    0 0 8px rgba(255,228,162,.24);
-  transition:.25s ease;
-  white-space:nowrap;
+    0 1px 0 rgba(255,255,255,.95),
+    0 0 6px rgba(255,230,170,.25);
+  transition:.22s ease;
 }
 
 .nav-btn::after{
   content:"";
   position:absolute;
   left:50%;
-  bottom:6px;
-  transform:translateX(-50%);
+  bottom:-2px;
   width:0;
   height:2px;
+  transform:translateX(-50%);
   border-radius:999px;
-  background:linear-gradient(90deg,#c89635,#fbe3a0,#c89635);
-  transition:.25s ease;
+  background:linear-gradient(90deg,#c79136,#f8e3aa,#c79136);
+  transition:.22s ease;
 }
 
 .nav-btn:hover{
-  transform:translateY(-2px);
-  color:#6d4812;
+  color:#6e4a17;
+  transform:translateY(-1px);
 }
 
 .nav-btn:hover::after,
@@ -305,32 +272,14 @@
 }
 
 .nav-btn.active{
-  color:#6d4812;
+  color:#6e4a17;
+  background:linear-gradient(180deg, rgba(155,103,38,.18), rgba(121,74,21,.22));
+  border-radius:4px;
+  padding:8px 14px;
+  box-shadow:
+    inset 0 1px 3px rgba(255,255,255,.20),
+    0 2px 6px rgba(0,0,0,.08);
 }
-
-.ribbon-ornament{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:4;
-  color:#b07a20;
-  text-shadow:
-    0 1px 0 #fff7d6,
-    0 0 10px rgba(255,223,149,.30);
-}
-
-.top-orn{
-  top:-18px;
-  font-size:1.8rem;
-  line-height:1;
-}
-
-.bottom-orn{
-  bottom:-18px;
-  font-size:1rem;
-  line-height:1;
-}
-
     /* TITLE */
     .title-wrap{
       margin-top:8px;
@@ -1004,12 +953,11 @@
     <div class="content">
 
       <nav class="nav ribbon-nav">
-  <span class="ribbon-fold left"></span>
-  <span class="ribbon-fold right"></span>
-  <span class="ribbon-tassel tassel-left"></span>
-  <span class="ribbon-tassel tassel-right"></span>
-  <span class="ribbon-ornament top-orn">ॐ</span>
-  <span class="ribbon-ornament bottom-orn">📖</span>
+  <span class="ribbon-tail left"></span>
+  <span class="ribbon-tail right"></span>
+
+  <span class="ribbon-tassel left"></span>
+  <span class="ribbon-tassel right"></span>
 
   <div class="nav-left">
     <a href="index.html" class="nav-btn active">Home</a>
