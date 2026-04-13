@@ -866,16 +866,64 @@
     }
 
     @media (max-width: 420px){
-      .nav{
-        width:96vw;
-        padding:8px;
-      }
+  .nav.ribbon-nav{
+    width:96vw;
+    min-height:62px;
+    padding:0 10px;
+  }
 
-      .nav-btn{
-        padding:7px 10px;
-        font-size:.72rem;
-      }
+  .nav-left,
+  .nav-right{
+    gap:8px;
+  }
 
+  .nav-btn{
+    padding:7px 2px;
+    font-size:.66rem;
+    letter-spacing:.3px;
+  }
+
+  .ribbon-fold{
+    width:34px;
+    height:24px;
+  }
+
+  .ribbon-fold.left{
+    left:-10px;
+  }
+
+  .ribbon-fold.right{
+    right:-10px;
+  }
+
+  .tassel-left{
+    left:12px;
+    bottom:-24px;
+  }
+
+  .tassel-right{
+    right:12px;
+    bottom:-24px;
+  }
+
+  .ribbon-tassel{
+    width:12px;
+  }
+
+  .ribbon-tassel::after{
+    width:12px;
+    height:18px;
+  }
+
+  .top-orn{
+    top:-12px;
+    font-size:1.05rem;
+  }
+
+  .bottom-orn{
+    bottom:-12px;
+    font-size:.74rem;
+  }
       .title{
         font-size:clamp(2.5rem,8vw,4.1rem);
       }
