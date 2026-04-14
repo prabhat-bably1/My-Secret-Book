@@ -785,7 +785,7 @@
         <div class="more-menu">
           <a href="#">More</a>
           <div class="more-dropdown">
-            <a href="#profile-area">Profile</a>
+            <a href="#profile-area" id="moreProfileBtn">Profile</a>
             <a href="#saved-area">Saved</a>
             <a href="#" id="moreLogoutBtn">Logout</a>
           </div>
@@ -938,6 +938,12 @@
   </div>
 
   <script>
+    const savedUser = localStorage.getItem("loggedInUser");
+const savedToken = localStorage.getItem("token");
+
+if (!savedUser && !savedToken) {
+  window.location.href = "login.html";
+}
     const secretText = document.getElementById("secretText");
     const wordPreview = document.getElementById("wordPreview");
     const saveTextBtn = document.getElementById("saveTextBtn");
@@ -1047,9 +1053,11 @@
     }
 
     function doLogout() {
-      localStorage.removeItem("loggedInUser");
-      localStorage.removeItem("token");
-      window.location.href = "login.html";
+  localStorage.removeItem("loggedInUser");
+  localStorage.removeItem("token");
+  sessionStorage.removeItem("loggedInUser");
+  sessionStorage.removeItem("token");
+  window.location.replace("login.html");
     }
 
     function loadWords() {
