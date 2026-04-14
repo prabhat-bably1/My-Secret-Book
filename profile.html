@@ -1,1377 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profile - My Secret Book</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-
-    :root{
-      --cream:#eadbc4;
-      --cream-soft:#f4ecdf;
-      --gold:#d09a36;
-      --brown:#4b2d1a;
-      --card:rgba(255,250,242,0.92);
-      --border:rgba(208,154,54,0.28);
-      --btn1:#a22f24;
-      --btn2:#62130e;
-      --rose1:#d45a78;
-      --rose2:#f0a2b5;
-    }
-
-    html,body{
-      width:100%;
-      min-height:100%;
-      overflow-x:hidden;
-      overflow-y:auto;
-      background:linear-gradient(180deg,var(--cream-soft),var(--cream));
-      font-family:"Poppins",sans-serif;
-      color:var(--brown);
-    }
-
-    body{position:relative}
-
-    .petals{
-      position:fixed;
-      inset:0;
-      overflow:hidden;
-      pointer-events:none;
-      z-index:1;
-    }
-
-    .petal{
-      position:absolute;
-      top:-80px;
-      width:18px;
-      height:26px;
-      border-radius:70% 30% 70% 30%;
-      opacity:.82;
-      filter:drop-shadow(0 4px 8px rgba(0,0,0,.10));
-      animation:fall linear infinite;
-    }
-
-    .petal::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius:inherit;
-      background:linear-gradient(180deg,var(--rose2),var(--rose1));
-      transform:rotate(18deg);
-    }
-
-    .petal:nth-child(1){left:5%;animation-duration:13s;animation-delay:-2s}
-    .petal:nth-child(2){left:13%;animation-duration:16s;animation-delay:-8s}
-    .petal:nth-child(3){left:22%;animation-duration:12s;animation-delay:-4s}
-    .petal:nth-child(4){left:31%;animation-duration:18s;animation-delay:-10s}
-    .petal:nth-child(5){left:40%;animation-duration:15s;animation-delay:-1s}
-    .petal:nth-child(6){left:49%;animation-duration:17s;animation-delay:-6s}
-    .petal:nth-child(7){left:58%;animation-duration:14s;animation-delay:-9s}
-    .petal:nth-child(8){left:67%;animation-duration:19s;animation-delay:-11s}
-    .petal:nth-child(9){left:76%;animation-duration:13s;animation-delay:-3s}
-    .petal:nth-child(10){left:85%;animation-duration:16s;animation-delay:-7s}
-    .petal:nth-child(11){left:92%;animation-duration:18s;animation-delay:-12s}
-
-    @keyframes fall{
-      0%{transform:translateY(-80px) translateX(0) rotate(0deg)}
-      25%{transform:translateY(25vh) translateX(18px) rotate(90deg)}
-      50%{transform:translateY(50vh) translateX(-14px) rotate(180deg)}
-      75%{transform:translateY(75vh) translateX(20px) rotate(260deg)}
-      100%{transform:translateY(110vh) translateX(-10px) rotate(340deg)}
-    }
-
-    .page{
-      position:relative;
-      z-index:2;
-      width:100%;
-      padding:16px 14px 40px;
-    }
-
-    .nav{
-      width:min(980px,96vw);
-      margin:0 auto 14px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-      padding:10px 12px;
-      border-radius:999px;
-      background:rgba(255,248,237,.34);
-      border:1px solid rgba(208,154,54,.24);
-      box-shadow:0 10px 20px rgba(0,0,0,.06), inset 0 0 0 1px rgba(255,255,255,.16);
-      backdrop-filter:blur(6px);
-    }
-
-    .nav-group{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-
-    .nav a{
-      text-decoration:none;
-      padding:10px 18px;
-      border-radius:999px;
-      color:var(--gold);
-      font-family:"Cinzel",serif;
-      font-size:.84rem;
-      border:1px solid rgba(208,154,54,.32);
-      background:rgba(60,25,10,.08);
-      transition:.2s ease;
-    }
-
-    .nav a:hover,
-    .nav a.active{
-      transform:translateY(-2px);
-      color:#fff2ca;
-      background:rgba(96,40,14,.28);
-    }
-
-    .more-menu{position:relative}
-
-    .more-dropdown{
-      position:absolute;
-      top:115%;
-      right:0;
-      min-width:170px;
-      background:rgba(255,250,242,.98);
-      border:1px solid rgba(208,154,54,.25);
-      border-radius:18px;
-      box-shadow:0 18px 28px rgba(0,0,0,.10);
-      padding:8px;
-      display:none;
-      z-index:50;
-    }
-
-    .more-dropdown a{
-      display:block;
-      text-decoration:none;
-      color:#6d2418;
-      padding:10px 12px;
-      border-radius:12px;
-      font-size:.88rem;
-      font-family:"Poppins",sans-serif;
-      background:transparent;
-      border:none;
-    }
-
-    .more-dropdown a:hover{
-      background:rgba(208,154,54,.10);
-      color:#8b2c1f;
-      transform:none;
-    }
-
-    .more-menu:hover .more-dropdown{display:block}
-
-    .title-wrap{
-      text-align:center;
-      margin:4px 0 8px;
-    }
-
-    .title{
-      position:relative;
-      display:inline-block;
-      font-family:"Great Vibes",cursive;
-      font-size:clamp(3rem,8vw,6.2rem);
-      line-height:1.03;
-      color:var(--gold);
-      text-shadow:
-        0 1px 0 #fff6da,
-        0 0 10px rgba(255,223,140,.42),
-        0 0 20px rgba(207,154,53,.22),
-        0 6px 18px rgba(90,55,20,.16);
-    }
-
-    .secret-wrap{position:relative;display:inline-block}
-    .t-anchor{position:relative;display:inline-block}
-
-    .book-hang{
-      position:absolute;
-      left:46%;
-      top:100%;
-      transform:translateX(-50%);
-      margin-top:-8px;
-      font-family:"Great Vibes",cursive;
-      font-size:clamp(2rem,5vw,4rem);
-      color:var(--gold);
-      white-space:nowrap;
-      transform-origin:top center;
-      animation:swing 3.2s ease-in-out infinite;
-    }
-
-    .book-hang::before{
-      content:"";
-      position:absolute;
-      left:50%;
-      top:-22px;
-      transform:translateX(-50%);
-      width:2px;
-      height:22px;
-      background:linear-gradient(180deg,#ddb76f,#94601f);
-    }
-
-    @keyframes swing{
-      0%,100%{transform:translateX(-50%) rotate(2deg)}
-      25%{transform:translateX(-50%) rotate(-4deg)}
-      50%{transform:translateX(-50%) rotate(3deg)}
-      75%{transform:translateX(-50%) rotate(-2deg)}
-    }
-
-    .ornament{
-      width:min(860px,95vw);
-      margin:10px auto 0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-    }
-
-    .orn-line{
-      flex:1;
-      height:2px;
-      background:linear-gradient(90deg,transparent,var(--gold),#fff1c9,var(--gold),transparent);
-      box-shadow:0 0 10px rgba(200,150,60,.16);
-    }
-
-    .orn-center{
-      color:#ab7428;
-      font-size:1rem;
-      white-space:nowrap;
-      font-family:"Cinzel",serif;
-    }
-
-    .profile-label{
-      width:min(1120px,96vw);
-      margin:14px auto 10px;
-      font-family:"Cinzel",serif;
-      font-size:2rem;
-      color:#5b2a19;
-    }
-
-    .profile-layout{
-      width:min(1120px,96vw);
-      margin:0 auto 18px;
-      display:grid;
-      grid-template-columns:340px 1fr;
-      gap:18px;
-      align-items:start;
-    }
-
-    .profile-card,
-    .book-card,
-    .saved-section{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:28px;
-      box-shadow:0 24px 36px rgba(0,0,0,.08), inset 0 0 0 1px rgba(255,255,255,.22);
-      backdrop-filter:blur(10px);
-    }
-
-    .profile-card{
-      padding:22px 18px;
-      text-align:center;
-    }
-
-    .avatar{
-      width:120px;
-      height:120px;
-      margin:0 auto 14px;
-      border-radius:50%;
-      border:3px solid rgba(208,154,54,.45);
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.8), rgba(255,255,255,.1)),
-        linear-gradient(180deg,#f6dfb3,#cf9a35);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-family:"Cinzel",serif;
-      font-size:2rem;
-      color:#7a3520;
-      box-shadow:0 10px 22px rgba(0,0,0,.10);
-    }
-
-    .profile-name{
-      font-family:"Cinzel",serif;
-      font-size:1.35rem;
-      color:#6d2418;
-      margin-bottom:6px;
-    }
-
-    .profile-id{
-      color:#8a4d24;
-      font-size:.95rem;
-      margin-bottom:12px;
-      word-break:break-word;
-    }
-
-    .status-badge{
-      display:inline-block;
-      padding:8px 14px;
-      border-radius:999px;
-      background:rgba(255,247,232,.84);
-      border:1px solid rgba(208,154,54,.25);
-      color:#7c4b23;
-      font-size:.82rem;
-      font-weight:600;
-      margin-bottom:16px;
-    }
-
-    .profile-box{
-      text-align:left;
-      padding:14px;
-      border-radius:18px;
-      background:rgba(255,248,238,.74);
-      border:1px solid rgba(208,154,54,.15);
-      margin-bottom:12px;
-    }
-
-    .profile-box h4{
-      font-family:"Cinzel",serif;
-      font-size:.95rem;
-      color:#7a3520;
-      margin-bottom:6px;
-    }
-
-    .profile-box p{
-      color:#654029;
-      line-height:1.8;
-      font-size:.92rem;
-    }
-
-    .field-label{
-      display:block;
-      margin:10px 0 6px;
-      font-size:.85rem;
-      font-weight:600;
-      color:#7a3520;
-    }
-
-    .profile-input,
-    .profile-textarea,
-    .profile-select{
-      width:100%;
-      padding:12px 14px;
-      border-radius:14px;
-      border:1px solid rgba(208,154,54,.24);
-      background:#fffdf8;
-      outline:none;
-      font-family:"Poppins",sans-serif;
-      color:#4b2d1a;
-    }
-
-    .profile-textarea{
-      min-height:110px;
-      resize:vertical;
-      line-height:1.7;
-    }
-
-    .settings-row{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      margin-top:10px;
-      flex-wrap:wrap;
-    }
-
-    .settings-row span{
-      color:#6d2418;
-      font-size:.9rem;
-      font-weight:500;
-    }
-
-    .settings-row .profile-select{
-      max-width:170px;
-    }
-
-    .profile-actions{
-      display:grid;
-      gap:10px;
-      margin-top:12px;
-    }
-
-    .small-btn,
-    .action-btn,
-    .toggle-btn{
-      border:none;
-      cursor:pointer;
-      padding:12px 14px;
-      border-radius:999px;
-      color:#fff4e2;
-      font-family:"Cinzel",serif;
-      font-size:.9rem;
-      background:linear-gradient(180deg,var(--btn1) 0%, #761b13 55%, var(--btn2) 100%);
-      border:2px solid var(--gold);
-      box-shadow:0 10px 16px rgba(0,0,0,.10);
-    }
-
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:10px;
-      margin-top:16px;
-    }
-
-    .stat{
-      padding:12px 10px;
-      border-radius:16px;
-      background:rgba(255,248,238,.76);
-      border:1px solid rgba(208,154,54,.16);
-      text-align:center;
-    }
-
-    .stat strong{
-      display:block;
-      font-family:"Cinzel",serif;
-      color:#7a3520;
-      font-size:1.05rem;
-      margin-bottom:4px;
-    }
-
-    .stat span{
-      color:#6b4732;
-      font-size:.82rem;
-    }
-
-    .book-card{padding:18px}
-
-    .book-top{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      margin-bottom:16px;
-      flex-wrap:wrap;
-    }
-
-    .book-top h3{
-      font-family:"Cinzel",serif;
-      font-size:1.35rem;
-      color:#6d2418;
-    }
-
-    .privacy-switch{
-      padding:8px 14px;
-      border-radius:999px;
-      background:rgba(255,247,232,.84);
-      border:1px solid rgba(208,154,54,.25);
-      color:#7c4b23;
-      font-size:.82rem;
-      font-weight:600;
-    }
-
-    .open-book-ui{
-      border-radius:24px;
-      border:3px solid #b08450;
-      background:
-        linear-gradient(90deg,
-          #d1af84 0%,
-          #ead7b6 3%,
-          #fffaf3 10%,
-          #fffefc 50%,
-          #fffaf3 90%,
-          #ead7b6 97%,
-          #d1af84 100%);
-      box-shadow:0 22px 34px rgba(0,0,0,.14), inset 0 0 0 2px rgba(255,255,255,.35);
-      overflow:hidden;
-      position:relative;
-    }
-
-    .open-book-ui::before{
-      content:"";
-      position:absolute;
-      left:50%;
-      top:0;
-      bottom:0;
-      width:16px;
-      transform:translateX(-50%);
-      background:linear-gradient(90deg,rgba(120,80,40,.24),rgba(255,255,255,.42),rgba(120,80,40,.22));
-      z-index:2;
-    }
-
-    .book-pages{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      min-height:680px;
-      position:relative;
-      z-index:3;
-    }
-
-    .book-page{
-      padding:24px 18px;
-      background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,250,242,.99));
-    }
-
-    .book-page.left{border-right:1px solid rgba(160,120,70,.18)}
-    .book-page.right{border-left:1px solid rgba(160,120,70,.10)}
-
-    .book-page h4{
-      font-family:"Cinzel",serif;
-      font-size:1.1rem;
-      color:#7a3520;
-      margin-bottom:12px;
-    }
-
-    .book-page textarea{
-      width:100%;
-      min-height:280px;
-      resize:vertical;
-      border-radius:18px;
-      border:1px solid rgba(208,154,54,.25);
-      background:rgba(255,252,247,.95);
-      padding:14px;
-      font-size:.96rem;
-      line-height:1.8;
-      color:#4b2d1a;
-      outline:none;
-      font-family:"Poppins",sans-serif;
-    }
-
-    .file-input{
-      width:100%;
-      padding:12px;
-      border-radius:16px;
-      border:1px solid rgba(208,154,54,.25);
-      background:rgba(255,252,247,.95);
-      margin-bottom:14px;
-    }
-
-    .word-preview,
-    .image-preview{
-      border-radius:18px;
-      border:1px dashed rgba(208,154,54,.35);
-      padding:14px;
-      background:rgba(255,248,238,.70);
-      color:#71492d;
-      line-height:1.8;
-      margin-bottom:16px;
-      min-height:120px;
-    }
-
-    .image-preview img{
-      max-width:100%;
-      display:block;
-      margin:8px auto 0;
-      border-radius:14px;
-      box-shadow:0 10px 18px rgba(0,0,0,.10);
-    }
-
-    .book-actions{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      margin-top:16px;
-    }
-
-    .saved-section{
-      width:min(1120px,96vw);
-      margin:0 auto;
-      padding:18px;
-    }
-
-    .saved-head{
-      display:flex;
-      gap:16px;
-      margin-bottom:18px;
-      flex-wrap:wrap;
-    }
-
-    .toggle-btn{
-      min-width:150px;
-      opacity:.7;
-    }
-
-    .toggle-btn.active{
-      opacity:1;
-      transform:translateY(-2px);
-      box-shadow:0 12px 18px rgba(0,0,0,.12);
-    }
-
-    .saved-panel{
-      display:none;
-    }
-
-    .saved-panel.active{
-      display:block;
-    }
-
-    .saved-box{
-      background:rgba(255,248,238,.78);
-      border:1px solid rgba(208,154,54,.18);
-      border-radius:20px;
-      padding:14px;
-      min-height:220px;
-    }
-
-    .saved-item{
-      border-radius:14px;
-      background:rgba(255,252,247,.95);
-      border:1px solid rgba(208,154,54,.14);
-      padding:12px;
-      margin-bottom:12px;
-    }
-
-    .saved-date{
-      font-size:.78rem;
-      color:#8a5a34;
-      margin-bottom:6px;
-    }
-
-    .saved-text{
-      font-size:.92rem;
-      line-height:1.75;
-      color:#5d3b24;
-      white-space:pre-wrap;
-    }
-
-    .saved-image{
-      width:100%;
-      border-radius:12px;
-      margin-top:8px;
-      box-shadow:0 8px 14px rgba(0,0,0,.10);
-    }
-
-    .post-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:12px;
-    }
-
-    .mini-btn{
-      border:none;
-      cursor:pointer;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(255,247,232,.92);
-      border:1px solid rgba(208,154,54,.24);
-      color:#7a3520;
-      font-size:.82rem;
-      font-weight:600;
-    }
-
-    .comment-box{
-      margin-top:10px;
-    }
-
-    .comment-box input{
-      width:100%;
-      padding:10px 12px;
-      border-radius:12px;
-      border:1px solid rgba(208,154,54,.24);
-      background:#fffdf8;
-      outline:none;
-      font-family:"Poppins",sans-serif;
-    }
-
-    .comment-list{
-      margin-top:8px;
-      display:grid;
-      gap:6px;
-    }
-
-    .comment-item{
-      padding:8px 10px;
-      border-radius:10px;
-      background:rgba(255,248,238,.76);
-      font-size:.84rem;
-      color:#654029;
-    }
-
-    .empty-note{
-      color:#8b6547;
-      font-size:.9rem;
-      line-height:1.7;
-    }
-
-    @media (max-width: 900px){
-      .profile-layout{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width: 600px){
-      .nav{
-        padding:10px;
-      }
-
-      .nav-group{
-        gap:8px;
-      }
-
-      .nav a{
-        padding:8px 12px;
-        font-size:.78rem;
-      }
-
-      .title{
-        font-size:clamp(2.8rem,8vw,4.8rem);
-      }
-
-      .book-hang{
-        font-size:clamp(1.95rem,5vw,3.4rem);
-      }
-
-      .book-pages{
-        grid-template-columns:1fr;
-      }
-
-      .open-book-ui::before{
-        display:none;
-      }
-
-      .book-page.left{
-        border-right:none;
-        border-bottom:1px solid rgba(160,120,70,.18);
-      }
-
-      .book-page.right{
-        border-left:none;
-      }
-
-      .book-actions,
-      .stats{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width: 420px){
-      .page{
-        padding:14px 10px 28px;
-      }
-
-      .nav{
-        width:96vw;
-        padding:8px;
-      }
-
-      .nav a{
-        padding:7px 10px;
-        font-size:.72rem;
-      }
-
-      .title{
-        font-size:clamp(2.45rem,8vw,4rem);
-      }
-
-      .book-hang{
-        font-size:clamp(1.8rem,5vw,2.9rem);
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile - My Secret Book</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+--cream:#eadbc4;
+--cream-soft:#f4ecdf;
+--gold:#d09a36;
+--brown:#4b2d1a;
+--card:rgba(255,250,242,0.92);
+--border:rgba(208,154,54,0.28);
+--btn1:#a22f24;
+--btn2:#62130e;
+}
+
+body{
+background:linear-gradient(180deg,var(--cream-soft),var(--cream));
+font-family:"Poppins",sans-serif;
+color:var(--brown);
+}
+
+/* NAV */
+.nav{
+width:95%;
+margin:15px auto;
+display:flex;
+justify-content:space-between;
+padding:10px;
+border-radius:999px;
+background:rgba(255,248,237,.4);
+}
+
+.nav a{
+padding:8px 14px;
+text-decoration:none;
+color:var(--gold);
+}
+
+/* PROFILE */
+.profile{
+width:90%;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:20px;
+}
+
+.btn{
+padding:10px;
+border:none;
+margin:5px;
+border-radius:20px;
+background:linear-gradient(var(--btn1),var(--btn2));
+color:white;
+cursor:pointer;
+}
+
+input,textarea,select{
+width:100%;
+padding:10px;
+margin-top:5px;
+border-radius:10px;
+border:1px solid #ccc;
+}
+</style>
 </head>
+
 <body>
-  <div class="petals">
-    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
-    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
-    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
-    <span class="petal"></span><span class="petal"></span>
-  </div>
 
-  <div class="page">
-    <div class="nav">
-      <div class="nav-group">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-      </div>
-      <div class="nav-group">
-        <a href="login.html">Login</a>
-        <div class="more-menu">
-          <a href="#">More</a>
-          <div class="more-dropdown">
-            <a href="#profile-area" id="moreProfileBtn">Profile</a>
-            <a href="#saved-area">Saved</a>
-            <a href="#" id="moreLogoutBtn">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="title-wrap">
-      <div class="title">
-        My <span class="secret-wrap">Secre<span class="t-anchor">t<span class="book-hang">Book</span></span></span>
-      </div>
-      <div class="ornament">
-        <div class="orn-line"></div>
-        <div class="orn-center">❦ ✦ ❦</div>
-        <div class="orn-line"></div>
-      </div>
-    </div>
-
-    <div class="profile-label">Profile</div>
-
-    <div class="profile-layout" id="profile-area">
-      <aside class="profile-card">
-        <div class="avatar" id="avatarBox">P</div>
-        <div class="profile-name" id="profileNameText">Prabhat</div>
-        <div class="profile-id" id="profileIdText">Prabhat@mysecretbook</div>
-        <div class="status-badge" id="statusBadge">Private Profile</div>
-
-        <div class="profile-box">
-          <h4>About Me</h4>
-          <p id="aboutMeText">Dil ki baatein, secret thoughts, shayari aur personal emotions ko ek beautiful jagah par sambhal kar rakhne wala user profile.</p>
-        </div>
-
-        <div class="profile-box" id="editProfilePanel" style="display:none;">
-          <h4>Edit Profile Details</h4>
-
-          <label class="field-label">Name</label>
-          <input class="profile-input" id="editNameInput" type="text" placeholder="Enter your name">
-
-          <label class="field-label">Profile ID</label>
-          <input class="profile-input" id="editIdInput" type="text" placeholder="Enter profile id">
-
-          <label class="field-label">About Me</label>
-          <textarea class="profile-textarea" id="editAboutInput" placeholder="Write about yourself..."></textarea>
-        </div>
-
-        <div class="profile-box">
-          <h4>Profile Rules</h4>
-          <p>Real name based identity, safe space, clean profile aur personal expression.</p>
-        </div>
-
-        <div class="profile-box" id="privacyPanel" style="display:none;">
-          <h4>Privacy Settings</h4>
-          <div class="settings-row">
-            <span>Profile Visibility</span>
-            <select class="profile-select" id="privacySelect">
-               <option value="private">Private</option>
-              <option value="public">Public</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="profile-box" id="settingsPanel" style="display:none;">
-          <h4>Settings</h4>
-          <div class="settings-row">
-            <span>Petals Animation</span>
-            <select class="profile-select" id="petalsSetting">
-              <option value="on">On</option>
-              <option value="off">Off</option>
-            </select>
-          </div>
-
-          <div class="settings-row">
-            <span>Default Saved Tab</span>
-            <select class="profile-select" id="defaultTabSetting">
-              <option value="word">Word</option>
-              <option value="image">Images</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="profile-actions">
-          <button class="small-btn" id="editProfileBtn" type="button">Edit Profile</button>
-          <button class="small-btn" id="saveProfileBtn" type="button">Save Profile</button>
-          <button class="small-btn" id="settingsBtn" type="button">Settings</button>
-          <button class="small-btn" id="privacyBtn" type="button">Change Privacy</button>
-          <button class="small-btn" id="logoutBtn" type="button">Logout</button>
-        </div>
-
-        <div class="stats">
-          <div class="stat"><strong id="secretCount">0</strong><span>Secrets</span></div>
-          <div class="stat"><strong id="imageCount">0</strong><span>Images</span></div>
-          <div class="stat"><strong>6</strong><span>Friends</span></div>
-        </div>
-      </aside>
-
-      <section class="book-card">
-        <div class="book-top">
-          <h3>My Secret Pages</h3>
-          <div class="privacy-switch">Visible: Private</div>
-        </div>
-
-        <div class="open-book-ui">
-          <div class="book-pages">
-            <div class="book-page left">
-              <h4>Write Your Secret</h4>
-              <textarea id="secretText" placeholder="Yahan apni dil ki baat, dard bhari shayari, personal note ya secret likho..."></textarea>
-
-              <div class="word-preview" id="wordPreview">Yahan typed text ka quick preview dikhega.</div>
-
-              <div class="book-actions">
-                <button class="action-btn" id="saveTextBtn" type="button">Save Secret</button>
-                <button class="action-btn" id="clearTextBtn" type="button">Clear Text</button>
-              </div>
-            </div>
-
-            <div class="book-page right">
-              <h4>Add Image / Memory</h4>
-              <input class="file-input" id="imageInput" type="file" accept="image/*">
-
-              <div class="image-preview" id="imagePreview">Image preview yahan dikhega.</div>
-
-              <div class="book-actions">
-                <button class="action-btn" id="saveImageBtn" type="button">Save Image</button>
-                <button class="action-btn" id="clearImageBtn" type="button">Clear Image</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <section class="saved-section" id="saved-area">
-      <div class="saved-head">
-        <button class="toggle-btn active" id="wordTab" type="button">Word</button>
-        <button class="toggle-btn" id="imageTab" type="button">Images</button>
-      </div>
-
-      <div class="saved-panel active" id="wordPanel">
-        <div class="saved-box" id="savedWordsList">
-          <div class="empty-note">Abhi tak koi word save nahi hua.</div>
-        </div>
-      </div>
-
-      <div class="saved-panel" id="imagePanel">
-        <div class="saved-box" id="savedImagesList">
-          <div class="empty-note">Abhi tak koi image save nahi hui.</div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <script>
-    const savedUser = localStorage.getItem("loggedInUser");
-const savedToken = localStorage.getItem("token");
-
-if (!savedUser && !savedToken) {
-  window.location.href = "login.html";
+<!-- 🔐 LOGIN PROTECTION -->
+<script>
+if(!localStorage.getItem("loggedInUser")){
+location.replace("login.html");
 }
-    const savedUser = localStorage.getItem("loggedInUser");
-const savedToken = localStorage.getItem("token");
+</script>
 
-if (!savedUser && !savedToken) {
-  window.location.href = "login.html";
+<div class="nav">
+<div>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+</div>
+
+<div>
+<a href="#" id="logoutBtn">Logout</a>
+</div>
+</div>
+
+<div class="profile">
+
+<h2 id="nameText">Prabhat</h2>
+<p id="idText">Prabhat@mysecretbook</p>
+<p id="aboutText">About me...</p>
+
+<hr><br>
+
+<div id="editBox" style="display:none;">
+<input id="nameInput" placeholder="Name">
+<input id="idInput" placeholder="Profile ID">
+<textarea id="aboutInput" placeholder="About"></textarea>
+</div>
+
+<select id="privacy">
+<option value="private">Private</option>
+<option value="public">Public</option>
+</select>
+
+<br><br>
+
+<button class="btn" id="editBtn">Edit</button>
+<button class="btn" id="saveBtn">Save</button>
+<button class="btn" id="logoutBtn2">Logout</button>
+
+</div>
+
+<script>
+
+/* ELEMENTS */
+const nameText = document.getElementById("nameText");
+const idText = document.getElementById("idText");
+const aboutText = document.getElementById("aboutText");
+
+const nameInput = document.getElementById("nameInput");
+const idInput = document.getElementById("idInput");
+const aboutInput = document.getElementById("aboutInput");
+
+const editBox = document.getElementById("editBox");
+
+const editBtn = document.getElementById("editBtn");
+const saveBtn = document.getElementById("saveBtn");
+
+const logoutBtn = document.getElementById("logoutBtn");
+const logoutBtn2 = document.getElementById("logoutBtn2");
+
+const privacy = document.getElementById("privacy");
+
+/* LOAD DATA */
+function load(){
+let data = JSON.parse(localStorage.getItem("profile")) || {};
+
+nameText.innerText = data.name || "Prabhat";
+idText.innerText = data.id || "Prabhat@mysecretbook";
+aboutText.innerText = data.about || "About me...";
+
+privacy.value = data.privacy || "private";
+
+nameInput.value = data.name || "";
+idInput.value = data.id || "";
+aboutInput.value = data.about || "";
 }
-    const secretText = document.getElementById("secretText");
-    const wordPreview = document.getElementById("wordPreview");
-    const saveTextBtn = document.getElementById("saveTextBtn");
-    const clearTextBtn = document.getElementById("clearTextBtn");
 
-    const imageInput = document.getElementById("imageInput");
-    const imagePreview = document.getElementById("imagePreview");
-    const saveImageBtn = document.getElementById("saveImageBtn");
-    const clearImageBtn = document.getElementById("clearImageBtn");
+/* EDIT */
+editBtn.onclick = ()=>{
+editBox.style.display = "block";
+};
+
+/* SAVE */
+saveBtn.onclick = ()=>{
+let data = {
+name: nameInput.value,
+id: idInput.value,
+about: aboutInput.value,
+privacy: privacy.value
+};
+
+localStorage.setItem("profile", JSON.stringify(data));
+load();
+editBox.style.display="none";
+alert("Saved");
+};
+
+/* LOGOUT */
+function logout(){
+localStorage.removeItem("loggedInUser");
+location.replace("login.html");
+}
+
+logoutBtn.onclick = logout;
+logoutBtn2.onclick = logout;
+
+/* INIT */
+load();
+
+</script>
 
-    const savedWordsList = document.getElementById("savedWordsList");
-    const savedImagesList = document.getElementById("savedImagesList");
-    const secretCount = document.getElementById("secretCount");
-    const imageCount = document.getElementById("imageCount");
-
-    const wordTab = document.getElementById("wordTab");
-    const imageTab = document.getElementById("imageTab");
-    const wordPanel = document.getElementById("wordPanel");
-    const imagePanel = document.getElementById("imagePanel");
-
-    const profileNameText = document.getElementById("profileNameText");
-    const profileIdText = document.getElementById("profileIdText");
-    const aboutMeText = document.getElementById("aboutMeText");
-    const statusBadge = document.getElementById("statusBadge");
-    const avatarBox = document.getElementById("avatarBox");
-
-    const editProfilePanel = document.getElementById("editProfilePanel");
-    const privacyPanel = document.getElementById("privacyPanel");
-    const settingsPanel = document.getElementById("settingsPanel");
-
-    const editNameInput = document.getElementById("editNameInput");
-    const editIdInput = document.getElementById("editIdInput");
-    const editAboutInput = document.getElementById("editAboutInput");
-
-    const editProfileBtn = document.getElementById("editProfileBtn");
-    const saveProfileBtn = document.getElementById("saveProfileBtn");
-    const settingsBtn = document.getElementById("settingsBtn");
-    const privacyBtn = document.getElementById("privacyBtn");
-    const logoutBtn = document.getElementById("logoutBtn");
-    const moreLogoutBtn = document.getElementById("moreLogoutBtn");
-
-    const privacySelect = document.getElementById("privacySelect");
-    const petalsSetting = document.getElementById("petalsSetting");
-    const defaultTabSetting = document.getElementById("defaultTabSetting");
-    const privacySwitch = document.querySelector(".privacy-switch");
-    const moreProfileBtn = document.getElementById("moreProfileBtn");
-
-    if (moreProfileBtn) {
-  moreProfileBtn.addEventListener("click", function(e) {
-    const savedUser = localStorage.getItem("loggedInUser");
-    const savedToken = localStorage.getItem("token");
-
-    if (!savedUser && !savedToken) {
-      e.preventDefault();
-      window.location.href = "login.html";
-    }
-  });
-    }
-    
-    let currentImageData = "";
-
-    function getFormattedDate() {
-      return new Date().toLocaleString();
-    }
-
-    function escapeHtml(text) {
-      const div = document.createElement("div");
-      div.textContent = text;
-      return div.innerHTML;
-    }
-
-    function getDefaultProfile() {
-      return {
-        name: "Prabhat",
-        profileId: "Prabhat@mysecretbook",
-        about: "Dil ki baatein, secret thoughts, shayari aur personal emotions ko ek beautiful jagah par sambhal kar rakhne wala user profile.",
-        privacy: "private",
-        petals: "on",
-        defaultTab: "word"
-      };
-    }
-
-    function getProfileData() {
-      return JSON.parse(localStorage.getItem("msb_profile_data") || "null") || getDefaultProfile();
-    }
-
-    function saveProfileData(data) {
-      localStorage.setItem("msb_profile_data", JSON.stringify(data));
-    }
-
-    function applyProfileUI() {
-      const data = getProfileData();
-
-      profileNameText.textContent = data.name || "Prabhat";
-      profileIdText.textContent = data.profileId || "Prabhat@mysecretbook";
-      aboutMeText.textContent = data.about || "";
-      statusBadge.textContent = data.privacy === "public" ? "Public Profile" : "Private Profile";
-      privacySwitch.textContent = data.privacy === "public" ? "Visible: Public" : "Visible: Private";
-
-      privacySelect.value = data.privacy || "private";
-      petalsSetting.value = data.petals || "on";
-      defaultTabSetting.value = data.defaultTab || "word";
-
-      editNameInput.value = data.name || "";
-      editIdInput.value = data.profileId || "";
-      editAboutInput.value = data.about || "";
-
-      const firstLetter = (data.name || "P").trim().charAt(0).toUpperCase() || "P";
-      avatarBox.textContent = firstLetter;
-
-      document.querySelector(".petals").style.display = (data.petals === "off") ? "none" : "block";
-    }
-
-    function togglePanel(panel) {
-      const isOpen = panel.style.display === "block";
-      editProfilePanel.style.display = "none";
-      privacyPanel.style.display = "none";
-      settingsPanel.style.display = "none";
-      panel.style.display = isOpen ? "none" : "block";
-    }
-
-    function doLogout() {
-  localStorage.removeItem("loggedInUser");
-  localStorage.removeItem("token");
-  sessionStorage.removeItem("loggedInUser");
-  sessionStorage.removeItem("token");
-  window.location.replace("login.html");
-    }
-
-    function loadWords() {
-      const words = JSON.parse(localStorage.getItem("msb_words") || "[]");
-      secretCount.textContent = words.length;
-
-      if (!words.length) {
-        savedWordsList.innerHTML = '<div class="empty-note">Abhi tak koi word save nahi hua.</div>';
-        return;
-      }
-
-      savedWordsList.innerHTML = words.map((item, index) => `
-        <div class="saved-item">
-          <div class="saved-date">${item.date}</div>
-          <div class="saved-text">${escapeHtml(item.text)}</div>
-
-          <div class="post-actions">
-            <button class="mini-btn" onclick="likeWord(${index})">❤️ Like (${item.likes || 0})</button>
-            <button class="mini-btn" onclick="shareWord(${index})">📤 Share</button>
-          </div>
-
-          <div class="comment-box">
-            <input type="text" id="wordCommentInput${index}" placeholder="Write comment...">
-            <div class="post-actions" style="margin-top:8px;">
-              <button class="mini-btn" onclick="addWordComment(${index})">💬 Comment</button>
-            </div>
-            <div class="comment-list">
-              ${(item.comments || []).map(c => `<div class="comment-item">${escapeHtml(c)}</div>`).join("")}
-            </div>
-          </div>
-        </div>
-      `).join("");
-    }
-
-    function loadImages() {
-      const images = JSON.parse(localStorage.getItem("msb_images") || "[]");
-      imageCount.textContent = images.length;
-
-      if (!images.length) {
-        savedImagesList.innerHTML = '<div class="empty-note">Abhi tak koi image save nahi hui.</div>';
-        return;
-      }
-
-      savedImagesList.innerHTML = images.map((item, index) => `
-        <div class="saved-item">
-          <div class="saved-date">${item.date}</div>
-          <img class="saved-image" src="${item.src}" alt="Saved image">
-
-          <div class="post-actions">
-            <button class="mini-btn" onclick="likeImage(${index})">❤️ Like (${item.likes || 0})</button>
-            <button class="mini-btn" onclick="shareImage(${index})">📤 Share</button>
-          </div>
-
-          <div class="comment-box">
-            <input type="text" id="imageCommentInput${index}" placeholder="Write comment...">
-            <div class="post-actions" style="margin-top:8px;">
-              <button class="mini-btn" onclick="addImageComment(${index})">💬 Comment</button>
-            </div>
-            <div class="comment-list">
-              ${(item.comments || []).map(c => `<div class="comment-item">${escapeHtml(c)}</div>`).join("")}
-            </div>
-          </div>
-        </div>
-      `).join("");
-    }
-
-    secretText.addEventListener("input", () => {
-      const value = secretText.value.trim();
-      wordPreview.textContent = value || "Yahan typed text ka quick preview dikhega.";
-    });
-
-    saveTextBtn.addEventListener("click", () => {
-      const value = secretText.value.trim();
-      if (!value) {
-        alert("Pehle kuch likho.");
-        return;
-      }
-
-      const words = JSON.parse(localStorage.getItem("msb_words") || "[]");
-      words.unshift({
-        text: value,
-        date: getFormattedDate(),
-        likes: 0,
-        comments: []
-      });
-      localStorage.setItem("msb_words", JSON.stringify(words));
-
-      secretText.value = "";
-      wordPreview.textContent = "Yahan typed text ka quick preview dikhega.";
-      loadWords();
-      showWords();
-    });
-
-    clearTextBtn.addEventListener("click", () => {
-      secretText.value = "";
-      wordPreview.textContent = "Yahan typed text ka quick preview dikhega.";
-    });
-
-    imageInput.addEventListener("change", (event) => {
-      const file = event.target.files[0];
-      if (!file) {
-        currentImageData = "";
-        imagePreview.textContent = "Image preview yahan dikhega.";
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        currentImageData = e.target.result;
-        imagePreview.innerHTML = `Selected image preview:<img src="${currentImageData}" alt="Preview image">`;
-      };
-      reader.readAsDataURL(file);
-    });
-
-    saveImageBtn.addEventListener("click", () => {
-      if (!currentImageData) {
-        alert("Pehle image choose karo.");
-        return;
-      }
-
-      const images = JSON.parse(localStorage.getItem("msb_images") || "[]");
-      images.unshift({
-        src: currentImageData,
-        date: getFormattedDate(),
-        likes: 0,
-        comments: []
-      });
-      localStorage.setItem("msb_images", JSON.stringify(images));
-
-      imageInput.value = "";
-      currentImageData = "";
-      imagePreview.textContent = "Image preview yahan dikhega.";
-      loadImages();
-      showImages();
-    });
-
-    clearImageBtn.addEventListener("click", () => {
-      imageInput.value = "";
-      currentImageData = "";
-      imagePreview.textContent = "Image preview yahan dikhega.";
-    });
-
-    function likeWord(index) {
-      const words = JSON.parse(localStorage.getItem("msb_words") || "[]");
-      words[index].likes = (words[index].likes || 0) + 1;
-      localStorage.setItem("msb_words", JSON.stringify(words));
-      loadWords();
-    }
-
-    function likeImage(index) {
-      const images = JSON.parse(localStorage.getItem("msb_images") || "[]");
-      images[index].likes = (images[index].likes || 0) + 1;
-      localStorage.setItem("msb_images", JSON.stringify(images));
-      loadImages();
-    }
-
-    function addWordComment(index) {
-      const input = document.getElementById(`wordCommentInput${index}`);
-      const value = input.value.trim();
-      if (!value) return;
-
-      const words = JSON.parse(localStorage.getItem("msb_words") || "[]");
-      words[index].comments = words[index].comments || [];
-      words[index].comments.push(value);
-      localStorage.setItem("msb_words", JSON.stringify(words));
-      loadWords();
-    }
-
-    function addImageComment(index) {
-      const input = document.getElementById(`imageCommentInput${index}`);
-      const value = input.value.trim();
-      if (!value) return;
-
-      const images = JSON.parse(localStorage.getItem("msb_images") || "[]");
-      images[index].comments = images[index].comments || [];
-      images[index].comments.push(value);
-      localStorage.setItem("msb_images", JSON.stringify(images));
-      loadImages();
-    }
-
-    function shareWord(index) {
-      const words = JSON.parse(localStorage.getItem("msb_words") || "[]");
-      const text = words[index].text;
-      navigator.clipboard.writeText(text);
-      alert("Word copied for sharing.");
-    }
-
-    function shareImage(index) {
-      const images = JSON.parse(localStorage.getItem("msb_images") || "[]");
-      navigator.clipboard.writeText(images[index].src);
-      alert("Image link copied for sharing.");
-    }
-
-    function showWords() {
-      wordTab.classList.add("active");
-      imageTab.classList.remove("active");
-      wordPanel.classList.add("active");
-      imagePanel.classList.remove("active");
-    }
-
-    function showImages() {
-      imageTab.classList.add("active");
-      wordTab.classList.remove("active");
-      imagePanel.classList.add("active");
-      wordPanel.classList.remove("active");
-    }
-
-    wordTab.addEventListener("click", () => {
-      showWords();
-      const data = getProfileData();
-      data.defaultTab = "word";
-      saveProfileData(data);
-    });
-
-    imageTab.addEventListener("click", () => {
-      showImages();
-      const data = getProfileData();
-      data.defaultTab = "image";
-      saveProfileData(data);
-    });
-
-    editProfileBtn.addEventListener("click", () => {
-      togglePanel(editProfilePanel);
-    });
-
-    privacyBtn.addEventListener("click", () => {
-      togglePanel(privacyPanel);
-    });
-
-    settingsBtn.addEventListener("click", () => {
-      togglePanel(settingsPanel);
-    });
-
-    saveProfileBtn.addEventListener("click", () => {
-      const data = getProfileData();
-
-      data.name = editNameInput.value.trim() || "Prabhat";
-      data.profileId = editIdInput.value.trim() || "Prabhat@mysecretbook";
-      data.about = editAboutInput.value.trim() || "No about text added yet.";
-      data.privacy = privacySelect.value;
-      data.petals = petalsSetting.value;
-      data.defaultTab = defaultTabSetting.value;
-
-      saveProfileData(data);
-      applyProfileUI();
-
-      editProfilePanel.style.display = "none";
-      privacyPanel.style.display = "none";
-      settingsPanel.style.display = "none";
-
-      alert("Profile updated successfully.");
-    });
-
-    privacySelect.addEventListener("change", () => {
-      const data = getProfileData();
-      data.privacy = privacySelect.value;
-      saveProfileData(data);
-      applyProfileUI();
-    });
-
-    petalsSetting.addEventListener("change", () => {
-      const data = getProfileData();
-      data.petals = petalsSetting.value;
-      saveProfileData(data);
-      applyProfileUI();
-    });
-
-    defaultTabSetting.addEventListener("change", () => {
-      const data = getProfileData();
-      data.defaultTab = defaultTabSetting.value;
-      saveProfileData(data);
-    });
-
-    logoutBtn.addEventListener("click", doLogout);
-    moreLogoutBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      doLogout();
-    });
-
-    applyProfileUI();
-    loadWords();
-    loadImages();
-
-    const data = getProfileData();
-    if (data.defaultTab === "image") {
-      showImages();
-    } else {
-      showWords();
-    }
-  </script>
 </body>
 </html>
-
-
-
-
-
- 
