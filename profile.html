@@ -1,289 +1,844 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Profile - My Secret Book</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile - My Secret Book</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<script>
-/* 🔐 LOGIN PROTECTION */
-if(!localStorage.getItem("loggedInUser")){
-location.replace("login.html");
-}
-</script>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --cream:#eadbc4;
+      --cream-soft:#f4ecdf;
+      --gold:#d09a36;
+      --brown:#4b2d1a;
+      --card:rgba(255,250,242,0.92);
+      --border:rgba(208,154,54,0.28);
+      --btn1:#a22f24;
+      --btn2:#62130e;
+      --rose1:#d45a78;
+      --rose2:#f0a2b5;
+    }
 
-:root{
---cream:#eadbc4;
---cream-soft:#f4ecdf;
---gold:#d09a36;
---brown:#4b2d1a;
---btn1:#a22f24;
---btn2:#62130e;
-}
+    html,body{
+      width:100%;
+      min-height:100%;
+      overflow-x:hidden;
+      overflow-y:auto;
+      background:linear-gradient(180deg,var(--cream-soft),var(--cream));
+      font-family:"Poppins",sans-serif;
+      color:var(--brown);
+    }
 
-body{
-background:linear-gradient(180deg,var(--cream-soft),var(--cream));
-font-family:"Poppins";
-}
+    body{position:relative}
 
-/* NAV */
-.nav{
-display:flex;
-justify-content:space-between;
-padding:10px;
-background:white;
-}
+    .petals{
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+      z-index:1;
+    }
 
-.nav a{
-margin:5px;
-text-decoration:none;
-color:var(--gold);
-}
+    .petal{
+      position:absolute;
+      top:-80px;
+      width:18px;
+      height:26px;
+      border-radius:70% 30% 70% 30%;
+      opacity:.82;
+      filter:drop-shadow(0 4px 8px rgba(0,0,0,.10));
+      animation:fall linear infinite;
+    }
 
-/* PROFILE */
-.profile{
-width:90%;
-margin:auto;
-background:white;
-padding:20px;
-border-radius:20px;
-margin-top:20px;
-}
+    .petal::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      background:linear-gradient(180deg,var(--rose2),var(--rose1));
+      transform:rotate(18deg);
+    }
 
-.btn{
-padding:10px;
-border:none;
-border-radius:20px;
-background:linear-gradient(var(--btn1),var(--btn2));
-color:white;
-margin:5px;
-cursor:pointer;
-}
+    .petal:nth-child(1){left:5%;animation-duration:13s;animation-delay:-2s}
+    .petal:nth-child(2){left:13%;animation-duration:16s;animation-delay:-8s}
+    .petal:nth-child(3){left:22%;animation-duration:12s;animation-delay:-4s}
+    .petal:nth-child(4){left:31%;animation-duration:18s;animation-delay:-10s}
+    .petal:nth-child(5){left:40%;animation-duration:15s;animation-delay:-1s}
+    .petal:nth-child(6){left:49%;animation-duration:17s;animation-delay:-6s}
+    .petal:nth-child(7){left:58%;animation-duration:14s;animation-delay:-9s}
+    .petal:nth-child(8){left:67%;animation-duration:19s;animation-delay:-11s}
+    .petal:nth-child(9){left:76%;animation-duration:13s;animation-delay:-3s}
+    .petal:nth-child(10){left:85%;animation-duration:16s;animation-delay:-7s}
+    .petal:nth-child(11){left:92%;animation-duration:18s;animation-delay:-12s}
 
-input,textarea,select{
-width:100%;
-padding:10px;
-margin:5px 0;
-border-radius:10px;
-border:1px solid #ccc;
-}
+    @keyframes fall{
+      0%{transform:translateY(-80px) translateX(0) rotate(0deg)}
+      25%{transform:translateY(25vh) translateX(18px) rotate(90deg)}
+      50%{transform:translateY(50vh) translateX(-14px) rotate(180deg)}
+      75%{transform:translateY(75vh) translateX(20px) rotate(260deg)}
+      100%{transform:translateY(110vh) translateX(-10px) rotate(340deg)}
+    }
 
-/* POSTS */
-.post{
-background:#fff7ef;
-padding:10px;
-border-radius:10px;
-margin-top:10px;
-}
-</style>
+    .page{
+      position:relative;
+      z-index:2;
+      width:100%;
+      padding:16px 14px 40px;
+    }
+
+    .nav{
+      width:min(980px,96vw);
+      margin:0 auto 14px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(255,248,237,.34);
+      border:1px solid rgba(208,154,54,.24);
+      box-shadow:0 10px 20px rgba(0,0,0,.06), inset 0 0 0 1px rgba(255,255,255,.16);
+      backdrop-filter:blur(6px);
+    }
+
+    .nav-group{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .nav a{
+      text-decoration:none;
+      padding:10px 18px;
+      border-radius:999px;
+      color:var(--gold);
+      font-family:"Cinzel",serif;
+      font-size:.84rem;
+      border:1px solid rgba(208,154,54,.32);
+      background:rgba(60,25,10,.08);
+      transition:.2s ease;
+    }
+
+    .nav a:hover,
+    .nav a.active{
+      transform:translateY(-2px);
+      color:#fff2ca;
+      background:rgba(96,40,14,.28);
+    }
+
+    .more-menu{position:relative}
+
+    .more-dropdown{
+      position:absolute;
+      top:115%;
+      right:0;
+      min-width:170px;
+      background:rgba(255,250,242,.98);
+      border:1px solid rgba(208,154,54,.25);
+      border-radius:18px;
+      box-shadow:0 18px 28px rgba(0,0,0,.10);
+      padding:8px;
+      display:none;
+      z-index:50;
+    }
+
+    .more-dropdown a{
+      display:block;
+      text-decoration:none;
+      color:#6d2418;
+      padding:10px 12px;
+      border-radius:12px;
+      font-size:.88rem;
+      font-family:"Poppins",sans-serif;
+      background:transparent;
+      border:none;
+    }
+
+    .more-dropdown a:hover{
+      background:rgba(208,154,54,.10);
+      color:#8b2c1f;
+      transform:none;
+    }
+
+    .more-menu:hover .more-dropdown{display:block}
+
+    .title-wrap{
+      text-align:center;
+      margin:4px 0 8px;
+    }
+
+    .title{
+      position:relative;
+      display:inline-block;
+      font-family:"Great Vibes",cursive;
+      font-size:clamp(3rem,8vw,6.2rem);
+      line-height:1.03;
+      color:var(--gold);
+      text-shadow:
+        0 1px 0 #fff6da,
+        0 0 10px rgba(255,223,140,.42),
+        0 0 20px rgba(207,154,53,.22),
+        0 6px 18px rgba(90,55,20,.16);
+    }
+
+    .secret-wrap{position:relative;display:inline-block}
+    .t-anchor{position:relative;display:inline-block}
+
+    .book-hang{
+      position:absolute;
+      left:46%;
+      top:100%;
+      transform:translateX(-50%);
+      margin-top:-8px;
+      font-family:"Great Vibes",cursive;
+      font-size:clamp(2rem,5vw,4rem);
+      color:var(--gold);
+      white-space:nowrap;
+      transform-origin:top center;
+      animation:swing 3.2s ease-in-out infinite;
+    }
+
+    .book-hang::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:-22px;
+      transform:translateX(-50%);
+      width:2px;
+      height:22px;
+      background:linear-gradient(180deg,#ddb76f,#94601f);
+    }
+
+    @keyframes swing{
+      0%,100%{transform:translateX(-50%) rotate(2deg)}
+      25%{transform:translateX(-50%) rotate(-4deg)}
+      50%{transform:translateX(-50%) rotate(3deg)}
+      75%{transform:translateX(-50%) rotate(-2deg)}
+    }
+
+    .ornament{
+      width:min(860px,95vw);
+      margin:10px auto 0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+    }
+
+    .orn-line{
+      flex:1;
+      height:2px;
+      background:linear-gradient(90deg,transparent,var(--gold),#fff1c9,var(--gold),transparent);
+      box-shadow:0 0 10px rgba(200,150,60,.16);
+    }
+
+    .orn-center{
+      color:#ab7428;
+      font-size:1rem;
+      white-space:nowrap;
+      font-family:"Cinzel",serif;
+    }
+
+    .profile-label{
+      width:min(1120px,96vw);
+      margin:14px auto 10px;
+      font-family:"Cinzel",serif;
+      font-size:2rem;
+      color:#5b2a19;
+    }
+
+    .profile-layout{
+      width:min(1120px,96vw);
+      margin:0 auto 18px;
+      display:grid;
+      grid-template-columns:340px 1fr;
+      gap:18px;
+      align-items:start;
+    }
+
+    .profile-card,
+    .book-card,
+    .saved-section{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:28px;
+      box-shadow:0 24px 36px rgba(0,0,0,.08), inset 0 0 0 1px rgba(255,255,255,.22);
+      backdrop-filter:blur(10px);
+    }
+
+    .profile-card{
+      padding:22px 18px;
+      text-align:center;
+    }
+
+    .avatar{
+      width:120px;
+      height:120px;
+      margin:0 auto 14px;
+      border-radius:50%;
+      border:3px solid rgba(208,154,54,.45);
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.8), rgba(255,255,255,.1)),
+        linear-gradient(180deg,#f6dfb3,#cf9a35);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:"Cinzel",serif;
+      font-size:2rem;
+      color:#7a3520;
+      box-shadow:0 10px 22px rgba(0,0,0,.10);
+    }
+
+    .profile-name{
+      font-family:"Cinzel",serif;
+      font-size:1.35rem;
+      color:#6d2418;
+      margin-bottom:6px;
+    }
+
+    .profile-id{
+      color:#8a4d24;
+      font-size:.95rem;
+      margin-bottom:12px;
+      word-break:break-word;
+    }
+
+    .status-badge{
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(255,247,232,.84);
+      border:1px solid rgba(208,154,54,.25);
+      color:#7c4b23;
+      font-size:.82rem;
+      font-weight:600;
+      margin-bottom:16px;
+    }
+
+    .profile-box{
+      text-align:left;
+      padding:14px;
+      border-radius:18px;
+      background:rgba(255,248,238,.74);
+      border:1px solid rgba(208,154,54,.15);
+      margin-bottom:12px;
+    }
+
+    .profile-box h4{
+      font-family:"Cinzel",serif;
+      font-size:.95rem;
+      color:#7a3520;
+      margin-bottom:6px;
+    }
+
+    .profile-box p{
+      color:#654029;
+      line-height:1.8;
+      font-size:.92rem;
+    }
+
+    .field-label{
+      display:block;
+      margin:10px 0 6px;
+      font-size:.85rem;
+      font-weight:600;
+      color:#7a3520;
+    }
+
+    .profile-input,
+    .profile-textarea,
+    .profile-select{
+      width:100%;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(208,154,54,.24);
+      background:#fffdf8;
+      outline:none;
+      font-family:"Poppins",sans-serif;
+      color:#4b2d1a;
+    }
+
+    .profile-textarea{
+      min-height:110px;
+      resize:vertical;
+      line-height:1.7;
+    }
+
+    .settings-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-top:10px;
+      flex-wrap:wrap;
+    }
+
+    .settings-row span{
+      color:#6d2418;
+      font-size:.9rem;
+      font-weight:500;
+    }
+
+    .settings-row .profile-select{
+      max-width:170px;
+    }
+
+    .profile-actions{
+      display:grid;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .small-btn,
+    .action-btn,
+    .toggle-btn{
+      border:none;
+      cursor:pointer;
+      padding:12px 14px;
+      border-radius:999px;
+      color:#fff4e2;
+      font-family:"Cinzel",serif;
+      font-size:.9rem;
+      background:linear-gradient(180deg,var(--btn1) 0%, #761b13 55%, var(--btn2) 100%);
+      border:2px solid var(--gold);
+      box-shadow:0 10px 16px rgba(0,0,0,.10);
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .stat{
+      padding:12px 10px;
+      border-radius:16px;
+      background:rgba(255,248,238,.76);
+      border:1px solid rgba(208,154,54,.16);
+      text-align:center;
+    }
+
+    .stat strong{
+      display:block;
+      font-family:"Cinzel",serif;
+      color:#7a3520;
+      font-size:1.05rem;
+      margin-bottom:4px;
+    }
+
+    .stat span{
+      color:#6b4732;
+      font-size:.82rem;
+    }
+
+    .book-card{padding:18px}
+
+    .book-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:16px;
+      flex-wrap:wrap;
+    }
+
+    .book-top h3{
+      font-family:"Cinzel",serif;
+      font-size:1.35rem;
+      color:#6d2418;
+    }
+
+    .privacy-switch{
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(255,247,232,.84);
+      border:1px solid rgba(208,154,54,.25);
+      color:#7c4b23;
+      font-size:.82rem;
+      font-weight:600;
+    }
+
+    .open-book-ui{
+      border-radius:24px;
+      border:3px solid #b08450;
+      background:
+        linear-gradient(90deg,
+          #d1af84 0%,
+          #ead7b6 3%,
+          #fffaf3 10%,
+          #fffefc 50%,
+          #fffaf3 90%,
+          #ead7b6 97%,
+          #d1af84 100%);
+      box-shadow:0 22px 34px rgba(0,0,0,.14), inset 0 0 0 2px rgba(255,255,255,.35);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .open-book-ui::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:0;
+      bottom:0;
+      width:16px;
+      transform:translateX(-50%);
+      background:linear-gradient(90deg,rgba(120,80,40,.24),rgba(255,255,255,.42),rgba(120,80,40,.22));
+      z-index:2;
+    }
+
+    .book-pages{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      min-height:680px;
+      position:relative;
+      z-index:3;
+    }
+
+    .book-page{
+      padding:24px 18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,250,242,.99));
+    }
+
+    .book-page.left{border-right:1px solid rgba(160,120,70,.18)}
+    .book-page.right{border-left:1px solid rgba(160,120,70,.10)}
+
+    .book-page h4{
+      font-family:"Cinzel",serif;
+      font-size:1.1rem;
+      color:#7a3520;
+      margin-bottom:12px;
+    }
+
+    .book-page textarea{
+      width:100%;
+      min-height:280px;
+      resize:vertical;
+      border-radius:18px;
+      border:1px solid rgba(208,154,54,.25);
+      background:rgba(255,252,247,.95);
+      padding:14px;
+      font-size:.96rem;
+      line-height:1.8;
+      color:#4b2d1a;
+      outline:none;
+      font-family:"Poppins",sans-serif;
+    }
+
+    .file-input{
+      width:100%;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(208,154,54,.25);
+      background:rgba(255,252,247,.95);
+      margin-bottom:14px;
+    }
+
+    .word-preview,
+    .image-preview{
+      border-radius:18px;
+      border:1px dashed rgba(208,154,54,.35);
+      padding:14px;
+      background:rgba(255,248,238,.70);
+      color:#71492d;
+      line-height:1.8;
+      margin-bottom:16px;
+      min-height:120px;
+    }
+
+    .image-preview img{
+      max-width:100%;
+      display:block;
+      margin:8px auto 0;
+      border-radius:14px;
+      box-shadow:0 10px 18px rgba(0,0,0,.10);
+    }
+
+    .book-actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .saved-section{
+      width:min(1120px,96vw);
+      margin:0 auto;
+      padding:18px;
+    }
+
+    .saved-head{
+      display:flex;
+      gap:16px;
+      margin-bottom:18px;
+      flex-wrap:wrap;
+    }
+
+    .toggle-btn{
+      min-width:150px;
+      opacity:.7;
+    }
+
+    .toggle-btn.active{
+      opacity:1;
+      transform:translateY(-2px);
+      box-shadow:0 12px 18px rgba(0,0,0,.12);
+    }
+
+    .saved-panel{
+      display:none;
+    }
+
+    .saved-panel.active{
+      display:block;
+    }
+
+    .saved-box{
+      background:rgba(255,248,238,.78);
+      border:1px solid rgba(208,154,54,.18);
+      border-radius:20px;
+      padding:14px;
+      min-height:220px;
+    }
+
+    .saved-item{
+      border-radius:14px;
+      background:rgba(255,252,247,.95);
+      border:1px solid rgba(208,154,54,.14);
+      padding:12px;
+      margin-bottom:12px;
+    }
+
+    .saved-date{
+      font-size:.78rem;
+      color:#8a5a34;
+      margin-bottom:6px;
+    }
+
+    .saved-text{
+      font-size:.92rem;
+      line-height:1.75;
+      color:#5d3b24;
+      white-space:pre-wrap;
+    }
+
+    .saved-image{
+      width:100%;
+      border-radius:12px;
+      margin-top:8px;
+      box-shadow:0 8px 14px rgba(0,0,0,.10);
+    }
+
+    .post-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    .mini-btn{
+      border:none;
+      cursor:pointer;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,247,232,.92);
+      border:1px solid rgba(208,154,54,.24);
+      color:#7a3520;
+      font-size:.82rem;
+      font-weight:600;
+    }
+
+    .comment-box{
+      margin-top:10px;
+    }
+
+    .comment-box input{
+      width:100%;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(208,154,54,.24);
+      background:#fffdf8;
+      outline:none;
+      font-family:"Poppins",sans-serif;
+    }
+
+    .comment-list{
+      margin-top:8px;
+      display:grid;
+      gap:6px;
+    }
+
+    .comment-item{
+      padding:8px 10px;
+      border-radius:10px;
+      background:rgba(255,248,238,.76);
+      font-size:.84rem;
+      color:#654029;
+    }
+
+    .empty-note{
+      color:#8b6547;
+      font-size:.9rem;
+      line-height:1.7;
+    }
+
+    @media (max-width: 900px){
+      .profile-layout{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 600px){
+      .nav{
+        padding:10px;
+      }
+
+      .nav-group{
+        gap:8px;
+      }
+
+      .nav a{
+        padding:8px 12px;
+        font-size:.78rem;
+      }
+
+      .title{
+        font-size:clamp(2.8rem,8vw,4.8rem);
+      }
+
+      .book-hang{
+        font-size:clamp(1.95rem,5vw,3.4rem);
+      }
+
+      .book-pages{
+        grid-template-columns:1fr;
+      }
+
+      .open-book-ui::before{
+        display:none;
+      }
+
+      .book-page.left{
+        border-right:none;
+        border-bottom:1px solid rgba(160,120,70,.18);
+      }
+
+      .book-page.right{
+        border-left:none;
+      }
+
+      .book-actions,
+      .stats{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 420px){
+      .page{
+        padding:14px 10px 28px;
+      }
+
+      .nav{
+        width:96vw;
+        padding:8px;
+      }
+
+      .nav a{
+        padding:7px 10px;
+        font-size:.72rem;
+      }
+
+      .title{
+        font-size:clamp(2.45rem,8vw,4rem);
+      }
+
+      .book-hang{
+        font-size:clamp(1.8rem,5vw,2.9rem);
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="petals">
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+    <span class="petal"></span><span class="petal"></span>
+  </div>
 
-<div class="nav">
-<div>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-</div>
-<div>
-<a href="#" id="logoutBtn">Logout</a>
-</div>
-</div>
+  <div class="page">
+    <div class="nav">
+      <div class="nav-group">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="nav-group">
+        <a href="login.html">Login</a>
+        <div class="more-menu">
+          <a href="#">More</a>
+          <div class="more-dropdown">
+            <a href="#profile-area" id="moreProfileBtn">Profile</a>
+            <a href="#saved-area">Saved</a>
+            <a href="#" id="moreLogoutBtn">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<div class="profile">
+    <div class="title-wrap">
+      <div class="title">
+        My <span class="secret-wrap">Secre<span class="t-anchor">t<span class="book-hang">Book</span></span></span>
+      </div>
+      <div class="ornament">
+        <div class="orn-line"></div>
+        <div class="orn-center">❦ ✦ ❦</div>
+        <div class="orn-line"></div>
+      </div>
+    </div>
 
-<h2 id="nameText">User</h2>
-<p id="idText">user@mysecretbook</p>
-<p id="aboutText">About...</p>
+    <div class="profile-label">Profile</div>
 
-<hr><br>
+    <div class="profile-layout" id="profile-area">
+      <aside class="profile-card">
+        <div class="avatar" id="avatarBox">P</div>
+        <div class="profile-name" id="profileNameText">Prabhat</div>
+        <div class="profile-id" id="profileIdText">Prabhat@mysecretbook</div>
+        <div class="status-badge" id="statusBadge">Private Profile</div>
 
-<button class="btn" id="editBtn">Edit Profile</button>
+        <div class="profile-box">
+          <h4>About Me</h4>
+          <p id="aboutMeText">Dil ki baatein, secret thoughts, shayari aur personal emotions ko ek beautiful jagah par sambhal kar rakhne wala user profile.</p>
+        </div>
 
-<div id="editBox" style="display:none;">
-<input id="nameInput" placeholder="Name">
-<input id="idInput" placeholder="Profile ID">
-<textarea id="aboutInput" placeholder="About"></textarea>
+        <div class="profile-box" id="editProfilePanel" style="display:none;">
+          <h4>Edit Profile Details</h4>
 
-<select id="privacy">
-<option value="private">Private</option>
-<option value="public">Public</option>
-</select>
+          <label class="field-label">Name</label>
+          <input class="profile-input" id="editNameInput" type="text" placeholder="Enter your name">
 
-<button class="btn" id="saveBtn">Save</button>
-</div>
+          <label class="field-label">Profile ID</label>
+          <input class="profile-input" id="editIdInput" type="text" placeholder="Enter profile id">
 
-<hr>
+          <label class="field-label">About Me</label>
+          <textarea class="profile-textarea" id="editAboutInput" placeholder="Write about yourself..."></textarea>
+        </div>
 
-<h3>Write Secret</h3>
-<textarea id="secretText"></textarea>
-<button class="btn" id="saveSecretBtn">Save Secret</button>
+        <div class="profile-box">
+          <h4>Profile Rules</h4>
+          <p>Real name based identity, safe space, clean profile aur personal expression.</p>
+        </div>
 
-<h3>Upload Image</h3>
-<input type="file" id="imageInput">
-<button class="btn" id="saveImageBtn">Save Image</button>
-
-<hr>
-
-<h3>Your Posts</h3>
-<div id="posts"></div>
-
-</div>
-
-<script>
-
-/* ELEMENTS */
-const nameText = document.getElementById("nameText");
-const idText = document.getElementById("idText");
-const aboutText = document.getElementById("aboutText");
-
-const nameInput = document.getElementById("nameInput");
-const idInput = document.getElementById("idInput");
-const aboutInput = document.getElementById("aboutInput");
-
-const editBox = document.getElementById("editBox");
-
-const editBtn = document.getElementById("editBtn");
-const saveBtn = document.getElementById("saveBtn");
-
-const logoutBtn = document.getElementById("logoutBtn");
-
-const privacy = document.getElementById("privacy");
-
-const secretText = document.getElementById("secretText");
-const saveSecretBtn = document.getElementById("saveSecretBtn");
-
-const imageInput = document.getElementById("imageInput");
-const saveImageBtn = document.getElementById("saveImageBtn");
-
-const postsDiv = document.getElementById("posts");
-
-/* PROFILE LOAD */
-function loadProfile(){
-let data = JSON.parse(localStorage.getItem("profile"))||{};
-
-nameText.innerText = data.name || "User";
-idText.innerText = data.id || "user@mysecretbook";
-aboutText.innerText = data.about || "About...";
-}
-
-/* EDIT */
-editBtn.onclick = ()=>{
-editBox.style.display = "block";
-};
-
-/* SAVE PROFILE */
-saveBtn.onclick = ()=>{
-let data={
-name:nameInput.value,
-id:idInput.value,
-about:aboutInput.value,
-privacy:privacy.value
-};
-
-localStorage.setItem("profile",JSON.stringify(data));
-loadProfile();
-editBox.style.display="none";
-alert("Profile Saved");
-};
-
-/* SAVE SECRET */
-saveSecretBtn.onclick = ()=>{
-let text = secretText.value;
-if(!text) return alert("Write something");
-
-let posts = JSON.parse(localStorage.getItem("posts")||"[]");
-
-posts.unshift({
-type:"text",
-data:text,
-likes:0,
-comments:[]
-});
-
-localStorage.setItem("posts",JSON.stringify(posts));
-secretText.value="";
-loadPosts();
-};
-
-/* SAVE IMAGE */
-saveImageBtn.onclick = ()=>{
-let file = imageInput.files[0];
-if(!file) return alert("Select image");
-
-let reader = new FileReader();
-reader.onload=function(e){
-let posts = JSON.parse(localStorage.getItem("posts")||"[]");
-
-posts.unshift({
-type:"image",
-data:e.target.result,
-likes:0,
-comments:[]
-});
-
-localStorage.setItem("posts",JSON.stringify(posts));
-loadPosts();
-};
-
-reader.readAsDataURL(file);
-};
-
-/* LOAD POSTS */
-function loadPosts(){
-let posts = JSON.parse(localStorage.getItem("posts")||"[]");
-
-postsDiv.innerHTML = posts.map((p,i)=>`
-<div class="post">
-${p.type==="text" ? `<p>${p.data}</p>` : `<img src="${p.data}" width="100%">`}
-
-<button onclick="like(${i})">❤️ ${p.likes}</button>
-
-<input id="c${i}" placeholder="comment">
-<button onclick="comment(${i})">💬</button>
-
-<div>
-${p.comments.map(c=>`<p>${c}</p>`).join("")}
-</div>
-</div>
-`).join("");
-}
-
-/* LIKE */
-function like(i){
-let posts = JSON.parse(localStorage.getItem("posts")||"[]");
-posts[i].likes++;
-localStorage.setItem("posts",JSON.stringify(posts));
-loadPosts();
-}
-
-/* COMMENT */
-function comment(i){
-let val = document.getElementById("c"+i).value;
-if(!val) return;
-
-let posts = JSON.parse(localStorage.getItem("posts")||"[]");
-posts[i].comments.push(val);
-localStorage.setItem("posts",JSON.stringify(posts));
-loadPosts();
-}
-
-/* LOGOUT */
-logoutBtn.onclick=()=>{
-localStorage.clear();
-location.replace("login.html");
-};
-
-/* INIT */
-loadProfile();
-loadPosts();
-
-</script>
-
-</body>
-</html>
+        <div class="profile-box" id="privacyPanel" style="display:none;">
+          <h4>Privacy Settings</h4>
+          <div class="settings-row">
+            <span>Profile Visibility</span>
+            <select class="profile-select" id="privacySelect">
+               <option value="private">Private</o
