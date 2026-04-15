@@ -7,6 +7,13 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+<script>
+/* 🔐 LOGIN PROTECTION */
+if(!localStorage.getItem("loggedInUser")){
+location.replace("login.html");
+}
+</script>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
@@ -15,31 +22,25 @@
 --cream-soft:#f4ecdf;
 --gold:#d09a36;
 --brown:#4b2d1a;
---card:rgba(255,250,242,0.92);
---border:rgba(208,154,54,0.28);
 --btn1:#a22f24;
 --btn2:#62130e;
 }
 
 body{
 background:linear-gradient(180deg,var(--cream-soft),var(--cream));
-font-family:"Poppins",sans-serif;
-color:var(--brown);
+font-family:"Poppins";
 }
 
 /* NAV */
 .nav{
-width:95%;
-margin:15px auto;
 display:flex;
 justify-content:space-between;
 padding:10px;
-border-radius:999px;
-background:rgba(255,248,237,.4);
+background:white;
 }
 
 .nav a{
-padding:8px 14px;
+margin:5px;
 text-decoration:none;
 color:var(--gold);
 }
@@ -51,43 +52,44 @@ margin:auto;
 background:white;
 padding:20px;
 border-radius:20px;
+margin-top:20px;
 }
 
 .btn{
 padding:10px;
 border:none;
-margin:5px;
 border-radius:20px;
 background:linear-gradient(var(--btn1),var(--btn2));
 color:white;
+margin:5px;
 cursor:pointer;
 }
 
 input,textarea,select{
 width:100%;
 padding:10px;
-margin-top:5px;
+margin:5px 0;
 border-radius:10px;
 border:1px solid #ccc;
+}
+
+/* POSTS */
+.post{
+background:#fff7ef;
+padding:10px;
+border-radius:10px;
+margin-top:10px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🔐 LOGIN PROTECTION -->
-<script>
-if(!localStorage.getItem("loggedInUser")){
-location.replace("login.html");
-}
-</script>
-
 <div class="nav">
 <div>
 <a href="index.html">Home</a>
 <a href="about.html">About</a>
 </div>
-
 <div>
 <a href="#" id="logoutBtn">Logout</a>
 </div>
@@ -95,28 +97,41 @@ location.replace("login.html");
 
 <div class="profile">
 
-<h2 id="nameText">Prabhat</h2>
-<p id="idText">Prabhat@mysecretbook</p>
-<p id="aboutText">About me...</p>
+<h2 id="nameText">User</h2>
+<p id="idText">user@mysecretbook</p>
+<p id="aboutText">About...</p>
 
 <hr><br>
+
+<button class="btn" id="editBtn">Edit Profile</button>
 
 <div id="editBox" style="display:none;">
 <input id="nameInput" placeholder="Name">
 <input id="idInput" placeholder="Profile ID">
 <textarea id="aboutInput" placeholder="About"></textarea>
-</div>
 
 <select id="privacy">
 <option value="private">Private</option>
 <option value="public">Public</option>
 </select>
 
-<br><br>
-
-<button class="btn" id="editBtn">Edit</button>
 <button class="btn" id="saveBtn">Save</button>
-<button class="btn" id="logoutBtn2">Logout</button>
+</div>
+
+<hr>
+
+<h3>Write Secret</h3>
+<textarea id="secretText"></textarea>
+<button class="btn" id="saveSecretBtn">Save Secret</button>
+
+<h3>Upload Image</h3>
+<input type="file" id="imageInput">
+<button class="btn" id="saveImageBtn">Save Image</button>
+
+<hr>
+
+<h3>Your Posts</h3>
+<div id="posts"></div>
 
 </div>
 
@@ -137,23 +152,24 @@ const editBtn = document.getElementById("editBtn");
 const saveBtn = document.getElementById("saveBtn");
 
 const logoutBtn = document.getElementById("logoutBtn");
-const logoutBtn2 = document.getElementById("logoutBtn2");
 
 const privacy = document.getElementById("privacy");
 
-/* LOAD DATA */
-function load(){
-let data = JSON.parse(localStorage.getItem("profile")) || {};
+const secretText = document.getElementById("secretText");
+const saveSecretBtn = document.getElementById("saveSecretBtn");
 
-nameText.innerText = data.name || "Prabhat";
-idText.innerText = data.id || "Prabhat@mysecretbook";
-aboutText.innerText = data.about || "About me...";
+const imageInput = document.getElementById("imageInput");
+const saveImageBtn = document.getElementById("saveImageBtn");
 
-privacy.value = data.privacy || "private";
+const postsDiv = document.getElementById("posts");
 
-nameInput.value = data.name || "";
-idInput.value = data.id || "";
-aboutInput.value = data.about || "";
+/* PROFILE LOAD */
+function loadProfile(){
+let data = JSON.parse(localStorage.getItem("profile"))||{};
+
+nameText.innerText = data.name || "User";
+idText.innerText = data.id || "user@mysecretbook";
+aboutText.innerText = data.about || "About...";
 }
 
 /* EDIT */
@@ -161,32 +177,111 @@ editBtn.onclick = ()=>{
 editBox.style.display = "block";
 };
 
-/* SAVE */
+/* SAVE PROFILE */
 saveBtn.onclick = ()=>{
-let data = {
-name: nameInput.value,
-id: idInput.value,
-about: aboutInput.value,
-privacy: privacy.value
+let data={
+name:nameInput.value,
+id:idInput.value,
+about:aboutInput.value,
+privacy:privacy.value
 };
 
-localStorage.setItem("profile", JSON.stringify(data));
-load();
+localStorage.setItem("profile",JSON.stringify(data));
+loadProfile();
 editBox.style.display="none";
-alert("Saved");
+alert("Profile Saved");
 };
 
-/* LOGOUT */
-function logout(){
-localStorage.removeItem("loggedInUser");
-location.replace("login.html");
+/* SAVE SECRET */
+saveSecretBtn.onclick = ()=>{
+let text = secretText.value;
+if(!text) return alert("Write something");
+
+let posts = JSON.parse(localStorage.getItem("posts")||"[]");
+
+posts.unshift({
+type:"text",
+data:text,
+likes:0,
+comments:[]
+});
+
+localStorage.setItem("posts",JSON.stringify(posts));
+secretText.value="";
+loadPosts();
+};
+
+/* SAVE IMAGE */
+saveImageBtn.onclick = ()=>{
+let file = imageInput.files[0];
+if(!file) return alert("Select image");
+
+let reader = new FileReader();
+reader.onload=function(e){
+let posts = JSON.parse(localStorage.getItem("posts")||"[]");
+
+posts.unshift({
+type:"image",
+data:e.target.result,
+likes:0,
+comments:[]
+});
+
+localStorage.setItem("posts",JSON.stringify(posts));
+loadPosts();
+};
+
+reader.readAsDataURL(file);
+};
+
+/* LOAD POSTS */
+function loadPosts(){
+let posts = JSON.parse(localStorage.getItem("posts")||"[]");
+
+postsDiv.innerHTML = posts.map((p,i)=>`
+<div class="post">
+${p.type==="text" ? `<p>${p.data}</p>` : `<img src="${p.data}" width="100%">`}
+
+<button onclick="like(${i})">❤️ ${p.likes}</button>
+
+<input id="c${i}" placeholder="comment">
+<button onclick="comment(${i})">💬</button>
+
+<div>
+${p.comments.map(c=>`<p>${c}</p>`).join("")}
+</div>
+</div>
+`).join("");
 }
 
-logoutBtn.onclick = logout;
-logoutBtn2.onclick = logout;
+/* LIKE */
+function like(i){
+let posts = JSON.parse(localStorage.getItem("posts")||"[]");
+posts[i].likes++;
+localStorage.setItem("posts",JSON.stringify(posts));
+loadPosts();
+}
+
+/* COMMENT */
+function comment(i){
+let val = document.getElementById("c"+i).value;
+if(!val) return;
+
+let posts = JSON.parse(localStorage.getItem("posts")||"[]");
+posts[i].comments.push(val);
+localStorage.setItem("posts",JSON.stringify(posts));
+loadPosts();
+}
+
+/* LOGOUT */
+logoutBtn.onclick=()=>{
+localStorage.clear();
+location.replace("login.html");
+};
 
 /* INIT */
-load();
+loadProfile();
+loadPosts();
 
 </script>
 
