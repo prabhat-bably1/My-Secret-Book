@@ -841,4 +841,531 @@
           <div class="settings-row">
             <span>Profile Visibility</span>
             <select class="profile-select" id="privacySelect">
-               <option value="private">Private</o
+               <option value="private">Private</option>
+                <option value="public">Public</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="profile-box" id="settingsPanel" style="display:none;">
+          <h4>Settings</h4>
+          <div class="settings-row">
+            <span>Petals Animation</span>
+            <select class="profile-select" id="petalsSetting">
+              <option value="on">On</option>
+              <option value="off">Off</option>
+            </select>
+          </div>
+
+          <div class="settings-row">
+            <span>Default Saved Tab</span>
+            <select class="profile-select" id="defaultTabSetting">
+              <option value="word">Word</option>
+              <option value="image">Images</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="profile-actions">
+          <button class="small-btn" id="editProfileBtn" type="button">Edit Profile</button>
+          <button class="small-btn" id="saveProfileBtn" type="button">Save Profile</button>
+          <button class="small-btn" id="settingsBtn" type="button">Settings</button>
+          <button class="small-btn" id="privacyBtn" type="button">Change Privacy</button>
+          <button class="small-btn" id="logoutBtn" type="button">Logout</button>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><strong id="secretCount">0</strong><span>Secrets</span></div>
+          <div class="stat"><strong id="imageCount">0</strong><span>Images</span></div>
+          <div class="stat"><strong>6</strong><span>Friends</span></div>
+        </div>
+      </aside>
+
+      <section class="book-card">
+        <div class="book-top">
+          <h3>My Secret Pages</h3>
+          <div class="privacy-switch">Visible: Private</div>
+        </div>
+
+        <div class="open-book-ui">
+          <div class="book-pages">
+            <div class="book-page left">
+              <h4>Write Your Secret</h4>
+              <textarea id="secretText" placeholder="Yahan apni dil ki baat, dard bhari shayari, personal note ya secret likho..."></textarea>
+
+              <div class="word-preview" id="wordPreview">Yahan typed text ka quick preview dikhega.</div>
+
+              <div class="book-actions">
+                <button class="action-btn" id="saveTextBtn" type="button">Save Secret</button>
+                <button class="action-btn" id="clearTextBtn" type="button">Clear Text</button>
+              </div>
+            </div>
+
+            <div class="book-page right">
+              <h4>Add Image / Memory</h4>
+              <input class="file-input" id="imageInput" type="file" accept="image/*">
+
+              <div class="image-preview" id="imagePreview">Image preview yahan dikhega.</div>
+
+              <div class="book-actions">
+                <button class="action-btn" id="saveImageBtn" type="button">Save Image</button>
+                <button class="action-btn" id="clearImageBtn" type="button">Clear Image</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="saved-section" id="saved-area">
+      <div class="saved-head">
+        <button class="toggle-btn active" id="wordTab" type="button">Word</button>
+        <button class="toggle-btn" id="imageTab" type="button">Images</button>
+      </div>
+
+      <div class="saved-panel active" id="wordPanel">
+        <div class="saved-box" id="savedWordsList">
+          <div class="empty-note">Abhi tak koi word save nahi hua.</div>
+        </div>
+      </div>
+
+      <div class="saved-panel" id="imagePanel">
+        <div class="saved-box" id="savedImagesList">
+          <div class="empty-note">Abhi tak koi image save nahi hui.</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const savedUser = localStorage.getItem("loggedInUser");
+const savedToken = localStorage.getItem("token");
+
+if (!savedUser && !savedToken) {
+  window.location.href = "login.html";
+}
+    const savedUser = localStorage.getItem("loggedInUser");
+const savedToken = localStorage.getItem("token");
+
+if (!savedUser && !savedToken) {
+  window.location.href = "login.html";
+}
+    const secretText = document.getElementById("secretText");
+    const wordPreview = document.getElementById("wordPreview");
+    const saveTextBtn = document.getElementById("saveTextBtn");
+    const clearTextBtn = document.getElementById("clearTextBtn");
+
+    const imageInput = document.getElementById("imageInput");
+    const imagePreview = document.getElementById("imagePreview");
+    const saveImageBtn = document.getElementById("saveImageBtn");
+    const clearImageBtn = document.getElementById("clearImageBtn");
+
+    const savedWordsList = document.getElementById("savedWordsList");
+    const savedImagesList = document.getElementById("savedImagesList");
+    const secretCount = document.getElementById("secretCount");
+    const imageCount = document.getElementById("imageCount");
+
+    const wordTab = document.getElementById("wordTab");
+    const imageTab = document.getElementById("imageTab");
+    const wordPanel = document.getElementById("wordPanel");
+    const imagePanel = document.getElementById("imagePanel");
+
+    const profileNameText = document.getElementById("profileNameText");
+    const profileIdText = document.getElementById("profileIdText");
+    const aboutMeText = document.getElementById("aboutMeText");
+    const statusBadge = document.getElementById("statusBadge");
+    const avatarBox = document.getElementById("avatarBox");
+
+    const editProfilePanel = document.getElementById("editProfilePanel");
+    const privacyPanel = document.getElementById("privacyPanel");
+    const settingsPanel = document.getElementById("settingsPanel");
+
+    const editNameInput = document.getElementById("editNameInput");
+    const editIdInput = document.getElementById("editIdInput");
+    const editAboutInput = document.getElementById("editAboutInput");
+
+    const editProfileBtn = document.getElementById("editProfileBtn");
+    const saveProfileBtn = document.getElementById("saveProfileBtn");
+    const settingsBtn = document.getElementById("settingsBtn");
+    const privacyBtn = document.getElementById("privacyBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const moreLogoutBtn = document.getElementById("moreLogoutBtn");
+
+    const privacySelect = document.getElementById("privacySelect");
+    const petalsSetting = document.getElementById("petalsSetting");
+    const defaultTabSetting = document.getElementById("defaultTabSetting");
+    const privacySwitch = document.querySelector(".privacy-switch");
+    const moreProfileBtn = document.getElementById("moreProfileBtn");
+
+    if (moreProfileBtn) {
+  moreProfileBtn.addEventListener("click", function(e) {
+    const savedUser = localStorage.getItem("loggedInUser");
+    const savedToken = localStorage.getItem("token");
+
+    if (!savedUser && !savedToken) {
+      e.preventDefault();
+      window.location.href = "login.html";
+    }
+  });
+    }
+    
+    let currentImageData = "";
+
+    function getFormattedDate() {
+      return new Date().toLocaleString();
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function getDefaultProfile() {
+      return {
+        name: "Prabhat",
+        profileId: "Prabhat@mysecretbook",
+        about: "Dil ki baatein, secret thoughts, shayari aur personal emotions ko ek beautiful jagah par sambhal kar rakhne wala user profile.",
+        privacy: "private",
+        petals: "on",
+        defaultTab: "word"
+      };
+    }
+
+    function getProfileData() {
+      return JSON.parse(localStorage.getItem("msb_profile_data") || "null") || getDefaultProfile();
+    }
+
+    function saveProfileData(data) {
+      localStorage.setItem("msb_profile_data", JSON.stringify(data));
+    }
+
+    function applyProfileUI() {
+      const data = getProfileData();
+
+      profileNameText.textContent = data.name || "Prabhat";
+      profileIdText.textContent = data.profileId || "Prabhat@mysecretbook";
+      aboutMeText.textContent = data.about || "";
+      statusBadge.textContent = data.privacy === "public" ? "Public Profile" : "Private Profile";
+      privacySwitch.textContent = data.privacy === "public" ? "Visible: Public" : "Visible: Private";
+
+      privacySelect.value = data.privacy || "private";
+      petalsSetting.value = data.petals || "on";
+      defaultTabSetting.value = data.defaultTab || "word";
+
+      editNameInput.value = data.name || "";
+      editIdInput.value = data.profileId || "";
+      editAboutInput.value = data.about || "";
+
+      const firstLetter = (data.name || "P").trim().charAt(0).toUpperCase() || "P";
+      avatarBox.textContent = firstLetter;
+
+      document.querySelector(".petals").style.display = (data.petals === "off") ? "none" : "block";
+    }
+
+    function togglePanel(panel) {
+      const isOpen = panel.style.display === "block";
+      editProfilePanel.style.display = "none";
+      privacyPanel.style.display = "none";
+      settingsPanel.style.display = "none";
+      panel.style.display = isOpen ? "none" : "block";
+    }
+
+    function doLogout() {
+  localStorage.removeItem("loggedInUser");
+  localStorage.removeItem("token");
+  sessionStorage.removeItem("loggedInUser");
+  sessionStorage.removeItem("token");
+  window.location.replace("login.html");
+    }
+
+    function loadWords() {
+      const words = JSON.parse(localStorage.getItem("msb_words") || "[]");
+      secretCount.textContent = words.length;
+
+      if (!words.length) {
+        savedWordsList.innerHTML = '<div class="empty-note">Abhi tak koi word save nahi hua.</div>';
+        return;
+      }
+
+      savedWordsList.innerHTML = words.map((item, index) => `
+        <div class="saved-item">
+          <div class="saved-date">${item.date}</div>
+          <div class="saved-text">${escapeHtml(item.text)}</div>
+
+          <div class="post-actions">
+            <button class="mini-btn" onclick="likeWord(${index})">❤️ Like (${item.likes || 0})</button>
+            <button class="mini-btn" onclick="shareWord(${index})">📤 Share</button>
+          </div>
+
+          <div class="comment-box">
+            <input type="text" id="wordCommentInput${index}" placeholder="Write comment...">
+            <div class="post-actions" style="margin-top:8px;">
+              <button class="mini-btn" onclick="addWordComment(${index})">💬 Comment</button>
+            </div>
+            <div class="comment-list">
+              ${(item.comments || []).map(c => `<div class="comment-item">${escapeHtml(c)}</div>`).join("")}
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function loadImages() {
+      const images = JSON.parse(localStorage.getItem("msb_images") || "[]");
+      imageCount.textContent = images.length;
+
+      if (!images.length) {
+        savedImagesList.innerHTML = '<div class="empty-note">Abhi tak koi image save nahi hui.</div>';
+        return;
+      }
+
+      savedImagesList.innerHTML = images.map((item, index) => `
+        <div class="saved-item">
+          <div class="saved-date">${item.date}</div>
+          <img class="saved-image" src="${item.src}" alt="Saved image">
+
+          <div class="post-actions">
+            <button class="mini-btn" onclick="likeImage(${index})">❤️ Like (${item.likes || 0})</button>
+            <button class="mini-btn" onclick="shareImage(${index})">📤 Share</button>
+          </div>
+
+          <div class="comment-box">
+            <input type="text" id="imageCommentInput${index}" placeholder="Write comment...">
+            <div class="post-actions" style="margin-top:8px;">
+              <button class="mini-btn" onclick="addImageComment(${index})">💬 Comment</button>
+            </div>
+            <div class="comment-list">
+              ${(item.comments || []).map(c => `<div class="comment-item">${escapeHtml(c)}</div>`).join("")}
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    secretText.addEventListener("input", () => {
+      const value = secretText.value.trim();
+      wordPreview.textContent = value || "Yahan typed text ka quick preview dikhega.";
+    });
+
+    saveTextBtn.addEventListener("click", () => {
+      const value = secretText.value.trim();
+      if (!value) {
+        alert("Pehle kuch likho.");
+        return;
+      }
+
+      const words = JSON.parse(localStorage.getItem("msb_words") || "[]");
+      words.unshift({
+        text: value,
+        date: getFormattedDate(),
+        likes: 0,
+        comments: []
+      });
+      localStorage.setItem("msb_words", JSON.stringify(words));
+
+      secretText.value = "";
+      wordPreview.textContent = "Yahan typed text ka quick preview dikhega.";
+      loadWords();
+      showWords();
+    });
+
+    clearTextBtn.addEventListener("click", () => {
+      secretText.value = "";
+      wordPreview.textContent = "Yahan typed text ka quick preview dikhega.";
+    });
+
+    imageInput.addEventListener("change", (event) => {
+      const file = event.target.files[0];
+      if (!file) {
+        currentImageData = "";
+        imagePreview.textContent = "Image preview yahan dikhega.";
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        currentImageData = e.target.result;
+        imagePreview.innerHTML = `Selected image preview:<img src="${currentImageData}" alt="Preview image">`;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    saveImageBtn.addEventListener("click", () => {
+      if (!currentImageData) {
+        alert("Pehle image choose karo.");
+        return;
+      }
+
+      const images = JSON.parse(localStorage.getItem("msb_images") || "[]");
+      images.unshift({
+        src: currentImageData,
+        date: getFormattedDate(),
+        likes: 0,
+        comments: []
+      });
+      localStorage.setItem("msb_images", JSON.stringify(images));
+
+      imageInput.value = "";
+      currentImageData = "";
+      imagePreview.textContent = "Image preview yahan dikhega.";
+      loadImages();
+      showImages();
+    });
+
+    clearImageBtn.addEventListener("click", () => {
+      imageInput.value = "";
+      currentImageData = "";
+      imagePreview.textContent = "Image preview yahan dikhega.";
+    });
+
+    function likeWord(index) {
+      const words = JSON.parse(localStorage.getItem("msb_words") || "[]");
+      words[index].likes = (words[index].likes || 0) + 1;
+      localStorage.setItem("msb_words", JSON.stringify(words));
+      loadWords();
+    }
+
+    function likeImage(index) {
+      const images = JSON.parse(localStorage.getItem("msb_images") || "[]");
+      images[index].likes = (images[index].likes || 0) + 1;
+      localStorage.setItem("msb_images", JSON.stringify(images));
+      loadImages();
+    }
+
+    function addWordComment(index) {
+      const input = document.getElementById(`wordCommentInput${index}`);
+      const value = input.value.trim();
+      if (!value) return;
+
+      const words = JSON.parse(localStorage.getItem("msb_words") || "[]");
+      words[index].comments = words[index].comments || [];
+      words[index].comments.push(value);
+      localStorage.setItem("msb_words", JSON.stringify(words));
+      loadWords();
+    }
+
+    function addImageComment(index) {
+      const input = document.getElementById(`imageCommentInput${index}`);
+      const value = input.value.trim();
+      if (!value) return;
+
+      const images = JSON.parse(localStorage.getItem("msb_images") || "[]");
+      images[index].comments = images[index].comments || [];
+      images[index].comments.push(value);
+      localStorage.setItem("msb_images", JSON.stringify(images));
+      loadImages();
+    }
+
+    function shareWord(index) {
+      const words = JSON.parse(localStorage.getItem("msb_words") || "[]");
+      const text = words[index].text;
+      navigator.clipboard.writeText(text);
+      alert("Word copied for sharing.");
+    }
+
+    function shareImage(index) {
+      const images = JSON.parse(localStorage.getItem("msb_images") || "[]");
+      navigator.clipboard.writeText(images[index].src);
+      alert("Image link copied for sharing.");
+    }
+
+    function showWords() {
+      wordTab.classList.add("active");
+      imageTab.classList.remove("active");
+      wordPanel.classList.add("active");
+      imagePanel.classList.remove("active");
+    }
+
+    function showImages() {
+      imageTab.classList.add("active");
+      wordTab.classList.remove("active");
+      imagePanel.classList.add("active");
+      wordPanel.classList.remove("active");
+    }
+
+    wordTab.addEventListener("click", () => {
+      showWords();
+      const data = getProfileData();
+      data.defaultTab = "word";
+      saveProfileData(data);
+    });
+
+    imageTab.addEventListener("click", () => {
+      showImages();
+      const data = getProfileData();
+      data.defaultTab = "image";
+      saveProfileData(data);
+    });
+
+    editProfileBtn.addEventListener("click", () => {
+      togglePanel(editProfilePanel);
+    });
+
+    privacyBtn.addEventListener("click", () => {
+      togglePanel(privacyPanel);
+    });
+
+    settingsBtn.addEventListener("click", () => {
+      togglePanel(settingsPanel);
+    });
+
+    saveProfileBtn.addEventListener("click", () => {
+      const data = getProfileData();
+
+      data.name = editNameInput.value.trim() || "Prabhat";
+      data.profileId = editIdInput.value.trim() || "Prabhat@mysecretbook";
+      data.about = editAboutInput.value.trim() || "No about text added yet.";
+      data.privacy = privacySelect.value;
+      data.petals = petalsSetting.value;
+      data.defaultTab = defaultTabSetting.value;
+
+      saveProfileData(data);
+      applyProfileUI();
+
+      editProfilePanel.style.display = "none";
+      privacyPanel.style.display = "none";
+      settingsPanel.style.display = "none";
+
+      alert("Profile updated successfully.");
+    });
+
+    privacySelect.addEventListener("change", () => {
+      const data = getProfileData();
+      data.privacy = privacySelect.value;
+      saveProfileData(data);
+      applyProfileUI();
+    });
+
+    petalsSetting.addEventListener("change", () => {
+      const data = getProfileData();
+      data.petals = petalsSetting.value;
+      saveProfileData(data);
+      applyProfileUI();
+    });
+
+    defaultTabSetting.addEventListener("change", () => {
+      const data = getProfileData();
+      data.defaultTab = defaultTabSetting.value;
+      saveProfileData(data);
+    });
+
+    logoutBtn.addEventListener("click", doLogout);
+    moreLogoutBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      doLogout();
+    });
+
+    applyProfileUI();
+    loadWords();
+    loadImages();
+
+    const data = getProfileData();
+    if (data.defaultTab === "image") {
+      showImages();
+    } else {
+      showWords();
+    }
+  </script>
+</body>
+</html>                                
