@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const currentPage = window.location.pathname.split("/").pop() || "index.html";
 
-    const navLinks = mountPoint.querySelectorAll(".nav-btn");
+    const navLinks = mountPoint.querySelectorAll(".nav-btn[href]");
     navLinks.forEach(link => {
       const href = link.getAttribute("href");
       if (href === currentPage) {
@@ -17,13 +17,14 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
     });
 
-    const moreBtn = document.getElementById("moreBtn");
-    const moreDropdown = document.getElementById("moreDropdown");
-    const logoutBtn = document.getElementById("logoutBtn");
+    const moreBtn = mountPoint.querySelector("#moreBtn");
+    const moreDropdown = mountPoint.querySelector("#moreDropdown");
+    const logoutBtn = mountPoint.querySelector("#logoutBtn");
 
     if (moreBtn && moreDropdown) {
       moreBtn.addEventListener("click", function (e) {
         e.preventDefault();
+        e.stopPropagation();
         moreDropdown.classList.toggle("show");
       });
 
