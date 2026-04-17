@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Secret Book - Notice Board</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+      --cream:#eadbc4;
+      --cream-soft:#f4ecdf;
+      --board:#f8eedf;
+      --board-deep:#f1e2cb;
+      --gold:#d09a36;
+      --brown:#4b2d1a;
+      --brown-soft:#6a4731;
+      --line:#d7b98a;
+      --rose1:#d45a78;
+      --rose2:#f0a2b5;
+      --card:#fff9f1;
+      --card-border:rgba(208,154,54,.22);
+      --shadow:rgba(0,0,0,.12);
+      --btn1:#a22f24;
+      --btn2:#62130e;
+    }
+
+    html,body{
+      width:100%;
+      min-height:100%;
+      overflow-x:hidden;
+      background:linear-gradient(180deg,var(--cream-soft),var(--cream));
+      font-family:"Poppins",sans-serif;
+      color:var(--brown);
+    }
+
+    body{
+      position:relative;
+    }
+
+    .petals{
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+      z-index:1;
+    }
+
+    .petal{
+      position:absolute;
+      top:-80px;
+      width:18px;
+      height:26px;
+      border-radius:70% 30% 70% 30%;
+      opacity:.82;
+      filter:drop-shadow(0 4px 8px rgba(0,0,0,.10));
+      animation:fall linear infinite;
+    }
+
+    .petal::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      background:linear-gradient(180deg,var(--rose2),var(--rose1));
+      transform:rotate(18deg);
+    }
+
+    .petal:nth-child(1){left:5%;animation-duration:13s;animation-delay:-2s}
+    .petal:nth-child(2){left:13%;animation-duration:16s;animation-delay:-8s}
+    .petal:nth-child(3){left:22%;animation-duration:12s;animation-delay:-4s}
+    .petal:nth-child(4){left:31%;animation-duration:18s;animation-delay:-10s}
+    .petal:nth-child(5){left:40%;animation-duration:15s;animation-delay:-1s}
+    .petal:nth-child(6){left:49%;animation-duration:17s;animation-delay:-6s}
+    .petal:nth-child(7){left:58%;animation-duration:14s;animation-delay:-9s}
+    .petal:nth-child(8){left:67%;animation-duration:19s;animation-delay:-11s}
+    .petal:nth-child(9){left:76%;animation-duration:13s;animation-delay:-3s}
+    .petal:nth-child(10){left:85%;animation-duration:16s;animation-delay:-7s}
+    .petal:nth-child(11){left:92%;animation-duration:18s;animation-delay:-12s}
+
+    @keyframes fall{
+      0%{transform:translateY(-80px) translateX(0) rotate(0deg)}
+      25%{transform:translateY(25vh) translateX(18px) rotate(90deg)}
+      50%{transform:translateY(50vh) translateX(-14px) rotate(180deg)}
+      75%{transform:translateY(75vh) translateX(20px) rotate(260deg)}
+      100%{transform:translateY(110vh) translateX(-10px) rotate(340deg)}
+    }
+
+    .page{
+      position:relative;
+      z-index:2;
+      width:100%;
+      padding:16px 14px 40px;
+    }
+
+    .nav{
+      width:min(1180px,96vw);
+      margin:0 auto 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(255,248,237,.34);
+      border:1px solid rgba(208,154,54,.24);
+      box-shadow:
+        0 10px 20px rgba(0,0,0,.06),
+        inset 0 0 0 1px rgba(255,255,255,.16);
+      backdrop-filter:blur(6px);
+    }
+
+    .nav-group{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .nav a{
+      text-decoration:none;
+      padding:10px 18px;
+      border-radius:999px;
+      color:var(--gold);
+      font-family:"Cinzel",serif;
+      font-size:.84rem;
+      border:1px solid rgba(208,154,54,.32);
+      background:rgba(60,25,10,.08);
+      transition:.2s ease;
+    }
+
+    .nav a:hover,
+    .nav a.active{
+      transform:translateY(-2px);
+      color:#fff2ca;
+      background:rgba(96,40,14,.28);
+    }
+
+    .title-wrap{
+      width:min(1180px,96vw);
+      margin:0 auto 14px;
+      text-align:center;
+    }
+
+    .title{
+      display:inline-block;
+      font-family:"Great Vibes",cursive;
+      font-size:clamp(3rem,8vw,6.2rem);
+      line-height:1.03;
+      color:var(--gold);
+      text-shadow:
+        0 1px 0 #fff6da,
+        0 0 10px rgba(255,223,140,.42),
+        0 0 20px rgba(207,154,53,.22),
+        0 6px 18px rgba(90,55,20,.16);
+      margin-bottom:10px;
+    }
+
+    .board-wrap{
+      width:min(1180px,96vw);
+      margin:0 auto;
+      background:
+        linear-gradient(180deg,var(--board) 0%, var(--board-deep) 100%);
+      border:8px solid #b68959;
+      border-radius:10px;
+      box-shadow:
+        0 20px 40px rgba(0,0,0,.10),
+        inset 0 0 0 3px rgba(255,255,255,.22),
+        inset 0 0 30px rgba(160,110,50,.08);
+      padding:22px 18px 26px;
+      position:relative;
+    }
+
+    .board-wrap::before{
+      content:"";
+      position:absolute;
+      inset:14px;
+      border:1px solid rgba(160,110,50,.14);
+      border-radius:4px;
+      pointer-events:none;
+    }
+
+    .board-head{
+      text-align:center;
+      margin-bottom:18px;
+    }
+
+    .board-head h2{
+      font-family:"Cinzel",serif;
+      font-size:1.15rem;
+      color:#7a3520;
+      letter-spacing:1px;
+      margin-bottom:8px;
+    }
+
+    .board-head p{
+      color:#7a5a42;
+      font-size:.92rem;
+      line-height:1.7;
+      max-width:760px;
+      margin:0 auto;
+    }
+
+    .tabs{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+      margin-bottom:24px;
+    }
+
+    .tab-btn{
+      min-width:180px;
+      border:none;
+      cursor:pointer;
+      padding:16px 18px;
+      border-radius:12px;
+      font-family:"Cinzel",serif;
+      font-size:1.35rem;
+      font-weight:700;
+      color:#6b4422;
+      background:linear-gradient(180deg,#fbf2e3 0%, #efdcc0 100%);
+      border:2px solid rgba(208,154,54,.35);
+      box-shadow:
+        0 8px 16px rgba(0,0,0,.07),
+        inset 0 1px 0 rgba(255,255,255,.8);
+      transition:.22s ease;
+    }
+
+    .tab-btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .tab-btn.active{
+      color:#fff3dc;
+      background:linear-gradient(180deg,var(--btn1) 0%, #7a1b14 55%, var(--btn2) 100%);
+      border-color:rgba(208,154,54,.65);
+      box-shadow:
+        0 12px 18px rgba(0,0,0,.10),
+        inset 0 2px 10px rgba(255,255,255,.14);
+    }
+
+    .panel{
+      display:none;
+    }
+
+    .panel.active{
+      display:block;
+    }
+
+    .content-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px;
+    }
+
+    .word-card,
+    .image-card{
+      background:rgba(255,251,245,.94);
+      border:1px solid var(--card-border);
+      border-radius:18px;
+      box-shadow:0 10px 20px rgba(0,0,0,.06);
+      padding:16px;
+    }
+
+    .card-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+
+    .card-name{
+      font-family:"Cinzel",serif;
+      font-size:1.02rem;
+      color:#7a3520;
+    }
+
+    .card-date{
+      font-size:.78rem;
+      color:#8a5a34;
+      margin-top:2px;
+    }
+
+    .card-text{
+      font-size:.96rem;
+      line-height:1.9;
+      color:#5d3b24;
+      white-space:pre-wrap;
+      min-height:80px;
+    }
+
+    .card-image{
+      width:100%;
+      border-radius:14px;
+      display:block;
+      box-shadow:0 8px 14px rgba(0,0,0,.10);
+      margin-top:4px;
+    }
+
+    .mini-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+
+    .mini-btn{
+      border:none;
+      cursor:pointer;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,247,232,.92);
+      border:1px solid rgba(208,154,54,.24);
+      color:#7a3520;
+      font-size:.82rem;
+      font-weight:600;
+    }
+
+    .comment-box{
+      margin-top:10px;
+    }
+
+    .comment-box input{
+      width:100%;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(208,154,54,.24);
+      background:#fffdf8;
+      outline:none;
+      font-family:"Poppins",sans-serif;
+    }
+
+    .comment-list{
+      margin-top:8px;
+      display:grid;
+      gap:6px;
+    }
+
+    .comment-item{
+      padding:8px 10px;
+      border-radius:10px;
+      background:rgba(255,248,238,.76);
+      font-size:.84rem;
+      color:#654029;
+    }
+
+    .empty-note{
+      color:#8b6547;
+      font-size:.95rem;
+      line-height:1.8;
+      text-align:center;
+      padding:30px 14px;
+      grid-column:1 / -1;
+    }
+
+    @media (max-width: 900px){
+      .content-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 600px){
+      .nav{
+        padding:10px;
+      }
+
+      .nav a{
+        padding:8px 12px;
+        font-size:.78rem;
+      }
+
+      .title{
+        font-size:clamp(2.8rem,8vw,4.8rem);
+      }
+
+      .tab-btn{
+        min-width:140px;
+        font-size:1.1rem;
+        padding:14px 14px;
+      }
+
+      .board-wrap{
+        padding:18px 12px 20px;
+      }
+    }
+
+    @media (max-width: 420px){
+      .page{
+        padding:14px 10px 28px;
+      }
+
+      .nav{
+        width:96vw;
+        padding:8px;
+      }
+
+      .nav a{
+        padding:7px 10px;
+        font-size:.72rem;
+      }
+
+      .title{
+        font-size:clamp(2.45rem,8vw,4rem);
+      }
+
+      .tab-btn{
+        min-width:120px;
+        font-size:1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="petals">
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+    <span class="petal"></span><span class="petal"></span>
+  </div>
+
+  <div class="page">
+    <div class="nav">
+      <div class="nav-group">
+        <a href="index.html">Home</a>
+        <a href="public.html">Public Wall</a>
+        <a href="notice.html" class="active">Notice Board</a>
+      </div>
+
+      <div class="nav-group">
+        <a href="profile.html">Profile</a>
+      </div>
+    </div>
+
+    <div class="title-wrap">
+      <div class="title">My Secret Book</div>
+    </div>
+
+    <div class="board-wrap">
+      <div class="board-head">
+        <h2>NOTICE BOARD</h2>
+        <p>Word पर click karne se sirf public writings dikhengi. Image पर click karne se sirf public images dikhengi.</p>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" id="wordTab" type="button">Word</button>
+        <button class="tab-btn" id="imageTab" type="button">Image</button>
+      </div>
+
+      <div class="panel active" id="wordPanel">
+        <div class="content-grid" id="wordList"></div>
+      </div>
+
+      <div class="panel" id="imagePanel">
+        <div class="content-grid" id="imageList"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const wordTab = document.getElementById("wordTab");
+    const imageTab = document.getElementById("imageTab");
+    const wordPanel = document.getElementById("wordPanel");
+    const imagePanel = document.getElementById("imagePanel");
+    const wordList = document.getElementById("wordList");
+    const imageList = document.getElementById("imageList");
+
+    function getPosts() {
+      return JSON.parse(localStorage.getItem("msb_public_posts") || "[]");
+    }
+
+    function savePosts(posts) {
+      localStorage.setItem("msb_public_posts", JSON.stringify(posts));
+    }
+
+    function getFormattedDate(ts) {
+      return new Date(ts).toLocaleString();
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function showWords() {
+      wordTab.classList.add("active");
+      imageTab.classList.remove("active");
+      wordPanel.classList.add("active");
+      imagePanel.classList.remove("active");
+    }
+
+    function showImages() {
+      imageTab.classList.add("active");
+      wordTab.classList.remove("active");
+      imagePanel.classList.add("active");
+      wordPanel.classList.remove("active");
+    }
+
+    wordTab.addEventListener("click", showWords);
+    imageTab.addEventListener("click", showImages);
+
+    function renderNoticeBoard() {
+      const posts = getPosts().sort((a, b) => b.createdAt - a.createdAt);
+
+      const wordPosts = posts.filter(post => post.text && post.text.trim());
+      const imagePosts = posts.filter(post => post.image && post.image.trim());
+
+      if (!wordPosts.length) {
+        wordList.innerHTML = '<div class="empty-note">Abhi tak koi public word post nahi hai.</div>';
+      } else {
+        wordList.innerHTML = wordPosts.map(post => `
+          <div class="word-card">
+            <div class="card-top">
+              <div>
+                <div class="card-name">${escapeHtml(post.name || "Guest Writer")}</div>
+                <div class="card-date">${getFormattedDate(post.createdAt)}</div>
+              </div>
+            </div>
+
+            <div class="card-text">${escapeHtml(post.text)}</div>
+
+            <div class="mini-actions">
+              <button class="mini-btn" onclick="likeNoticePost('${post.id}')">❤️ Like (${post.likes || 0})</button>
+              <button class="mini-btn" onclick="shareNoticePost('${post.id}')">📤 Share</button>
+            </div>
+
+            <div class="comment-box">
+              <input type="text" id="commentInput_${post.id}" placeholder="Write comment...">
+              <div class="mini-actions" style="margin-top:8px;">
+                <button class="mini-btn" onclick="addNoticeComment('${post.id}')">💬 Comment</button>
+              </div>
+              <div class="comment-list">
+                ${((post.comments || []).map(c => `<div class="comment-item">${escapeHtml(c)}</div>`).join(""))}
+              </div>
+            </div>
+          </div>
+        `).join("");
+      }
+
+      if (!imagePosts.length) {
+        imageList.innerHTML = '<div class="empty-note">Abhi tak koi public image post nahi hai.</div>';
+      } else {
+        imageList.innerHTML = imagePosts.map(post => `
+          <div class="image-card">
+            <div class="card-top">
+              <div>
+                <div class="card-name">${escapeHtml(post.name || "Guest Writer")}</div>
+                <div class="card-date">${getFormattedDate(post.createdAt)}</div>
+              </div>
+            </div>
+
+            <img class="card-image" src="${post.image}" alt="Public image">
+
+            <div class="mini-actions">
+              <button class="mini-btn" onclick="likeNoticePost('${post.id}')">❤️ Like (${post.likes || 0})</button>
+              <button class="mini-btn" onclick="shareNoticePost('${post.id}')">📤 Share</button>
+            </div>
+
+            <div class="comment-box">
+              <input type="text" id="commentInput_${post.id}" placeholder="Write comment...">
+              <div class="mini-actions" style="margin-top:8px;">
+                <button class="mini-btn" onclick="addNoticeComment('${post.id}')">💬 Comment</button>
+              </div>
+              <div class="comment-list">
+                ${((post.comments || []).map(c => `<div class="comment-item">${escapeHtml(c)}</div>`).join(""))}
+              </div>
+            </div>
+          </div>
+        `).join("");
+      }
+    }
+
+    function likeNoticePost(id) {
+      const posts = getPosts();
+      const idx = posts.findIndex(post => post.id === id);
+      if (idx === -1) return;
+
+      posts[idx].likes = (posts[idx].likes || 0) + 1;
+      savePosts(posts);
+      renderNoticeBoard();
+    }
+
+    function shareNoticePost(id) {
+      const posts = getPosts();
+      const post = posts.find(p => p.id === id);
+      if (!post) return;
+
+      const shareText = post.text
+        ? `${post.name}: ${post.text}`
+        : `${post.name} shared an image on My Secret Book`;
+
+      navigator.clipboard.writeText(shareText);
+      alert("Post copied for sharing.");
+    }
+
+    function addNoticeComment(id) {
+      const input = document.getElementById(`commentInput_${id}`);
+      const value = input.value.trim();
+      if (!value) return;
+
+      const posts = getPosts();
+      const idx = posts.findIndex(post => post.id === id);
+      if (idx === -1) return;
+
+      posts[idx].comments = posts[idx].comments || [];
+      posts[idx].comments.push(value);
+
+      savePosts(posts);
+      renderNoticeBoard();
+    }
+
+    renderNoticeBoard();
+    showWords();
+  </script>
+</body>
+</html>
