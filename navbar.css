@@ -54,7 +54,7 @@
 .ribbon-tassel{
   position:absolute;
   width:12px;
-  height:52px;
+  height:60px;
   bottom:-44px;
   background:linear-gradient(180deg,#ddb25f 0%, #8d5917 100%);
   border-radius:999px;
@@ -83,7 +83,7 @@
   bottom:-2px;
   transform:translateX(-50%);
   width:20px;
-  height:24px;
+  height:30px;
   background:linear-gradient(180deg,#dcb45f 0%, #8c5717 100%);
   clip-path:polygon(0 0,100% 0,82% 100%,18% 100%);
   border-radius:0 0 7px 7px;
