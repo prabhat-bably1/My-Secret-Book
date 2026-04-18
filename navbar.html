@@ -1,34 +1,91 @@
 <nav class="nav ribbon-nav">
-  <span class="ribbon-tail left"></span>
-  <span class="ribbon-tail right"></span>
 
-  <img src="tassel.png" alt="tassel" class="ribbon-tassel-img left">
-  <img src="tassel.png" alt="tassel" class="ribbon-tassel-img right">
-
+  <!-- LEFT SIDE -->
   <div class="nav-left">
     <a href="index.html" class="nav-btn">Home</a>
     <a href="about.html" class="nav-btn">About</a>
   </div>
 
+  <!-- RIGHT SIDE -->
   <div class="nav-right">
-    <a href="login.html" class="nav-btn">Login</a>
 
+    <!-- MORE MENU -->
     <div class="more-menu">
-      <button class="nav-btn" id="moreBtn" type="button">More</button>
 
-      <div class="more-dropdown" id="moreDropdown">
+      <button id="moreBtn" class="nav-btn">More</button>
+
+      <div id="moreDropdown" class="more-dropdown">
+
+        <a href="profile.html">Profile</a>
+        <a href="public.html">Public Wall</a>
+        <a href="notice.html">Notice Board</a>
+
+        <!-- SUB MENU -->
         <div class="sub-menu">
-          <div class="sub-trigger">Public</div>
+          <div class="sub-trigger">More Options ▸</div>
+
           <div class="sub-dropdown">
-            <a href="public.html">Public Wall</a>
-            <a href="notice.html">Notice Board</a>
+            <a href="#">Settings</a>
+            <a href="#">Help</a>
+            <a href="#">Contact</a>
           </div>
         </div>
 
-        <a href="profile.html">Profile</a>
-        <a href="#">Settings</a>
-        <a href="#" id="logoutBtn">Logout</a>
+        <a href="#" id="navLogoutBtn">Logout</a>
+
       </div>
     </div>
+
   </div>
+
+  <!-- RIBBON SIDE CUTS -->
+  <span class="ribbon-tail left"></span>
+  <span class="ribbon-tail right"></span>
+
+  <!-- TASSEL -->
+  <img src="tassel.png" class="ribbon-tassel-img left">
+  <img src="tassel.png" class="ribbon-tassel-img right">
+
 </nav>
+
+<script>
+/* ===== DROPDOWN CONTROL ===== */
+
+const moreBtn = document.getElementById("moreBtn");
+const moreDropdown = document.getElementById("moreDropdown");
+
+if(moreBtn){
+  moreBtn.addEventListener("click", function(e){
+    e.stopPropagation();
+    moreDropdown.classList.toggle("show");
+  });
+}
+
+/* CLOSE WHEN CLICK OUTSIDE */
+document.addEventListener("click", function(){
+  if(moreDropdown){
+    moreDropdown.classList.remove("show");
+  }
+});
+
+/* PREVENT CLOSE INSIDE CLICK */
+if(moreDropdown){
+  moreDropdown.addEventListener("click", function(e){
+    e.stopPropagation();
+  });
+}
+
+/* ===== LOGOUT ===== */
+const navLogoutBtn = document.getElementById("navLogoutBtn");
+
+if(navLogoutBtn){
+  navLogoutBtn.addEventListener("click", function(e){
+    e.preventDefault();
+
+    localStorage.removeItem("loggedInUser");
+    localStorage.removeItem("token");
+
+    window.location.href = "login.html";
+  });
+}
+</script>
