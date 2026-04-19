@@ -922,15 +922,18 @@
         return;
       }
 
-      users.push({
-        firstName: first,
-        middleName: middle,
-        email: email,
-        phone: phone,
-        password: password,
-        privacy: privacyValue,
-        secretId: secretId
-      });
+      const userUniqueId = "MSB-" + Date.now() + "-" + Math.floor(Math.random()*1000);
+
+users.push({
+  firstName: first,
+  middleName: middle,
+  email: email,
+  phone: phone,
+  password: password,
+  privacy: privacyValue,
+  secretId: secretId,
+  uid: userUniqueId   // 🔥 IMPORTANT
+});
 
       localStorage.setItem("msb_users", JSON.stringify(users));
       localStorage.setItem("loggedInUser", email);
