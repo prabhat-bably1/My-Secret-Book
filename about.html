@@ -770,6 +770,15 @@ if(moreBtn){
     }
   });
 }
+    document.addEventListener("copy", function(e){
+  const uid = getCurrentUserUID();
+  const text = window.getSelection().toString();
+
+  const watermarkText = text + "\n\n— MySecretBook (" + uid + ")";
+  
+  e.clipboardData.setData("text/plain", watermarkText);
+  e.preventDefault();
+});
   </script>
  <script src="navbar.js"></script>
 </body>
