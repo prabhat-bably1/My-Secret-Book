@@ -1128,15 +1128,13 @@ function doLogout() {
       `).join("");
     }
 
-    secretText.addEventListener("input", () => {
+    function updateWordPreview() {
   let value = secretText.value.trim();
   value = cleanText(value);
+  wordPreview.textContent = value || "Yahan typed text ka quick preview dikhega.";
+}
 
-  wordPreview.textContent = value || "Preview...";
-});
-    if(secretText.value !== cleanText(secretText.value)){
-  alert("⚠️ Abusive words detected. Text automatically cleaned.");
-    }
+secretText.addEventListener("input", updateWordPreview);
 
     saveTextBtn.addEventListener("click", () => {
   const value = secretText.value.trim();
@@ -1168,23 +1166,31 @@ function doLogout() {
       secretText.value = "";
       wordPreview.textContent = "Yahan typed text ka quick preview dikhega.";
     });
+    
+     imageInput.addEventListener("change", function(event) {
+  const file = event.target.files[0];
 
-    imageInput.addEventListener("change", (event) => {
-      const file = event.target.files[0];
-      if (!file) {
-        currentImageData = "";
-        imagePreview.textContent = "Image preview yahan dikhega.";
-        return;
-      }
+  if (!file) {
+    currentImageData = "";
+    imagePreview.textContent = "Image preview yahan dikhega.";
+    return;
+  }
 
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        currentImageData = e.target.result;
-        imagePreview.innerHTML = `Selected image preview:<img src="${currentImageData}" alt="Preview image">`;
-      };
-      reader.readAsDataURL(file);
-    });
+  if (!file.type.startsWith("image/")) {
+    alert("Sirf image file choose karo.");
+    imageInput.value = "";
+    currentImageData = "";
+    imagePreview.textContent = "Image preview yahan dikhega.";
+    return;
+  }
 
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    currentImageData = e.target.result;
+    imagePreview.innerHTML = `<img src="${currentImageData}" alt="Preview image">`;
+  };
+  reader.readAsDataURL(file);
+});
 
     clearImageBtn.addEventListener("click", () => {
       imageInput.value = "";
@@ -1349,10 +1355,13 @@ function doLogout() {
     });
 
     logoutBtn.addEventListener("click", doLogout);
-    moreLogoutBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      doLogout();
-    });
+
+if (moreLogoutBtn) {
+  moreLogoutBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    doLogout();
+  });
+}
 
     applyProfileUI();
     loadWords();
@@ -1364,14 +1373,20 @@ function doLogout() {
     } else {
       showWords();
     }
-    function getCurrentUserUID(){
-  const email = localStorage.getItem("loggedInUser");
-  const users = JSON.parse(localStorage.getItem("msb_users") || "[]");
 
-  const user = users.find(u => u.email === email);
-  return user ? user.uid : "GUEST";
-    }
+    applyProfileUI();
+loadWords();
+loadImages();
 
+const data = getProfileData();
+if (data.defaultTab === "image") {
+  showImages();
+} else {
+  showWords();
+}
+
+updateWordPreview();
+    
     document.addEventListener("copy", function(e){
   const uid = getCurrentUserUID();
   const text = window.getSelection().toString();
