@@ -47,3 +47,23 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.error("Navbar load error:", error);
   }
 });
+// MORE OPTIONS BUTTON FIX
+
+document.addEventListener("click", function(e){
+
+  // SETTINGS
+  if(e.target.innerText === "Settings"){
+    window.location.href = "profile.html#settings";
+  }
+
+  // HELP
+  if(e.target.innerText === "Help"){
+    alert("Help section coming soon 💛\nAgar issue ho to contact karein.");
+  }
+
+  // CONTACT
+  if(e.target.innerText === "Contact"){
+    window.location.href = "contact.html"; // agar page nahi hai to niche fix diya hai
+  }
+
+});
