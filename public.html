@@ -948,6 +948,27 @@
   e.clipboardData.setData("text/plain", watermarkText);
   e.preventDefault();
 });
+    const badWords = [
+  "madarchod","bhenchod","chutiya","gandu","lund","gaand",
+  "sex","porn","xxx","fuck","bitch","nude","boobs","dick","all bad words"
+];
+    function cleanText(text){
+
+  let clean = text;
+
+  badWords.forEach(word => {
+    const regex = new RegExp(word, "gi");
+
+    clean = clean.replace(regex, function(){
+      const goodWords = [
+        "pyar","mohabbat","respect","sweet","cute","dil","khushi"
+      ];
+      return goodWords[Math.floor(Math.random()*goodWords.length)];
+    });
+  });
+
+  return clean;
+    }
   </script>
   <script src="navbar.js"></script>
 </body>
