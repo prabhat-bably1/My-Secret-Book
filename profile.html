@@ -1129,9 +1129,14 @@ function doLogout() {
     }
 
     secretText.addEventListener("input", () => {
-      const value = secretText.value.trim();
-      wordPreview.textContent = value || "Yahan typed text ka quick preview dikhega.";
-    });
+  let value = secretText.value.trim();
+  value = cleanText(value);
+
+  wordPreview.textContent = value || "Preview...";
+});
+    if(secretText.value !== cleanText(secretText.value)){
+  alert("⚠️ Abusive words detected. Text automatically cleaned.");
+    }
 
     saveTextBtn.addEventListener("click", () => {
   const value = secretText.value.trim();
@@ -1376,6 +1381,28 @@ function doLogout() {
   e.clipboardData.setData("text/plain", watermarkText);
   e.preventDefault();
 });
+    const badWords = [
+  "madarchod","bhenchod","chutiya","gandu","lund","gaand",
+  "sex","porn","xxx","fuck","bitch","nude","boobs","dick","all bad words"
+];
+    function cleanText(text){
+
+  let clean = text;
+
+  badWords.forEach(word => {
+    const regex = new RegExp(word, "gi");
+
+    clean = clean.replace(regex, function(){
+      const goodWords = [
+        "pyar","mohabbat","respect","sweet","cute","dil","khushi"
+      ];
+      return goodWords[Math.floor(Math.random()*goodWords.length)];
+    });
+  });
+
+  return clean;
+    }
+    
   </script>
   <script src="navbar.js"></script>
 </body>
