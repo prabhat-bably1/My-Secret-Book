@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="navbar.css">
+
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
 
@@ -91,83 +92,6 @@
       width:100%;
       padding:16px 14px 40px;
     }
-
-    .nav{
-      width:min(980px,96vw);
-      margin:0 auto 14px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-      padding:10px 12px;
-      border-radius:999px;
-      background:rgba(255,248,237,.34);
-      border:1px solid rgba(208,154,54,.24);
-      box-shadow:0 10px 20px rgba(0,0,0,.06), inset 0 0 0 1px rgba(255,255,255,.16);
-      backdrop-filter:blur(6px);
-    }
-
-    .nav-group{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-
-    .nav a{
-      text-decoration:none;
-      padding:10px 18px;
-      border-radius:999px;
-      color:var(--gold);
-      font-family:"Cinzel",serif;
-      font-size:.84rem;
-      border:1px solid rgba(208,154,54,.32);
-      background:rgba(60,25,10,.08);
-      transition:.2s ease;
-    }
-
-    .nav a:hover,
-    .nav a.active{
-      transform:translateY(-2px);
-      color:#fff2ca;
-      background:rgba(96,40,14,.28);
-    }
-
-    .more-menu{position:relative}
-
-    .more-dropdown{
-      position:absolute;
-      top:115%;
-      right:0;
-      min-width:170px;
-      background:rgba(255,250,242,.98);
-      border:1px solid rgba(208,154,54,.25);
-      border-radius:18px;
-      box-shadow:0 18px 28px rgba(0,0,0,.10);
-      padding:8px;
-      display:none;
-      z-index:50;
-    }
-
-    .more-dropdown a{
-      display:block;
-      text-decoration:none;
-      color:#6d2418;
-      padding:10px 12px;
-      border-radius:12px;
-      font-size:.88rem;
-      font-family:"Poppins",sans-serif;
-      background:transparent;
-      border:none;
-    }
-
-    .more-dropdown a:hover{
-      background:rgba(208,154,54,.10);
-      color:#8b2c1f;
-      transform:none;
-    }
-
-    .more-menu:hover .more-dropdown{display:block}
 
     .title-wrap{
       text-align:center;
@@ -552,6 +476,7 @@
       line-height:1.8;
       margin-bottom:16px;
       min-height:120px;
+      word-break:break-word;
     }
 
     .image-preview img{
@@ -637,6 +562,14 @@
       box-shadow:0 8px 14px rgba(0,0,0,.10);
     }
 
+    .watermark{
+      font-size:10px;
+      opacity:.4;
+      margin-top:6px;
+      color:#7a3520;
+      word-break:break-word;
+    }
+
     .post-actions{
       display:flex;
       gap:10px;
@@ -697,19 +630,6 @@
     }
 
     @media (max-width: 600px){
-      .nav{
-        padding:10px;
-      }
-
-      .nav-group{
-        gap:8px;
-      }
-
-      .nav a{
-        padding:8px 12px;
-        font-size:.78rem;
-      }
-
       .title{
         font-size:clamp(2.8rem,8vw,4.8rem);
       }
@@ -746,16 +666,6 @@
         padding:14px 10px 28px;
       }
 
-      .nav{
-        width:96vw;
-        padding:8px;
-      }
-
-      .nav a{
-        padding:7px 10px;
-        font-size:.72rem;
-      }
-
       .title{
         font-size:clamp(2.45rem,8vw,4rem);
       }
@@ -776,6 +686,7 @@
 
   <div class="page">
     <div id="navbar-container"></div>
+
     <div class="title-wrap">
       <div class="title">
         My <span class="secret-wrap">Secre<span class="t-anchor">t<span class="book-hang">Book</span></span></span>
@@ -824,8 +735,8 @@
           <div class="settings-row">
             <span>Profile Visibility</span>
             <select class="profile-select" id="privacySelect">
-               <option value="private">Private</option>
-                <option value="public">Public</option>
+              <option value="private">Private</option>
+              <option value="public">Public</option>
             </select>
           </div>
         </div>
@@ -867,7 +778,7 @@
       <section class="book-card">
         <div class="book-top">
           <h3>My Secret Pages</h3>
-          <div class="privacy-switch">Visible: Private</div>
+          <div class="privacy-switch" id="privacySwitch">Visible: Private</div>
         </div>
 
         <div class="open-book-ui">
@@ -877,19 +788,7 @@
               <textarea id="secretText" placeholder="Yahan apni dil ki baat, dard bhari shayari, personal note ya secret likho..."></textarea>
 
               <div class="word-preview" id="wordPreview">Yahan typed text ka quick preview dikhega.</div>
-
-              <div class="book-actions">
-                <button class="action-btn" id="saveTextBtn" type="button">Save Secret</button>
-                <button class="action-btn" id="clearTextBtn" type="button">Clear Text</button>
-              </div>
-            </div>
-
-            <div class="book-page right">
-              <h4>Add Image / Memory</h4>
-              <input class="file-input" id="imageInput" type="file" accept="image/*">
-
-              <div class="image-preview" id="imagePreview">Image preview yahan dikhega.</div>
-
+                
               <div class="book-actions">
                 <button class="action-btn" id="saveImageBtn" type="button">Save Image</button>
                 <button class="action-btn" id="clearImageBtn" type="button">Clear Image</button>
@@ -921,11 +820,11 @@
   </div>
 
   <script>
-    const user = localStorage.getItem("loggedInUser");
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    if (!loggedInUser) {
+      window.location.replace("login.html");
+    }
 
-if (!user) {
-  window.location.replace("login.html");
-}
     const secretText = document.getElementById("secretText");
     const wordPreview = document.getElementById("wordPreview");
     const saveTextBtn = document.getElementById("saveTextBtn");
@@ -965,36 +864,40 @@ if (!user) {
     const settingsBtn = document.getElementById("settingsBtn");
     const privacyBtn = document.getElementById("privacyBtn");
     const logoutBtn = document.getElementById("logoutBtn");
-    const moreLogoutBtn = document.getElementById("moreLogoutBtn");
 
     const privacySelect = document.getElementById("privacySelect");
     const petalsSetting = document.getElementById("petalsSetting");
     const defaultTabSetting = document.getElementById("defaultTabSetting");
-    const privacySwitch = document.querySelector(".privacy-switch");
-    const moreProfileBtn = document.getElementById("moreProfileBtn");
+    const privacySwitch = document.getElementById("privacySwitch");
 
-    if (moreProfileBtn) {
-  moreProfileBtn.addEventListener("click", function(e) {
-    const savedUser = localStorage.getItem("loggedInUser");
-    const savedToken = localStorage.getItem("token");
-
-    if (!savedUser && !savedToken) {
-      e.preventDefault();
-      window.location.href = "login.html";
-    }
-  });
-    }
-    
     let currentImageData = "";
 
-    function getFormattedDate() {
-      return new Date().toLocaleString();
+    const badWords = [
+      "madarchod","bhenchod","chutiya","gandu","lund","gaand",
+      "sex","porn","xxx","fuck","bitch","nude","boobs","dick"
+    ];
+
+    function cleanText(text){
+      let clean = text || "";
+      badWords.forEach(word => {
+        const regex = new RegExp(word, "gi");
+        clean = clean.replace(regex, function(){
+          const goodWords = ["pyar","mohabbat","respect","sweet","cute","dil","khushi"];
+          return goodWords[Math.floor(Math.random()*goodWords.length)];
+        });
+      });
+      return clean;
     }
+
+    function getFormattedDate(ts = Date.now()) {
+      return new Date(ts).toLocaleString();
+    }
+
     function getCurrentUserUID() {
-  const email = localStorage.getItem("loggedInUser");
-  const users = JSON.parse(localStorage.getItem("msb_users") || "[]");
-  const user = users.find(u => u.email === email);
-  return user ? user.uid : "GUEST";
+      const email = localStorage.getItem("loggedInUser");
+      const users = JSON.parse(localStorage.getItem("msb_users") || "[]");
+      const user = users.find(u => u.email === email);
+      return user && user.uid ? user.uid : "GUEST";
     }
 
     function escapeHtml(text) {
@@ -1053,10 +956,17 @@ if (!user) {
       panel.style.display = isOpen ? "none" : "block";
     }
 
-function doLogout() {
-  localStorage.removeItem("loggedInUser");
-  window.location.replace("login.html");
-}
+    function doLogout() {
+      localStorage.removeItem("loggedInUser");
+      localStorage.removeItem("token");
+      window.location.replace("login.html");
+    }
+
+    function updateWordPreview() {
+      let value = secretText.value.trim();
+      value = cleanText(value);
+      wordPreview.textContent = value || "Yahan typed text ka quick preview dikhega.";
+    }
 
     function loadWords() {
       const words = JSON.parse(localStorage.getItem("msb_words") || "[]");
@@ -1069,11 +979,9 @@ function doLogout() {
 
       savedWordsList.innerHTML = words.map((item, index) => `
         <div class="saved-item">
-          <div class="saved-date">${item.date}</div>
+          <div class="saved-date">${item.date || ""}</div>
           <div class="saved-text">${escapeHtml((item.text || "").replace(/ *~~MSB-[^~]+~~/g, ""))}</div>
-<div style="font-size:10px;opacity:0.4;margin-top:6px;">
-  ${item.watermark || ""}
-</div>
+          <div class="watermark">${item.watermark || ""}</div>
 
           <div class="post-actions">
             <button class="mini-btn" onclick="likeWord(${index})">❤️ Like (${item.likes || 0})</button>
@@ -1104,11 +1012,9 @@ function doLogout() {
 
       savedImagesList.innerHTML = images.map((item, index) => `
         <div class="saved-item">
-          <div class="saved-date">${item.date}</div>
-          <img class="saved-image" src="${item.src}" alt="Saved image">
-          <div style="font-size:10px;opacity:0.4;margin-top:6px;">
-  ${item.watermark || ""}
-</div>
+          <div class="saved-date">${item.date || ""}</div>
+          <img class="saved-image" src="${item.src || ""}" alt="Saved image">
+          <div class="watermark">${item.watermark || ""}</div>
 
           <div class="post-actions">
             <button class="mini-btn" onclick="likeImage(${index})">❤️ Like (${item.likes || 0})</button>
@@ -1128,69 +1034,95 @@ function doLogout() {
       `).join("");
     }
 
-    function updateWordPreview() {
-  let value = secretText.value.trim();
-  value = cleanText(value);
-  wordPreview.textContent = value || "Yahan typed text ka quick preview dikhega.";
-}
-
-secretText.addEventListener("input", updateWordPreview);
+    secretText.addEventListener("input", updateWordPreview);
 
     saveTextBtn.addEventListener("click", () => {
-  const value = secretText.value.trim();
-  if (!value) {
-    alert("Pehle kuch likho.");
-    return;
-  }
+      let value = secretText.value.trim();
+      if (!value) {
+        alert("Pehle kuch likho.");
+        return;
+      }
 
-  const uid = getCurrentUserUID();
-  const hidden = " ~~" + uid + "~~";
+      const cleanedOriginal = cleanText(value);
+      if (value !== cleanedOriginal) {
+        alert("Auto filter active tha. Kuch words ko safe loving words me change kar diya gaya.");
+      }
 
-  const words = JSON.parse(localStorage.getItem("msb_words") || "[]");
-  words.unshift({
-    text: value + hidden,
-    watermark: uid,
-    date: getFormattedDate(),
-    likes: 0,
-    comments: []
-  });
-  localStorage.setItem("msb_words", JSON.stringify(words));
+      value = cleanedOriginal;
 
-  secretText.value = "";
-  wordPreview.textContent = "Yahan typed text ka quick preview dikhega.";
-  loadWords();
-  showWords();
-});
+      const uid = getCurrentUserUID();
+      const hidden = " ~~" + uid + "~~";
+
+      const words = JSON.parse(localStorage.getItem("msb_words") || "[]");
+      words.unshift({
+        text: value + hidden,
+        watermark: uid,
+        date: getFormattedDate(),
+        likes: 0,
+        comments: []
+      });
+      localStorage.setItem("msb_words", JSON.stringify(words));
+
+      secretText.value = "";
+      updateWordPreview();
+      loadWords();
+      showWords();
+    });
 
     clearTextBtn.addEventListener("click", () => {
       secretText.value = "";
-      wordPreview.textContent = "Yahan typed text ka quick preview dikhega.";
+      updateWordPreview();
     });
-    
-     imageInput.addEventListener("change", function(event) {
-  const file = event.target.files[0];
 
-  if (!file) {
-    currentImageData = "";
-    imagePreview.textContent = "Image preview yahan dikhega.";
-    return;
-  }
+    imageInput.addEventListener("change", function(event) {
+      const file = event.target.files[0];
 
-  if (!file.type.startsWith("image/")) {
-    alert("Sirf image file choose karo.");
-    imageInput.value = "";
-    currentImageData = "";
-    imagePreview.textContent = "Image preview yahan dikhega.";
-    return;
-  }
+      if (!file) {
+        currentImageData = "";
+        imagePreview.textContent = "Image preview yahan dikhega.";
+        return;
+      }
 
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    currentImageData = e.target.result;
-    imagePreview.innerHTML = `<img src="${currentImageData}" alt="Preview image">`;
-  };
-  reader.readAsDataURL(file);
-});
+      if (!file.type.startsWith("image/")) {
+        alert("Sirf image file choose karo.");
+        imageInput.value = "";
+        currentImageData = "";
+        imagePreview.textContent = "Image preview yahan dikhega.";
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        currentImageData = e.target.result;
+        imagePreview.innerHTML = `<img src="${currentImageData}" alt="Preview image">`;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    saveImageBtn.addEventListener("click", () => {
+      if (!currentImageData) {
+        alert("Pehle image choose karo.");
+        return;
+      }
+
+      const uid = getCurrentUserUID();
+
+      const images = JSON.parse(localStorage.getItem("msb_images") || "[]");
+      images.unshift({
+        src: currentImageData,
+        watermark: uid,
+        date: getFormattedDate(),
+        likes: 0,
+        comments: []
+      });
+      localStorage.setItem("msb_images", JSON.stringify(images));
+
+      imageInput.value = "";
+      currentImageData = "";
+      imagePreview.textContent = "Image preview yahan dikhega.";
+      loadImages();
+      showImages();
+    });
 
     clearImageBtn.addEventListener("click", () => {
       imageInput.value = "";
@@ -1238,14 +1170,14 @@ secretText.addEventListener("input", updateWordPreview);
 
     function shareWord(index) {
       const words = JSON.parse(localStorage.getItem("msb_words") || "[]");
-      const text = words[index].text;
+      const text = (words[index].text || "").replace(/ *~~MSB-[^~]+~~/g, "");
       navigator.clipboard.writeText(text);
       alert("Word copied for sharing.");
     }
 
     function shareImage(index) {
       const images = JSON.parse(localStorage.getItem("msb_images") || "[]");
-      navigator.clipboard.writeText(images[index].src);
+      navigator.clipboard.writeText(images[index].src || "");
       alert("Image link copied for sharing.");
     }
 
@@ -1285,31 +1217,6 @@ secretText.addEventListener("input", updateWordPreview);
       togglePanel(privacyPanel);
     });
 
-       saveImageBtn.addEventListener("click", () => {
-  if (!currentImageData) {
-    alert("Pehle image choose karo.");
-    return;
-  }
-
-  const uid = getCurrentUserUID();
-
-  const images = JSON.parse(localStorage.getItem("msb_images") || "[]");
-  images.unshift({
-    src: currentImageData,
-    watermark: uid,
-    date: getFormattedDate(),
-    likes: 0,
-    comments: []
-  });
-  localStorage.setItem("msb_images", JSON.stringify(images));
-
-  imageInput.value = "";
-  currentImageData = "";
-  imagePreview.textContent = "Image preview yahan dikhega.";
-  loadImages();
-  showImages();
-});
-    
     settingsBtn.addEventListener("click", () => {
       togglePanel(settingsPanel);
     });
@@ -1356,12 +1263,15 @@ secretText.addEventListener("input", updateWordPreview);
 
     logoutBtn.addEventListener("click", doLogout);
 
-if (moreLogoutBtn) {
-  moreLogoutBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    doLogout();
-  });
-}
+    document.addEventListener("copy", function(e){
+      const uid = getCurrentUserUID();
+      const text = window.getSelection().toString();
+      if (!text) return;
+
+      const watermarkText = text + "\n\n— MySecretBook (" + uid + ")";
+      e.clipboardData.setData("text/plain", watermarkText);
+      e.preventDefault();
+    });
 
     applyProfileUI();
     loadWords();
@@ -1374,51 +1284,8 @@ if (moreLogoutBtn) {
       showWords();
     }
 
-    applyProfileUI();
-loadWords();
-loadImages();
-
-const data = getProfileData();
-if (data.defaultTab === "image") {
-  showImages();
-} else {
-  showWords();
-}
-
-updateWordPreview();
-    
-    document.addEventListener("copy", function(e){
-  const uid = getCurrentUserUID();
-  const text = window.getSelection().toString();
-
-  const watermarkText = text + "\n\n— MySecretBook (" + uid + ")";
-  
-  e.clipboardData.setData("text/plain", watermarkText);
-  e.preventDefault();
-});
-    const badWords = [
-  "madarchod","bhenchod","chutiya","gandu","lund","gaand",
-  "sex","porn","xxx","fuck","bitch","nude","boobs","dick","all bad words"
-];
-    function cleanText(text){
-
-  let clean = text;
-
-  badWords.forEach(word => {
-    const regex = new RegExp(word, "gi");
-
-    clean = clean.replace(regex, function(){
-      const goodWords = [
-        "pyar","mohabbat","respect","sweet","cute","dil","khushi"
-      ];
-      return goodWords[Math.floor(Math.random()*goodWords.length)];
-    });
-  });
-
-  return clean;
-    }
-    
+    updateWordPreview();
   </script>
   <script src="navbar.js"></script>
 </body>
-</html>                                
+</html>
