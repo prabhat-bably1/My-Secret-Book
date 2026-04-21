@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <script>
     if (localStorage.getItem("msb_admin_logged_in") !== "true") {
@@ -24,24 +24,36 @@
 
     :root{
       --cream:#eadbc4;
-      --cream-soft:#f4ecdf;
+      --cream-soft:#f9f4ec;
       --gold:#d09a36;
+      --gold-soft:#f2d28c;
       --brown:#4b2d1a;
-      --card:rgba(255,250,242,0.92);
-      --border:rgba(208,154,54,0.28);
-      --btn1:#a22f24;
-      --btn2:#62130e;
-      --green:#2f7a49;
-      --blue:#385f9b;
+      --brown-dark:#31180d;
+      --card:rgba(255,250,242,0.94);
+      --card-2:rgba(255,247,236,0.92);
+      --border:rgba(208,154,54,0.26);
+      --red1:#b53c30;
+      --red2:#6c1712;
+      --green1:#4a9a66;
+      --green2:#2d6e45;
+      --blue1:#567fca;
+      --blue2:#365b98;
+      --amber1:#d88920;
+      --amber2:#9b5c10;
       --rose1:#d45a78;
       --rose2:#f0a2b5;
+      --shadow:0 18px 30px rgba(0,0,0,.09);
+      --shadow-lg:0 24px 42px rgba(0,0,0,.12);
     }
 
     html,body{
       width:100%;
       min-height:100%;
       overflow-x:hidden;
-      background:linear-gradient(180deg,var(--cream-soft),var(--cream));
+      background:
+        radial-gradient(circle at top left, rgba(255,248,223,.7), transparent 26%),
+        radial-gradient(circle at top right, rgba(244,214,230,.35), transparent 24%),
+        linear-gradient(180deg,var(--cream-soft),var(--cream));
       font-family:"Poppins",sans-serif;
       color:var(--brown);
     }
@@ -106,20 +118,20 @@
     }
 
     .nav{
-      width:min(1180px,96vw);
-      margin:0 auto 14px;
+      width:min(1240px,96vw);
+      margin:0 auto 16px;
       display:flex;
       justify-content:space-between;
       align-items:center;
       gap:10px;
-      padding:10px 12px;
+      padding:12px 14px;
       border-radius:999px;
-      background:rgba(255,248,237,.34);
+      background:rgba(255,248,237,.38);
       border:1px solid rgba(208,154,54,.24);
       box-shadow:
         0 10px 20px rgba(0,0,0,.06),
-        inset 0 0 0 1px rgba(255,255,255,.16);
-      backdrop-filter:blur(6px);
+        inset 0 0 0 1px rgba(255,255,255,.18);
+      backdrop-filter:blur(7px);
     }
 
     .nav-group{
@@ -139,7 +151,7 @@
       font-size:.84rem;
       border:1px solid rgba(208,154,54,.32);
       background:rgba(60,25,10,.08);
-      transition:.2s ease;
+      transition:.22s ease;
       cursor:pointer;
     }
 
@@ -152,7 +164,7 @@
 
     .title-wrap{
       text-align:center;
-      margin:4px 0 10px;
+      margin:4px 0 14px;
     }
 
     .title{
@@ -170,7 +182,7 @@
     }
 
     .ornament{
-      width:min(860px,95vw);
+      width:min(900px,95vw);
       margin:10px auto 0;
       display:flex;
       align-items:center;
@@ -193,25 +205,87 @@
     }
 
     .admin-wrap{
-      width:min(1180px,96vw);
+      width:min(1240px,96vw);
       margin:18px auto 0;
       display:grid;
       gap:18px;
+    }
+
+    .hero-strip{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:16px;
+    }
+
+    .hero-card,
+    .panel,
+    .stat-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
+    }
+
+    .hero-card{
+      padding:22px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      inset:auto -60px -90px auto;
+      width:240px;
+      height:240px;
+      background:radial-gradient(circle, rgba(243,217,166,.35), transparent 65%);
+      pointer-events:none;
+    }
+
+    .hero-title{
+      font-family:"Cinzel",serif;
+      font-size:1.45rem;
+      color:#6d2418;
+      margin-bottom:8px;
+    }
+
+    .hero-text{
+      color:#6d4b35;
+      line-height:1.8;
+      font-size:.96rem;
+    }
+
+    .hero-mini{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .mini-box{
+      padding:14px;
+      border-radius:18px;
+      background:rgba(255,251,245,.88);
+      border:1px solid rgba(208,154,54,.18);
+    }
+
+    .mini-box .label{
+      font-size:.82rem;
+      color:#8a5f3e;
+      margin-bottom:6px;
+    }
+
+    .mini-box .value{
+      font-weight:700;
+      font-size:1.1rem;
+      color:#5a2818;
     }
 
     .stats{
       display:grid;
       grid-template-columns:repeat(4,1fr);
       gap:14px;
-    }
-
-    .stat-card,
-    .panel{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:24px;
-      box-shadow:0 24px 36px rgba(0,0,0,.08), inset 0 0 0 1px rgba(255,255,255,.22);
-      backdrop-filter:blur(10px);
     }
 
     .stat-card{
@@ -250,29 +324,61 @@
       color:#6d2418;
     }
 
-    .search-box{
-      width:min(340px,100%);
+    .panel-subtitle{
+      color:#7b5944;
+      font-size:.92rem;
+      line-height:1.7;
+      margin-top:4px;
+    }
+
+    .search-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      width:min(560px,100%);
+      justify-content:flex-end;
+    }
+
+    .search-box,
+    .select-box{
       padding:12px 14px;
       border-radius:16px;
       border:1px solid rgba(208,154,54,.24);
-      background:rgba(255,252,247,.92);
+      background:rgba(255,252,247,.94);
       color:#4b2d1a;
       font-size:.95rem;
       outline:none;
+      min-height:46px;
+    }
+
+    .search-box{
+      flex:1 1 240px;
+    }
+
+    .select-box{
+      flex:0 0 170px;
+    }
+
+    .toolbar{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:16px;
     }
 
     .user-list{
       display:grid;
-      gap:12px;
+      gap:14px;
     }
 
     .user-card{
-      padding:16px;
-      border-radius:18px;
-      background:rgba(255,248,238,.78);
+      padding:18px;
+      border-radius:22px;
+      background:rgba(255,248,238,.82);
       border:1px solid rgba(208,154,54,.18);
       display:grid;
-      gap:10px;
+      gap:12px;
+      box-shadow:0 10px 16px rgba(0,0,0,.04);
     }
 
     .user-top{
@@ -285,8 +391,9 @@
 
     .user-name{
       font-family:"Cinzel",serif;
-      font-size:1.1rem;
+      font-size:1.12rem;
       color:#7a3520;
+      margin-bottom:4px;
     }
 
     .user-id,
@@ -297,15 +404,60 @@
       word-break:break-word;
     }
 
+    .user-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+    }
+
+    .mini-stat{
+      padding:12px;
+      border-radius:16px;
+      background:rgba(255,251,245,.94);
+      border:1px solid rgba(208,154,54,.18);
+    }
+
+    .mini-stat .label{
+      font-size:.8rem;
+      color:#876144;
+      margin-bottom:5px;
+    }
+
+    .mini-stat .value{
+      font-weight:700;
+      color:#5b2a19;
+      font-size:1rem;
+    }
+
+    .tag-row{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
     .tag{
-      display:inline-block;
-      padding:6px 10px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:6px 12px;
       border-radius:999px;
       font-size:.78rem;
       font-weight:600;
       border:1px solid rgba(208,154,54,.22);
       background:rgba(255,247,232,.84);
       color:#7c4b23;
+    }
+
+    .tag.blocked{
+      background:rgba(181,60,48,.1);
+      color:#8a231b;
+      border-color:rgba(181,60,48,.2);
+    }
+
+    .tag.active{
+      background:rgba(74,154,102,.12);
+      color:#245639;
+      border-color:rgba(74,154,102,.22);
     }
 
     .actions{
@@ -324,25 +476,38 @@
       font-size:.9rem;
       border:2px solid var(--gold);
       box-shadow:0 10px 16px rgba(0,0,0,.10);
+      transition:.2s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
     }
 
     .btn-danger{
-      background:linear-gradient(180deg,var(--btn1) 0%, #761b13 55%, var(--btn2) 100%);
+      background:linear-gradient(180deg,var(--red1) 0%, #8a221a 55%, var(--red2) 100%);
     }
 
     .btn-green{
-      background:linear-gradient(180deg,#3f8f5c 0%, #2f7a49 100%);
+      background:linear-gradient(180deg,var(--green1) 0%, var(--green2) 100%);
     }
 
     .btn-blue{
-      background:linear-gradient(180deg,#4a77bc 0%, #385f9b 100%);
+      background:linear-gradient(180deg,var(--blue1) 0%, var(--blue2) 100%);
+    }
+
+    .btn-amber{
+      background:linear-gradient(180deg,var(--amber1) 0%, var(--amber2) 100%);
+    }
+
+    .btn-outline{
+      background:linear-gradient(180deg,#8f6536 0%, #6a431d 100%);
     }
 
     .empty-note{
       color:#8b6547;
       font-size:.95rem;
       line-height:1.7;
-      padding:10px 2px;
+      padding:16px 2px;
     }
 
     .danger-note{
@@ -351,9 +516,169 @@
       line-height:1.7;
     }
 
+    .success-note{
+      color:#29603d;
+      font-size:.92rem;
+      line-height:1.7;
+    }
+
+    .status-bar{
+      margin-top:10px;
+      padding:12px 14px;
+      border-radius:16px;
+      background:rgba(255,251,245,.88);
+      border:1px solid rgba(208,154,54,.18);
+      color:#694529;
+      font-size:.92rem;
+      line-height:1.6;
+    }
+
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(40,20,10,.45);
+      backdrop-filter:blur(5px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:20;
+    }
+
+    .modal.show{
+      display:flex;
+    }
+
+    .modal-card{
+      width:min(980px,100%);
+      max-height:90vh;
+      overflow:auto;
+      border-radius:26px;
+      background:linear-gradient(180deg,rgba(255,252,247,.98),rgba(250,242,231,.98));
+      border:1px solid rgba(208,154,54,.3);
+      box-shadow:var(--shadow-lg);
+      padding:18px;
+    }
+
+    .modal-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+
+    .modal-title{
+      font-family:"Cinzel",serif;
+      font-size:1.2rem;
+      color:#6d2418;
+    }
+
+    .close-btn{
+      border:none;
+      cursor:pointer;
+      padding:10px 14px;
+      border-radius:999px;
+      color:#fff4e2;
+      font-family:"Cinzel",serif;
+      font-size:.86rem;
+      border:2px solid var(--gold);
+      background:linear-gradient(180deg,#8f6536 0%, #6a431d 100%);
+    }
+
+    .content-grid{
+      display:grid;
+      gap:12px;
+    }
+
+    .content-card{
+      background:var(--card-2);
+      border:1px solid rgba(208,154,54,.18);
+      border-radius:20px;
+      padding:16px;
+      display:grid;
+      gap:10px;
+    }
+
+    .content-type{
+      display:inline-flex;
+      width:max-content;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:.78rem;
+      font-weight:700;
+      background:rgba(208,154,54,.12);
+      color:#7c4b23;
+      border:1px solid rgba(208,154,54,.2);
+    }
+
+    .content-text{
+      color:#55321f;
+      line-height:1.8;
+      white-space:pre-wrap;
+      word-break:break-word;
+    }
+
+    .content-image{
+      width:100%;
+      max-height:320px;
+      object-fit:contain;
+      border-radius:16px;
+      border:1px solid rgba(208,154,54,.18);
+      background:#fff;
+    }
+
+    .content-meta{
+      color:#7b5944;
+      font-size:.88rem;
+      line-height:1.7;
+    }
+
+    .content-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .footer-note{
+      width:min(1240px,96vw);
+      margin:18px auto 0;
+      padding:14px 16px;
+      border-radius:20px;
+      background:rgba(255,248,238,.76);
+      border:1px solid rgba(208,154,54,.2);
+      color:#6e4d39;
+      font-size:.92rem;
+      line-height:1.8;
+      position:relative;
+      z-index:2;
+    }
+
+    @media (max-width: 1050px){
+      .hero-strip{
+        grid-template-columns:1fr;
+      }
+
+      .user-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
     @media (max-width: 900px){
       .stats{
         grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media (max-width: 680px){
+      .user-grid{
+        grid-template-columns:1fr;
+      }
+
+      .search-row{
+        width:100%;
+        justify-content:flex-start;
       }
     }
 
@@ -375,6 +700,10 @@
       .title{
         font-size:clamp(2.8rem,8vw,4.8rem);
       }
+
+      .hero-mini{
+        grid-template-columns:1fr;
+      }
     }
 
     @media (max-width: 420px){
@@ -395,6 +724,12 @@
 
       .title{
         font-size:clamp(2.45rem,8vw,4rem);
+      }
+
+      .panel,
+      .hero-card,
+      .stat-card{
+        padding:14px;
       }
     }
   </style>
@@ -431,12 +766,62 @@
       <div class="title">My Secret Book Admin</div>
       <div class="ornament">
         <div class="orn-line"></div>
-        <div class="orn-center">❦ ADMIN PANEL ❦</div>
+        <div class="orn-center">❦ PREMIUM ADMIN PANEL ❦</div>
         <div class="orn-line"></div>
       </div>
     </div>
 
     <div class="admin-wrap">
+
+      <section class="hero-strip">
+        <div class="hero-card">
+          <div class="hero-title">Admin Control Center</div>
+          <div class="hero-text">
+            Yahan se aap users ko dekh sakte ho, block/unblock kar sakte ho, unke words aur images review kar sakte ho,
+            inappropriate content delete kar sakte ho, current logged-in session clear kar sakte ho, aur users data export bhi kar sakte ho.
+          </div>
+
+          <div class="hero-mini">
+            <div class="mini-box">
+              <div class="label">Blocked Users</div>
+              <div class="value" id="blockedUsers">0</div>
+            </div>
+            <div class="mini-box">
+              <div class="label">Active Users</div>
+              <div class="value" id="activeUsers">0</div>
+            </div>
+            <div class="mini-box">
+              <div class="label">Word Posts</div>
+              <div class="value" id="wordPosts">0</div>
+            </div>
+            <div class="mini-box">
+              <div class="label">Image Posts</div>
+              <div class="value" id="imagePosts">0</div>
+            </div>
+          </div>
+
+          <div class="status-bar" id="statusBar">
+            Admin panel ready.
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-title">Important Note</div>
+          <div class="hero-text">
+            Ye admin panel <strong>localStorage based</strong> hai. Iska matlab:
+            <br><br>
+            1. Sirf us browser/device ka data control hoga jahan ye site chal rahi hai.
+            <br>
+            2. Agar alag device/browser me koi user data save karega to wo yahan tabhi dikhega jab backend/database use hoga.
+            <br>
+            3. Block feature frontend level par hai, isliye login/profile page me bhi block check lagana padega.
+          </div>
+          <div class="status-bar success-note">
+            Abhi ke liye ye version local project ke hisab se best premium admin handling de raha hai.
+          </div>
+        </div>
+      </section>
+
       <section class="stats">
         <div class="stat-card">
           <div class="stat-title">Total Users</div>
@@ -463,15 +848,27 @@
         <div class="panel-head">
           <div>
             <div class="panel-title">All Users</div>
-            <div class="danger-note">Delete karne par user account list se hat jayega. User ke saved secrets/images local browser storage me reh sakte hain agar same device me save hue hon.</div>
+            <div class="panel-subtitle">
+              User delete karne par uska account aur uske related local words/images isi browser ke storage se hat jayenge.
+              Aap search, filter, block, view uploads, delete uploads sab kar sakte ho.
+            </div>
           </div>
-
-          <input type="text" id="searchInput" class="search-box" placeholder="Search by email, name, phone or secret ID">
+               
+          <div class="search-row">
+            <input type="text" id="searchInput" class="search-box" placeholder="Search by name, email, phone, secret ID">
+            <select id="filterSelect" class="select-box">
+              <option value="all">All Users</option>
+              <option value="active">Active Users</option>
+              <option value="blocked">Blocked Users</option>
+            </select>
+          </div>
         </div>
 
-        <div class="actions" style="margin-bottom:16px;">
+        <div class="toolbar">
           <button class="btn btn-blue" id="clearSessionBtn" type="button">Clear Logged In User</button>
           <button class="btn btn-green" id="exportUsersBtn" type="button">Export Users JSON</button>
+          <button class="btn btn-amber" id="exportContentBtn" type="button">Export Content JSON</button>
+          <button class="btn btn-outline" id="cleanupBtn" type="button">Cleanup Broken Data</button>
         </div>
 
         <div class="user-list" id="userList"></div>
@@ -479,44 +876,176 @@
     </div>
   </div>
 
+  <div class="modal" id="contentModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div class="modal-title" id="modalTitle">User Content</div>
+        <button class="close-btn" id="closeModalBtn" type="button">Close</button>
+      </div>
+
+      <div class="content-grid" id="modalContentList"></div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    Premium admin panel ready. Agar tum chaho to next step me main tumhe <strong>login.html / profile.html me block-user checking code</strong> bhi de dunga,
+    jisse blocked user login ya profile access na kar sake.
+  </div>
+
   <script>
     const totalUsers = document.getElementById("totalUsers");
     const totalSecrets = document.getElementById("totalSecrets");
     const totalImages = document.getElementById("totalImages");
+    const blockedUsers = document.getElementById("blockedUsers");
+    const activeUsers = document.getElementById("activeUsers");
+    const wordPosts = document.getElementById("wordPosts");
+    const imagePosts = document.getElementById("imagePosts");
     const userList = document.getElementById("userList");
     const searchInput = document.getElementById("searchInput");
+    const filterSelect = document.getElementById("filterSelect");
     const logoutBtn = document.getElementById("logoutBtn");
     const refreshBtn = document.getElementById("refreshBtn");
     const clearSessionBtn = document.getElementById("clearSessionBtn");
     const exportUsersBtn = document.getElementById("exportUsersBtn");
+    const exportContentBtn = document.getElementById("exportContentBtn");
+    const cleanupBtn = document.getElementById("cleanupBtn");
+    const statusBar = document.getElementById("statusBar");
+
+    const contentModal = document.getElementById("contentModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalContentList = document.getElementById("modalContentList");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+
+    function safeParse(key, fallback) {
+      try {
+        const value = JSON.parse(localStorage.getItem(key));
+        return Array.isArray(value) ? value : fallback;
+      } catch (error) {
+        return fallback;
+      }
+    }
 
     function getUsers() {
-      return JSON.parse(localStorage.getItem("msb_users") || "[]");
+      const users = safeParse("msb_users", []);
+      return users.map(user => ({
+        firstName: user.firstName || "",
+        middleName: user.middleName || "",
+        email: user.email || "",
+        phone: user.phone || "",
+        password: user.password || "",
+        secretId: user.secretId || "",
+        privacy: user.privacy || "Private Profile",
+        blocked: !!user.blocked,
+        blockedReason: user.blockedReason || "",
+        createdAt: user.createdAt || "",
+        profileImage: user.profileImage || ""
+      }));
     }
 
     function saveUsers(users) {
       localStorage.setItem("msb_users", JSON.stringify(users));
     }
 
-    function getSecrets() {
-      return JSON.parse(localStorage.getItem("msb_words") || "[]");
+    function getWords() {
+      return safeParse("msb_words", []).map((item, index) => ({
+        ...item,
+        __type: "word",
+        __id: item.id || ("word_" + index + "_" + Date.now())
+      }));
     }
 
     function getImages() {
-      return JSON.parse(localStorage.getItem("msb_images") || "[]");
+      return safeParse("msb_images", []).map((item, index) => ({
+        ...item,
+        __type: "image",
+        __id: item.id || ("image_" + index + "_" + Date.now())
+      }));
+    }
+
+    function setWords(words) {
+      localStorage.setItem("msb_words", JSON.stringify(words));
+    }
+
+    function setImages(images) {
+      localStorage.setItem("msb_images", JSON.stringify(images));
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text == null ? "" : String(text);
+      return div.innerHTML;
+    }
+
+    function getUserDisplayName(user) {
+      const name = `${user.firstName || ""} ${user.middleName || ""}`.trim();
+      return name || "Unnamed User";
+    }
+
+    function userMatchesIdentity(item, user) {
+      const itemEmail = (item.email || "").trim().toLowerCase();
+      const itemPhone = (item.phone || "").trim().toLowerCase();
+      const itemSecretId = (item.secretId || "").trim().toLowerCase();
+
+      const userEmail = (user.email || "").trim().toLowerCase();
+      const userPhone = (user.phone || "").trim().toLowerCase();
+      const userSecretId = (user.secretId || "").trim().toLowerCase();
+
+      if (itemSecretId && userSecretId && itemSecretId === userSecretId) return true;
+      if (itemEmail && userEmail && itemEmail === userEmail) return true;
+      if (itemPhone && userPhone && itemPhone === userPhone) return true;
+
+      return false;
+    }
+
+    function getUserWords(user) {
+      return getWords().filter(item => userMatchesIdentity(item, user));
+    }
+
+    function getUserImages(user) {
+      return getImages().filter(item => userMatchesIdentity(item, user));
+    }
+
+    function getAllUserContent(user) {
+      return [...getUserWords(user), ...getUserImages(user)].sort((a, b) => {
+        const aTime = new Date(a.date || a.createdAt || 0).getTime();
+        const bTime = new Date(b.date || b.createdAt || 0).getTime();
+        return bTime - aTime;
+      });
+    }
+
+    function updateStatus(message) {
+      statusBar.textContent = message;
     }
 
     function updateStats() {
-      totalUsers.textContent = getUsers().length;
-      totalSecrets.textContent = getSecrets().length;
-      totalImages.textContent = getImages().length;
+      const users = getUsers();
+      const words = getWords();
+      const images = getImages();
+      const blocked = users.filter(user => user.blocked).length;
+
+      totalUsers.textContent = users.length;
+      totalSecrets.textContent = words.length;
+      totalImages.textContent = images.length;
+
+      blockedUsers.textContent = blocked;
+      activeUsers.textContent = users.length - blocked;
+      wordPosts.textContent = words.length;
+      imagePosts.textContent = images.length;
+    }
+
+    function formatDate(value) {
+      if (!value) return "No date";
+      const date = new Date(value);
+      if (isNaN(date.getTime())) return String(value);
+      return date.toLocaleString();
     }
 
     function renderUsers() {
       const users = getUsers();
       const query = searchInput.value.trim().toLowerCase();
+      const filter = filterSelect.value;
 
-      const filteredUsers = users.filter(user => {
+      let filteredUsers = users.filter(user => {
         const text = [
           user.firstName || "",
           user.middleName || "",
@@ -528,33 +1057,79 @@
         return text.includes(query);
       });
 
+      if (filter === "active") {
+        filteredUsers = filteredUsers.filter(user => !user.blocked);
+      } else if (filter === "blocked") {
+        filteredUsers = filteredUsers.filter(user => user.blocked);
+      }
+
       if (!filteredUsers.length) {
         userList.innerHTML = '<div class="empty-note">No users found.</div>';
         return;
       }
 
       userList.innerHTML = filteredUsers.map((user, index) => {
-        const originalIndex = users.findIndex(u =>
-          u.email === user.email &&
-          u.phone === user.phone &&
-          u.secretId === user.secretId
+        const allUsers = getUsers();
+        const originalIndex = allUsers.findIndex(u =>
+          (u.email || "") === (user.email || "") &&
+          (u.phone || "") === (user.phone || "") &&
+          (u.secretId || "") === (user.secretId || "")
         );
+
+        const words = getUserWords(user);
+        const images = getUserImages(user);
+        const uploads = words.length + images.length;
+
+        const maskedPassword = user.password ? "•".repeat(Math.max(6, user.password.length)) : "No Password";
+        const safeName = escapeHtml(getUserDisplayName(user));
+        const safeSecretId = escapeHtml(user.secretId || "No Secret ID");
+        const safeEmail = escapeHtml(user.email || "");
+        const safePhone = escapeHtml(user.phone || "");
+        const safePrivacy = escapeHtml((user.privacy || "Private Profile").toString());
+        const safeReason = escapeHtml(user.blockedReason || "No reason");
 
         return `
           <div class="user-card">
             <div class="user-top">
               <div>
-                <div class="user-name">${escapeHtml((user.firstName || "") + " " + (user.middleName || "")).trim() || "Unnamed User"}</div>
-                <div class="user-id">${escapeHtml(user.secretId || "No Secret ID")}</div>
+                <div class="user-name">${safeName}</div>
+                <div class="user-id">${safeSecretId}</div>
               </div>
-              <span class="tag">${(user.privacy || "Private Profile").toString()}</span>
+
+              <div class="tag-row">
+                <span class="tag ${user.blocked ? 'blocked' : 'active'}">${user.blocked ? 'Blocked' : 'Active'}</span>
+                <span class="tag">${safePrivacy}</span>
+              </div>
             </div>
 
-            <div class="user-meta"><strong>Email:</strong> ${escapeHtml(user.email || "")}</div>
-            <div class="user-meta"><strong>Phone:</strong> ${escapeHtml(user.phone || "")}</div>
-            <div class="user-meta"><strong>Password:</strong> ${escapeHtml(user.password || "")}</div>
+            <div class="user-meta"><strong>Email:</strong> ${safeEmail || "No email"}</div>
+            <div class="user-meta"><strong>Phone:</strong> ${safePhone || "No phone"}</div>
+            <div class="user-meta"><strong>Password:</strong> ${escapeHtml(maskedPassword)}</div>
+            <div class="user-meta"><strong>Blocked Reason:</strong> ${user.blocked ? safeReason : "Not blocked"}</div>
+
+            <div class="user-grid">
+              <div class="mini-stat">
+                <div class="label">Word Posts</div>
+                <div class="value">${words.length}</div>
+              </div>
+              <div class="mini-stat">
+                <div class="label">Image Posts</div>
+                <div class="value">${images.length}</div>
+              </div>
+              <div class="mini-stat">
+                <div class="label">Total Uploads</div>
+                <div class="value">${uploads}</div>
+              </div>
+              <div class="mini-stat">
+                <div class="label">Joined</div>
+                <div class="value">${escapeHtml(formatDate(user.createdAt)).slice(0, 18) || "No date"}</div>
+              </div>
+            </div>
 
             <div class="actions">
+              <button class="btn btn-blue" type="button" onclick="viewUserContent(${originalIndex})">View Uploads</button>
+              <button class="btn btn-amber" type="button" onclick="toggleBlockUser(${originalIndex})">${user.blocked ? "Unblock User" : "Block User"}</button>
+              <button class="btn btn-green" type="button" onclick="clearUserSession(${originalIndex})">Clear User Session</button>
               <button class="btn btn-danger" type="button" onclick="deleteUser(${originalIndex})">Delete User</button>
             </div>
           </div>
@@ -562,27 +1137,237 @@
       }).join("");
     }
 
-    function escapeHtml(text) {
-      const div = document.createElement("div");
-      div.textContent = text;
-      return div.innerHTML;
+    function getUserByIndex(index) {
+      const users = getUsers();
+      return users[index] || null;
+    }
+
+    function viewUserContent(index) {
+      const user = getUserByIndex(index);
+      if (!user) return;
+
+      const content = getAllUserContent(user);
+      modalTitle.textContent = `${getUserDisplayName(user)} - Uploads`;
+
+      if (!content.length) {
+        modalContentList.innerHTML = `
+          <div class="content-card">
+            <div class="content-text">No uploads found for this user.</div>
+          </div>
+        `;
+        contentModal.classList.add("show");
+        return;
+      }
+
+      modalContentList.innerHTML = content.map(item => {
+        const isWord = item.__type === "word";
+        const textValue = escapeHtml(item.text || item.word || item.caption || item.message || "");
+        const imageValue = item.image || item.src || item.dataUrl || item.url || "";
+        const metaDate = escapeHtml(formatDate(item.date || item.createdAt || ""));
+        const metaId = escapeHtml(item.secretId || item.email || item.phone || "Unknown User");
+
+        return `
+          <div class="content-card">
+            <div class="content-type">${isWord ? "WORD POST" : "IMAGE POST"}</div>
+
+            ${isWord ? `
+              <div class="content-text">${textValue || "No text found."}</div>
+            ` : `
+              ${imageValue ? `<img class="content-image" src="${imageValue}" alt="User Upload">` : `<div class="content-text">Image data not found.</div>`}
+              ${textValue ? `<div class="content-text">${textValue}</div>` : ``}
+            `}
+
+            <div class="content-meta"><strong>Date:</strong> ${metaDate}</div>
+            <div class="content-meta"><strong>User Ref:</strong> ${metaId}</div>
+
+            <div class="content-actions">
+              <button class="btn btn-danger" type="button" onclick="deleteSingleContent('${item.__type}','${escapeJs(item.__id)}', ${index})">Delete This ${isWord ? "Word" : "Image"}</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      contentModal.classList.add("show");
+    }
+
+    function escapeJs(value) {
+      return String(value).replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+    }
+
+    function toggleBlockUser(index) {
+      const users = getUsers();
+      const user = users[index];
+      if (!user) return;
+
+      if (user.blocked) {
+        user.blocked = false;
+        user.blockedReason = "";
+        saveUsers(users);
+
+        const loggedInUser = getLoggedInUser();
+        if (loggedInUser && isSameUser(loggedInUser, user)) {
+          localStorage.setItem("loggedInUser", JSON.stringify(user));
+        }
+
+        updateStats();
+        renderUsers();
+        updateStatus(`${getUserDisplayName(user)} unblocked successfully.`);
+        return;
+      }
+
+      const reason = prompt("Enter block reason:", "Violation / Inappropriate content");
+      if (reason === null) return;
+
+      user.blocked = true;
+      user.blockedReason = reason.trim() || "Violation / Inappropriate content";
+      saveUsers(users);
+
+      const loggedInUser = getLoggedInUser();
+      if (loggedInUser && isSameUser(loggedInUser, user)) {
+        localStorage.removeItem("loggedInUser");
+      }
+
+      updateStats();
+      renderUsers();
+      updateStatus(`${getUserDisplayName(user)} blocked successfully.`);
+    }
+
+    function getLoggedInUser() {
+      try {
+        return JSON.parse(localStorage.getItem("loggedInUser") || "null");
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function isSameUser(a, b) {
+      if (!a || !b) return false;
+
+      const emailA = (a.email || "").trim().toLowerCase();
+      const phoneA = (a.phone || "").trim().toLowerCase();
+      const secretA = (a.secretId || "").trim().toLowerCase();
+
+      const emailB = (b.email || "").trim().toLowerCase();
+      const phoneB = (b.phone || "").trim().toLowerCase();
+      const secretB = (b.secretId || "").trim().toLowerCase();
+
+      return (
+        (secretA && secretB && secretA === secretB) ||
+        (emailA && emailB && emailA === emailB) ||
+        (phoneA && phoneB && phoneA === phoneB)
+      );
+    }
+
+    function clearUserSession(index) {
+      const user = getUserByIndex(index);
+      if (!user) return;
+
+      const loggedInUser = getLoggedInUser();
+      if (loggedInUser && isSameUser(loggedInUser, user)) {
+        localStorage.removeItem("loggedInUser");
+        alert("This user's current local session has been cleared.");
+        updateStatus(`${getUserDisplayName(user)} session cleared.`);
+      } else {
+        alert("This user is not the current logged-in local user on this browser.");
+      }
     }
 
     function deleteUser(index) {
       const users = getUsers();
-      if (!users[index]) return;
+      const user = users[index];
+      if (!user) return;
 
-      const ok = confirm("Are you sure you want to delete this user?");
+      const ok = confirm(`Delete ${getUserDisplayName(user)}?\n\nUser account + related local words/images will be removed from this browser storage.`);
       if (!ok) return;
 
-      users.splice(index, 1);
-      saveUsers(users);
+      const remainingUsers = users.filter((_, i) => i !== index);
+      saveUsers(remainingUsers);
+
+      const words = getWords().filter(item => !userMatchesIdentity(item, user)).map(cleanContentForStorage);
+      const images = getImages().filter(item => !userMatchesIdentity(item, user)).map(cleanContentForStorage);
+
+      setWords(words);
+      setImages(images);
+
+      const loggedInUser = getLoggedInUser();
+      if (loggedInUser && isSameUser(loggedInUser, user)) {
+        localStorage.removeItem("loggedInUser");
+      }
+
       updateStats();
       renderUsers();
-      alert("User deleted.");
+      closeModal();
+      alert("User and related local content deleted.");
+      updateStatus(`${getUserDisplayName(user)} deleted successfully.`);
+    }
+
+    function cleanContentForStorage(item) {
+      const cleaned = {...item};
+      delete cleaned.__type;
+      delete cleaned.__id;
+      return cleaned;
+    }
+
+    function deleteSingleContent(type, id, userIndex) {
+      const user = getUserByIndex(userIndex);
+      if (!user) return;
+
+      const ok = confirm(`Delete this ${type} post?`);
+      if (!ok) return;
+
+      if (type === "word") {
+        const words = getWords().filter(item => item.__id !== id).map(cleanContentForStorage);
+        setWords(words);
+      } else {
+        const images = getImages().filter(item => item.__id !== id).map(cleanContentForStorage);
+        setImages(images);
+      }
+
+      updateStats();
+      renderUsers();
+      viewUserContent(userIndex);
+      updateStatus(`${type === "word" ? "Word" : "Image"} post deleted.`);
+    }
+
+    function exportJSON(filename, data) {
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      URL.revokeObjectURL(url);
+    }
+
+    function cleanupBrokenData() {
+      const ok = confirm("Cleanup invalid/broken local data?");
+      if (!ok) return;
+
+      const users = getUsers();
+      saveUsers(users);
+
+      const cleanWords = getWords().map(cleanContentForStorage).filter(item => item && typeof item === "object");
+      const cleanImages = getImages().map(cleanContentForStorage).filter(item => item && typeof item === "object");
+
+      setWords(cleanWords);
+      setImages(cleanImages);
+
+      updateStats();
+      renderUsers();
+      alert("Broken data cleanup complete.");
+      updateStatus("Broken local data cleaned.");
+    }
+
+    function closeModal() {
+      contentModal.classList.remove("show");
     }
 
     searchInput.addEventListener("input", renderUsers);
+    filterSelect.addEventListener("change", renderUsers);
 
     logoutBtn.addEventListener("click", function() {
       localStorage.removeItem("msb_admin_logged_in");
@@ -592,28 +1377,48 @@
     refreshBtn.addEventListener("click", function() {
       updateStats();
       renderUsers();
+      updateStatus("Admin data refreshed.");
     });
 
     clearSessionBtn.addEventListener("click", function() {
       localStorage.removeItem("loggedInUser");
       alert("Current logged in user session cleared.");
+      updateStatus("Current local logged-in user session cleared.");
     });
 
     exportUsersBtn.addEventListener("click", function() {
-      const users = getUsers();
-      const blob = new Blob([JSON.stringify(users, null, 2)], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "my-secret-book-users.json";
-      a.click();
-
-      URL.revokeObjectURL(url);
+      exportJSON("my-secret-book-users.json", getUsers());
+      updateStatus("Users JSON exported.");
     });
+
+    exportContentBtn.addEventListener("click", function() {
+      exportJSON("my-secret-book-content.json", {
+        words: getWords().map(cleanContentForStorage),
+        images: getImages().map(cleanContentForStorage)
+      });
+      updateStatus("Content JSON exported.");
+    });
+
+    cleanupBtn.addEventListener("click", cleanupBrokenData);
+    closeModalBtn.addEventListener("click", closeModal);
+
+    contentModal.addEventListener("click", function(e) {
+      if (e.target === contentModal) closeModal();
+    });
+    
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") closeModal();
+    });
+
+    window.viewUserContent = viewUserContent;
+    window.toggleBlockUser = toggleBlockUser;
+    window.clearUserSession = clearUserSession;
+    window.deleteUser = deleteUser;
+    window.deleteSingleContent = deleteSingleContent;
 
     updateStats();
     renderUsers();
   </script>
 </body>
 </html>
+
