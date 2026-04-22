@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact - My Secret Book</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="navbar.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --cream:#eadbc4; --cream-soft:#f4ecdf; --gold:#d09a36; --brown:#4b2d1a;
+      --card:rgba(255,250,242,0.92); --border:rgba(208,154,54,0.28);
+      --btn1:#a22f24; --btn2:#62130e;
+    }
+    html,body{
+      width:100%; min-height:100%; overflow-x:hidden;
+      background:linear-gradient(180deg,var(--cream-soft),var(--cream));
+      font-family:"Poppins",sans-serif; color:var(--brown);
+    }
+    .page{position:relative;padding:16px 14px 40px}
+    .title-wrap{text-align:center;margin:4px 0 14px}
+    .title{
+      display:inline-block;
+      font-family:"Great Vibes",cursive;
+      font-size:clamp(3rem,8vw,6rem);
+      color:var(--gold);
+      text-shadow:0 1px 0 #fff6da,0 0 10px rgba(255,223,140,.42),0 0 20px rgba(207,154,53,.22),0 6px 18px rgba(90,55,20,.16);
+    }
+    .panel{
+      width:min(980px,96vw); margin:0 auto;
+      background:var(--card); border:1px solid var(--border); border-radius:28px;
+      box-shadow:0 24px 36px rgba(0,0,0,.08), inset 0 0 0 1px rgba(255,255,255,.22);
+      padding:22px 18px;
+    }
+    .panel h2{
+      font-family:"Cinzel",serif; color:#6d2418; margin-bottom:16px; font-size:2rem;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+    .card{
+      background:rgba(255,248,238,.78);
+      border:1px solid rgba(208,154,54,.18);
+      border-radius:20px;
+      padding:16px;
+    }
+    .card h3{
+      font-family:"Cinzel",serif;
+      color:#7a3520;
+      margin-bottom:10px;
+    }
+    .line{
+      margin-bottom:10px;
+      line-height:1.8;
+      font-size:.95rem;
+    }
+    .contact-form input,.contact-form textarea{
+      width:100%;
+      margin-bottom:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(208,154,54,.24);
+      background:#fffdf8;
+      font-family:"Poppins",sans-serif;
+      outline:none;
+    }
+    .contact-form textarea{
+      min-height:130px;
+      resize:vertical;
+    }
+    .submit-btn{
+      border:none;
+      cursor:pointer;
+      padding:12px 16px;
+      border-radius:999px;
+      color:#fff4e2;
+      font-family:"Cinzel",serif;
+      background:linear-gradient(180deg,var(--btn1) 0%, #761b13 55%, var(--btn2) 100%);
+      border:2px solid var(--gold);
+      box-shadow:0 10px 16px rgba(0,0,0,.10);
+    }
+    .status{
+      margin-top:12px;
+      padding:12px 14px;
+      border-radius:16px;
+      background:rgba(255,248,238,.72);
+      border:1px solid rgba(208,154,54,.15);
+      line-height:1.7;
+      font-size:.9rem;
+    }
+    @media(max-width:768px){
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div id="navbar-container"></div>
+
+    <div class="title-wrap">
+      <div class="title">My Secret Book</div>
+    </div>
+
+    <section class="panel">
+      <h2>Contact</h2>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Contact Information</h3>
+          <div class="line"><strong>Name:</strong> Prabhat Ranjan Seth</div>
+          <div class="line"><strong>Email:</strong> prabhatr.seth4@gmail.com</div>
+          <div class="line"><strong>Phone:</strong> 7064855983</div>
+          <div class="line"><strong>Project:</strong> My Secret Book</div>
+          <div class="line"><strong>Support Time:</strong> 10:00 AM - 8:00 PM</div>
+        </div>
+
+        <div class="card contact-form">
+          <h3>Send a Message</h3>
+          <input type="text" id="contactName" placeholder="Your Name">
+          <input type="email" id="contactEmail" placeholder="Your Email">
+          <textarea id="contactText" placeholder="Write your message..."></textarea>
+          <button class="submit-btn" id="contactSendBtn">Send Message</button>
+
+          <div class="status" id="contactStatus">
+            Aap yahan se contact request bhej sakte ho. Message browser me save ho jayega.
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.getElementById("contactSendBtn").addEventListener("click", function () {
+      const name = document.getElementById("contactName").value.trim();
+      const email = document.getElementById("contactEmail").value.trim();
+      const text = document.getElementById("contactText").value.trim();
+
+      if (!name || !email || !text) {
+        document.getElementById("contactStatus").textContent = "Please fill all fields before sending.";
+        return;
+      }
+
+      const messages = JSON.parse(localStorage.getItem("msb_contact_messages") || "[]");
+      messages.unshift({
+        name,
+        email,
+        text,
+        date: new Date().toLocaleString()
+      });
+      localStorage.setItem("msb_contact_messages", JSON.stringify(messages));
+
+      document.getElementById("contactName").value = "";
+      document.getElementById("contactEmail").value = "";
+      document.getElementById("contactText").value = "";
+      document.getElementById("contactStatus").textContent = "Your contact message has been sent successfully.";
+    });
+  </script>
+  <script src="navbar.js"></script>
+</body>
+</html>
