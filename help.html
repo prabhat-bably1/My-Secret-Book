@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Help Center - My Secret Book</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="navbar.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --cream:#eadbc4; --cream-soft:#f4ecdf; --gold:#d09a36; --brown:#4b2d1a;
+      --card:rgba(255,250,242,0.92); --border:rgba(208,154,54,0.28);
+      --btn1:#a22f24; --btn2:#62130e; --rose1:#d45a78; --rose2:#f0a2b5;
+    }
+    html,body{
+      width:100%; min-height:100%; overflow-x:hidden;
+      background:linear-gradient(180deg,var(--cream-soft),var(--cream));
+      font-family:"Poppins",sans-serif; color:var(--brown);
+    }
+    body{position:relative}
+    .page{position:relative;z-index:2;padding:16px 14px 40px}
+    .title-wrap{text-align:center;margin:4px 0 14px}
+    .title{
+      display:inline-block;
+      font-family:"Great Vibes",cursive;
+      font-size:clamp(3rem,8vw,6rem);
+      color:var(--gold);
+      text-shadow:0 1px 0 #fff6da,0 0 10px rgba(255,223,140,.42),0 0 20px rgba(207,154,53,.22),0 6px 18px rgba(90,55,20,.16);
+    }
+    .panel{
+      width:min(980px,96vw); margin:0 auto;
+      background:var(--card); border:1px solid var(--border); border-radius:28px;
+      box-shadow:0 24px 36px rgba(0,0,0,.08), inset 0 0 0 1px rgba(255,255,255,.22);
+      padding:22px 18px;
+    }
+    .panel h2{
+      font-family:"Cinzel",serif; color:#6d2418; margin-bottom:16px; font-size:2rem;
+    }
+    .faq{
+      border-radius:18px;
+      background:rgba(255,248,238,.78);
+      border:1px solid rgba(208,154,54,.18);
+      padding:16px;
+      margin-bottom:14px;
+    }
+    .faq h3{
+      font-family:"Cinzel",serif;
+      color:#7a3520;
+      margin-bottom:8px;
+      font-size:1.05rem;
+    }
+    .faq p{
+      line-height:1.8;
+      font-size:.95rem;
+      color:#654029;
+    }
+    .support-box{
+      margin-top:10px;
+      padding:16px;
+      border-radius:18px;
+      background:rgba(255,248,238,.78);
+      border:1px solid rgba(208,154,54,.18);
+    }
+    .support-box h3{
+      font-family:"Cinzel",serif;
+      color:#7a3520;
+      margin-bottom:10px;
+    }
+    .support-box input,.support-box textarea{
+      width:100%;
+      margin-bottom:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(208,154,54,.24);
+      background:#fffdf8;
+      font-family:"Poppins",sans-serif;
+      outline:none;
+    }
+    .support-box textarea{
+      min-height:130px;
+      resize:vertical;
+    }
+    .submit-btn{
+      border:none;
+      cursor:pointer;
+      padding:12px 16px;
+      border-radius:999px;
+      color:#fff4e2;
+      font-family:"Cinzel",serif;
+      background:linear-gradient(180deg,var(--btn1) 0%, #761b13 55%, var(--btn2) 100%);
+      border:2px solid var(--gold);
+      box-shadow:0 10px 16px rgba(0,0,0,.10);
+    }
+    .help-message{
+      margin-top:12px;
+      padding:12px 14px;
+      border-radius:16px;
+      background:rgba(255,248,238,.72);
+      border:1px solid rgba(208,154,54,.15);
+      font-size:.9rem;
+      line-height:1.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div id="navbar-container"></div>
+
+    <div class="title-wrap">
+      <div class="title">My Secret Book</div>
+    </div>
+
+    <section class="panel">
+      <h2>Help Center</h2>
+
+      <div class="faq">
+        <h3>How do I save text in my profile?</h3>
+        <p>Profile page par jaakar left side me text likho, phir “Save Secret” button dabao. Saved text neeche Word tab me dikh jayega.</p>
+      </div>
+
+      <div class="faq">
+        <h3>How do I save images?</h3>
+        <p>Profile page me image choose karo aur “Save Image” button dabao. Saved image Images tab me dikh jayegi.</p>
+      </div>
+
+      <div class="faq">
+        <h3>What does Public Wall do?</h3>
+        <p>Public Wall par users pyar, shayari, jokes ya sweet messages likh sakte hain. Guest posts temporary rehte hain.</p>
+      </div>
+
+      <div class="faq">
+        <h3>What is Notice Board?</h3>
+        <p>Notice Board me public Word aur Image posts ek board style layout me dikhte hain.</p>
+      </div>
+
+      <div class="faq">
+        <h3>Why are some words auto changed?</h3>
+        <p>Abuse filter harmful, sexual ya offensive words ko automatically soft loving words me replace kar deta hai.</p>
+      </div>
+
+      <div class="support-box">
+        <h3>Need Support?</h3>
+        <input type="text" id="helpName" placeholder="Your Name">
+        <input type="email" id="helpEmail" placeholder="Your Email">
+        <textarea id="helpMessageText" placeholder="Write your issue here..."></textarea>
+        <button class="submit-btn" id="sendHelpBtn">Send Request</button>
+
+        <div class="help-message" id="helpStatus">
+          Agar aapko help chahiye to apna message bhejiye. Request browser me save ho jayegi.
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.getElementById("sendHelpBtn").addEventListener("click", function () {
+      const name = document.getElementById("helpName").value.trim();
+      const email = document.getElementById("helpEmail").value.trim();
+      const message = document.getElementById("helpMessageText").value.trim();
+
+      if (!name || !email || !message) {
+        document.getElementById("helpStatus").textContent = "Please fill all fields before sending.";
+        return;
+      }
+
+      const requests = JSON.parse(localStorage.getItem("msb_help_requests") || "[]");
+      requests.unshift({
+        name,
+        email,
+        message,
+        date: new Date().toLocaleString()
+      });
+      localStorage.setItem("msb_help_requests", JSON.stringify(requests));
+
+      document.getElementById("helpName").value = "";
+      document.getElementById("helpEmail").value = "";
+      document.getElementById("helpMessageText").value = "";
+      document.getElementById("helpStatus").textContent = "Your help request has been saved successfully.";
+    });
+  </script>
+  <script src="navbar.js"></script>
+</body>
+</html>
