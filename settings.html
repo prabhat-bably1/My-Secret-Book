@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings - My Secret Book</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="navbar.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --cream:#eadbc4;
+      --cream-soft:#f4ecdf;
+      --gold:#d09a36;
+      --brown:#4b2d1a;
+      --card:rgba(255,250,242,0.92);
+      --border:rgba(208,154,54,0.28);
+      --btn1:#a22f24;
+      --btn2:#62130e;
+      --rose1:#d45a78;
+      --rose2:#f0a2b5;
+    }
+    html,body{
+      width:100%;
+      min-height:100%;
+      overflow-x:hidden;
+      background:linear-gradient(180deg,var(--cream-soft),var(--cream));
+      font-family:"Poppins",sans-serif;
+      color:var(--brown);
+    }
+    body{position:relative}
+    .petals{
+      position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:1;
+    }
+    .petal{
+      position:absolute; top:-80px; width:18px; height:26px;
+      border-radius:70% 30% 70% 30%; opacity:.82;
+      filter:drop-shadow(0 4px 8px rgba(0,0,0,.10));
+      animation:fall linear infinite;
+    }
+    .petal::before{
+      content:""; position:absolute; inset:0; border-radius:inherit;
+      background:linear-gradient(180deg,var(--rose2),var(--rose1));
+      transform:rotate(18deg);
+    }
+    .petal:nth-child(1){left:5%;animation-duration:13s;animation-delay:-2s}
+    .petal:nth-child(2){left:13%;animation-duration:16s;animation-delay:-8s}
+    .petal:nth-child(3){left:22%;animation-duration:12s;animation-delay:-4s}
+    .petal:nth-child(4){left:31%;animation-duration:18s;animation-delay:-10s}
+    .petal:nth-child(5){left:40%;animation-duration:15s;animation-delay:-1s}
+    .petal:nth-child(6){left:49%;animation-duration:17s;animation-delay:-6s}
+    .petal:nth-child(7){left:58%;animation-duration:14s;animation-delay:-9s}
+    .petal:nth-child(8){left:67%;animation-duration:19s;animation-delay:-11s}
+    .petal:nth-child(9){left:76%;animation-duration:13s;animation-delay:-3s}
+    .petal:nth-child(10){left:85%;animation-duration:16s;animation-delay:-7s}
+    .petal:nth-child(11){left:92%;animation-duration:18s;animation-delay:-12s}
+    @keyframes fall{
+      0%{transform:translateY(-80px) translateX(0) rotate(0deg)}
+      25%{transform:translateY(25vh) translateX(18px) rotate(90deg)}
+      50%{transform:translateY(50vh) translateX(-14px) rotate(180deg)}
+      75%{transform:translateY(75vh) translateX(20px) rotate(260deg)}
+      100%{transform:translateY(110vh) translateX(-10px) rotate(340deg)}
+    }
+    .page{position:relative;z-index:2;padding:16px 14px 40px}
+    .title-wrap{text-align:center;margin:4px 0 14px}
+    .title{
+      display:inline-block;
+      font-family:"Great Vibes",cursive;
+      font-size:clamp(3rem,8vw,6rem);
+      color:var(--gold);
+      text-shadow:0 1px 0 #fff6da,0 0 10px rgba(255,223,140,.42),0 0 20px rgba(207,154,53,.22),0 6px 18px rgba(90,55,20,.16);
+    }
+    .panel{
+      width:min(980px,96vw);
+      margin:0 auto;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:28px;
+      box-shadow:0 24px 36px rgba(0,0,0,.08), inset 0 0 0 1px rgba(255,255,255,.22);
+      padding:22px 18px;
+    }
+    .panel h2{
+      font-family:"Cinzel",serif;
+      color:#6d2418;
+      margin-bottom:14px;
+      font-size:2rem;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+    .card{
+      background:rgba(255,248,238,.78);
+      border:1px solid rgba(208,154,54,.18);
+      border-radius:20px;
+      padding:16px;
+    }
+    .card h3{
+      font-family:"Cinzel",serif;
+      color:#7a3520;
+      margin-bottom:10px;
+      font-size:1.15rem;
+    }
+    .row{margin-bottom:14px}
+    .row label{
+      display:block;
+      margin-bottom:6px;
+      font-size:.9rem;
+      font-weight:600;
+      color:#6c4630;
+    }
+    .row select,.row input{
+      width:100%;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(208,154,54,.24);
+      background:#fffdf8;
+      font-family:"Poppins",sans-serif;
+      outline:none;
+    }
+    .save-btn,.danger-btn{
+      border:none;
+      cursor:pointer;
+      padding:12px 16px;
+      border-radius:999px;
+      color:#fff4e2;
+      font-family:"Cinzel",serif;
+      background:linear-gradient(180deg,var(--btn1) 0%, #761b13 55%, var(--btn2) 100%);
+      border:2px solid var(--gold);
+      box-shadow:0 10px 16px rgba(0,0,0,.10);
+      margin-right:10px;
+      margin-top:10px;
+    }
+    .danger-btn{
+      background:linear-gradient(180deg,#7b2720 0%, #4a0f0b 100%);
+    }
+    .info{
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:16px;
+      background:rgba(255,248,238,.72);
+      border:1px solid rgba(208,154,54,.15);
+      line-height:1.7;
+      font-size:.9rem;
+    }
+    @media(max-width:768px){
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="petals">
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+    <span class="petal"></span><span class="petal"></span>
+  </div>
+
+  <div class="page">
+    <div id="navbar-container"></div>
+
+    <div class="title-wrap">
+      <div class="title">My Secret Book</div>
+    </div>
+
+    <section class="panel">
+      <h2>Settings</h2>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Profile Preferences</h3>
+
+          <div class="row">
+            <label for="settingPrivacy">Profile Visibility</label>
+            <select id="settingPrivacy">
+              <option value="private">Private</option>
+              <option value="public">Public</option>
+            </select>
+          </div>
+
+          <div class="row">
+            <label for="settingDefaultTab">Default Saved Tab</label>
+            <select id="settingDefaultTab">
+              <option value="word">Word</option>
+              <option value="image">Images</option>
+            </select>
+          </div>
+
+          <div class="row">
+            <label for="settingPetals">Petals Animation</label>
+            <select id="settingPetals">
+              <option value="on">On</option>
+              <option value="off">Off</option>
+            </select>
+          </div>
+
+          <button class="save-btn" id="saveProfileSettingsBtn">Save Settings</button>
+        </div>
+
+        <div class="card">
+          <h3>Account Preferences</h3>
+
+          <div class="row">
+            <label for="settingCopyProtect">Copy Protection</label>
+            <select id="settingCopyProtect">
+              <option value="on">On</option>
+              <option value="off">Off</option>
+            </select>
+          </div>
+
+          <div class="row">
+            <label for="settingFilter">Abuse Filter</label>
+            <select id="settingFilter">
+              <option value="on">On</option>
+              <option value="off">Off</option>
+            </select>
+          </div>
+
+          <div class="row">
+            <label for="settingThemeName">Theme Name</label>
+            <input id="settingThemeName" type="text" value="Golden Romance" />
+          </div>
+
+          <button class="save-btn" id="saveAccountSettingsBtn">Save Account</button>
+          <button class="danger-btn" id="resetSettingsBtn">Reset All</button>
+        </div>
+      </div>
+
+      <div class="info" id="settingsMessage">
+        Yahan se aap apni profile aur account related settings control kar sakte ho.
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const defaultSettings = {
+      privacy: "private",
+      defaultTab: "word",
+      petals: "on",
+      copyProtect: "on",
+      abuseFilter: "on",
+      themeName: "Golden Romance"
+    };
+
+    function getSettings() {
+      return JSON.parse(localStorage.getItem("msb_site_settings") || "null") || defaultSettings;
+    }
+
+    function saveSettings(data) {
+      localStorage.setItem("msb_site_settings", JSON.stringify(data));
+    }
+
+    function loadSettingsUI() {
+      const settings = getSettings();
+      document.getElementById("settingPrivacy").value = settings.privacy || "private";
+      document.getElementById("settingDefaultTab").value = settings.defaultTab || "word";
+      document.getElementById("settingPetals").value = settings.petals || "on";
+      document.getElementById("settingCopyProtect").value = settings.copyProtect || "on";
+      document.getElementById("settingFilter").value = settings.abuseFilter || "on";
+      document.getElementById("settingThemeName").value = settings.themeName || "Golden Romance";
+    }
+
+    document.getElementById("saveProfileSettingsBtn").addEventListener("click", function () {
+      const settings = getSettings();
+      settings.privacy = document.getElementById("settingPrivacy").value;
+      settings.defaultTab = document.getElementById("settingDefaultTab").value;
+      settings.petals = document.getElementById("settingPetals").value;
+      saveSettings(settings);
+
+      const profileData = JSON.parse(localStorage.getItem("msb_profile_data") || "null") || {};
+      profileData.privacy = settings.privacy;
+      profileData.defaultTab = settings.defaultTab;
+      profileData.petals = settings.petals;
+      localStorage.setItem("msb_profile_data", JSON.stringify(profileData));
+
+      document.getElementById("settingsMessage").textContent = "Profile settings saved successfully.";
+    });
+
+    document.getElementById("saveAccountSettingsBtn").addEventListener("click", function () {
+      const settings = getSettings();
+      settings.copyProtect = document.getElementById("settingCopyProtect").value;
+      settings.abuseFilter = document.getElementById("settingFilter").value;
+      settings.themeName = document.getElementById("settingThemeName").value.trim() || "Golden Romance";
+      saveSettings(settings);
+
+      document.getElementById("settingsMessage").textContent = "Account settings saved successfully.";
+    });
+
+    document.getElementById("resetSettingsBtn").addEventListener("click", function () {
+      saveSettings(defaultSettings);
+      loadSettingsUI();
+      document.getElementById("settingsMessage").textContent = "All settings reset to default.";
+    });
+
+    loadSettingsUI();
+  </script>
+  <script src="navbar.js"></script>
+</body>
+</html>
