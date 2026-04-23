@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog - My Secret Book</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="navbar.css">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    :root{
+      --cream:#eadbc4;
+      --cream-soft:#f4ecdf;
+      --gold:#d09a36;
+      --brown:#4b2d1a;
+      --card:rgba(255,250,242,0.92);
+      --border:rgba(208,154,54,0.28);
+      --rose1:#d45a78;
+      --rose2:#f0a2b5;
+      --btn1:#a22f24;
+      --btn2:#62130e;
+    }
+
+    html,body{
+      width:100%;
+      min-height:100%;
+      overflow-x:hidden;
+      background:linear-gradient(180deg,var(--cream-soft),var(--cream));
+      font-family:"Poppins",sans-serif;
+      color:var(--brown);
+    }
+
+    body{position:relative}
+
+    .petals{
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+      z-index:1;
+    }
+
+    .petal{
+      position:absolute;
+      top:-80px;
+      width:18px;
+      height:26px;
+      border-radius:70% 30% 70% 30%;
+      opacity:.82;
+      filter:drop-shadow(0 4px 8px rgba(0,0,0,.10));
+      animation:fall linear infinite;
+    }
+
+    .petal::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      background:linear-gradient(180deg,var(--rose2),var(--rose1));
+      transform:rotate(18deg);
+    }
+
+    .petal:nth-child(1){left:5%;animation-duration:13s;animation-delay:-2s}
+    .petal:nth-child(2){left:13%;animation-duration:16s;animation-delay:-8s}
+    .petal:nth-child(3){left:22%;animation-duration:12s;animation-delay:-4s}
+    .petal:nth-child(4){left:31%;animation-duration:18s;animation-delay:-10s}
+    .petal:nth-child(5){left:40%;animation-duration:15s;animation-delay:-1s}
+    .petal:nth-child(6){left:49%;animation-duration:17s;animation-delay:-6s}
+    .petal:nth-child(7){left:58%;animation-duration:14s;animation-delay:-9s}
+    .petal:nth-child(8){left:67%;animation-duration:19s;animation-delay:-11s}
+    .petal:nth-child(9){left:76%;animation-duration:13s;animation-delay:-3s}
+    .petal:nth-child(10){left:85%;animation-duration:16s;animation-delay:-7s}
+    .petal:nth-child(11){left:92%;animation-duration:18s;animation-delay:-12s}
+
+    @keyframes fall{
+      0%{transform:translateY(-80px) translateX(0) rotate(0deg)}
+      25%{transform:translateY(25vh) translateX(18px) rotate(90deg)}
+      50%{transform:translateY(50vh) translateX(-14px) rotate(180deg)}
+      75%{transform:translateY(75vh) translateX(20px) rotate(260deg)}
+      100%{transform:translateY(110vh) translateX(-10px) rotate(340deg)}
+    }
+
+    .page{
+      position:relative;
+      z-index:2;
+      width:100%;
+      padding:16px 14px 40px;
+    }
+
+    .title-wrap{
+      text-align:center;
+      margin:4px 0 12px;
+    }
+
+    .title{
+      position:relative;
+      display:inline-block;
+      font-family:"Great Vibes",cursive;
+      font-size:clamp(3rem,8vw,6.2rem);
+      line-height:1.03;
+      color:var(--gold);
+      text-shadow:
+        0 1px 0 #fff6da,
+        0 0 10px rgba(255,223,140,.42),
+        0 0 20px rgba(207,154,53,.22),
+        0 6px 18px rgba(90,55,20,.16);
+    }
+
+    .ornament{
+      width:min(860px,95vw);
+      margin:10px auto 0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+    }
+
+    .orn-line{
+      flex:1;
+      height:2px;
+      background:linear-gradient(90deg,transparent,var(--gold),#fff1c9,var(--gold),transparent);
+      box-shadow:0 0 10px rgba(200,150,60,.16);
+    }
+
+    .orn-center{
+      color:#ab7428;
+      font-size:1rem;
+      white-space:nowrap;
+      font-family:"Cinzel",serif;
+    }
+
+    .hero-note{
+      max-width:920px;
+      margin:12px auto 0;
+      text-align:center;
+      color:#70472c;
+      font-size:.98rem;
+      line-height:1.8;
+      padding:0 10px;
+    }
+
+    .blog-wrap{
+      width:min(1180px,96vw);
+      margin:20px auto 0;
+      display:grid;
+      grid-template-columns:280px 1fr;
+      gap:18px;
+      align-items:start;
+    }
+
+    .sidebar,
+    .content{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:28px;
+      box-shadow:0 24px 36px rgba(0,0,0,.08), inset 0 0 0 1px rgba(255,255,255,.22);
+      backdrop-filter:blur(10px);
+    }
+
+    .sidebar{
+      padding:18px;
+      position:sticky;
+      top:14px;
+    }
+
+    .content{
+      padding:18px;
+    }
+
+    .side-title{
+      font-family:"Cinzel",serif;
+      font-size:1.2rem;
+      color:#6d2418;
+      margin-bottom:12px;
+    }
+
+    .cat-list{
+      display:grid;
+      gap:10px;
+    }
+
+    .cat-btn{
+      border:none;
+      cursor:pointer;
+      padding:12px 14px;
+      border-radius:999px;
+      text-align:left;
+      background:rgba(255,247,232,.92);
+      border:1px solid rgba(208,154,54,.24);
+      color:#7a3520;
+      font-family:"Cinzel",serif;
+      font-size:.9rem;
+    }
+
+    .cat-btn.active{
+      color:#fff4de;
+      background:linear-gradient(180deg,#a02f24 0%, #6b1711 100%);
+      border-color:rgba(208,154,54,.48);
+    }
+
+    .post-grid{
+      display:grid;
+      gap:16px;
+    }
+
+    .post-card{
+      background:rgba(255,248,238,.78);
+      border:1px solid rgba(208,154,54,.18);
+      border-radius:22px;
+      padding:16px;
+    }
+
+    .post-tag{
+      display:inline-block;
+      padding:7px 12px;
+      border-radius:999px;
+      background:rgba(255,247,232,.92);
+      border:1px solid rgba(208,154,54,.24);
+      color:#7a3520;
+      font-size:.78rem;
+      font-weight:600;
+      margin-bottom:10px;
+    }
+
+    .post-title{
+      font-family:"Cinzel",serif;
+      font-size:1.35rem;
+      color:#6d2418;
+      margin-bottom:10px;
+      line-height:1.4;
+    }
+
+    .post-text{
+      color:#654029;
+      font-size:.95rem;
+      line-height:1.9;
+      margin-bottom:10px;
+    }
+
+    .quote-box{
+      margin-top:10px;
+      padding:12px 14px;
+      border-radius:16px;
+      background:rgba(255,252,247,.95);
+      border:1px dashed rgba(208,154,54,.35);
+      color:#71492d;
+      line-height:1.8;
+    }
+
+    .mini-list{
+      margin-top:10px;
+      display:grid;
+      gap:8px;
+    }
+
+    .mini-item{
+      padding:10px 12px;
+      border-radius:14px;
+      background:rgba(255,252,247,.95);
+      border:1px solid rgba(208,154,54,.14);
+      color:#5d3b24;
+      line-height:1.8;
+      font-size:.92rem;
+    }
+
+    .cta-box{
+      margin-top:12px;
+      padding:12px 14px;
+      border-radius:16px;
+      background:rgba(255,248,238,.72);
+      border:1px solid rgba(208,154,54,.15);
+      color:#654029;
+      line-height:1.75;
+      font-size:.9rem;
+    }
+
+    .hidden{
+      display:none;
+    }
+
+    @media(max-width:900px){
+      .blog-wrap{
+        grid-template-columns:1fr;
+      }
+
+      .sidebar{
+        position:static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="petals">
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span>
+    <span class="petal"></span><span class="petal"></span>
+  </div>
+
+  <div class="page">
+    <div id="navbar-container"></div>
+
+    <div class="title-wrap">
+      <div class="title">My Secret Book Blog</div>
+      <div class="ornament">
+        <div class="orn-line"></div>
+        <div class="orn-center">❦ LOVE • FEELINGS • SHAYARI • HEALING ❦</div>
+        <div class="orn-line"></div>
+      </div>
+
+      <div class="hero-note">
+        Yahan pyar, feelings, shayari, diary writing, self-love, friendship aur sweet expression se related sab kuch milega. Blog users ko inspire karega aur likhne ke liye ideas bhi dega.
+      </div>
+    </div>
+
+    <div class="blog-wrap">
+      <aside class="sidebar">
+        <div class="side-title">Blog Categories</div>
+        <div class="cat-list">
+          <button class="cat-btn active" data-category="all" type="button">All Posts</button>
+          <button class="cat-btn" data-category="love" type="button">Love</button>
+          <button class="cat-btn" data-category="shayari" type="button">Shayari</button>
+          <button class="cat-btn" data-category="feelings" type="button">Feelings</button>
+          <button class="cat-btn" data-category="friendship" type="button">Friendship</button>
+          <button class="cat-btn" data-category="healing" type="button">Healing</button>
+          <button class="cat-btn" data-category="diary" type="button">Diary Tips</button>
+          <button class="cat-btn" data-category="captions" type="button">Captions</button>
+          <button class="cat-btn" data-category="festival" type="button">Festival Wishes</button>
+          <button class="cat-btn" data-category="publicwall" type="button">Public Wall Ideas</button>
+        </div>
+      </aside>
+
+      <section class="content">
+        <div class="post-grid">
+
+          <article class="post-card" data-category="love">
+            <div class="post-tag">Love</div>
+            <div class="post-title">Dil ki baat likhne ka sabse pyara tareeka</div>
+            <div class="post-text">
+              Jab feelings ko directly bolna mushkil ho, tab words sabse khoobsurat raasta ban jaate hain. My Secret Book jaisi jagah par dil ki baat likhna sirf writing nahi, ek emotional relief bhi hota hai.
+            </div>
+            <div class="quote-box">
+              “Kabhi kabhi sabse gehri mohabbat wahi hoti hai jo alfaazon me chup kar likhi jaati hai.”
+            </div>
+            <div class="cta-box">
+              Is thought ko apne profile me save karo ya Public Wall par apni khud ki line likho.
+            </div>
+          </article>
+
+          <article class="post-card" data-category="shayari">
+            <div class="post-tag">Shayari</div>
+            <div class="post-title">25 short love shayari for daily feelings</div>
+            <div class="mini-list">
+              <div class="mini-item">Tera naam likha toh dil me roshni si bhar gayi.</div>
+              <div class="mini-item">Pyar ka sabse khoobsurat raaz, tera muskurana hai.</div>
+              <div class="mini-item">Dil chup tha, teri yaad ne use shayar bana diya.</div>
+              <div class="mini-item">Jo baat alfaaz na keh sake, meri khamoshi keh gayi.</div>
+              <div class="mini-item">Tere zikr me hi meri raaton ka sukoon basa hai.</div>
+            </div>
+            <div class="cta-box">
+              Inme se apni favourite line profile ke Word section me save karo.
+            </div>
+          </article>
+
+          <article class="post-card" data-category="diary">
+            <div class="post-tag">Diary Tips</div>
+            <div class="post-title">Secret diary likhne ki simple habit</div>
+            <div class="post-text">
+              Roz bahut bada likhna zaroori nahi. Bas 3 cheezein likho: aaj kaisa laga, kis baat ne dil ko touch kiya, aur kis cheez ke liye thankful ho.
+            </div>
+            <div class="mini-list">
+              <div class="mini-item">Aaj ka mood</div>
+              <div class="mini-item">Aaj ki yaad</div>
+              <div class="mini-item">Aaj ki ek line</div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="feelings">
+            <div class="post-tag">Feelings</div>
+            <div class="post-title">Jab words kam pad jaayein: heart lines collection</div>
+            <div class="mini-list">
+              <div class="mini-item">Kuch log awaaz se nahi, ehsaas se yaad aate hain.</div>
+              <div class="mini-item">Dil kabhi kabhi bina wajah bhi kisi ko yaad karta hai.</div>
+              <div class="mini-item">Khamoshi bhi ek khoobsurat zabaan hoti hai.</div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="friendship">
+            <div class="post-tag">Friendship</div>
+            <div class="post-title">Friendship ke liye beautiful one-line quotes</div>
+            <div class="mini-list">
+              <div class="mini-item">Dost wahi jo bina kahe dil samajh le.</div>
+              <div class="mini-item">Sachchi dosti me formal words nahi, sachcha saath hota hai.</div>
+              <div class="mini-item">Har muskurahat ke peeche ek accha dost hota hai.</div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="healing">
+            <div class="post-tag">Healing</div>
+            <div class="post-title">Sad mood ko soft words me kaise likhen</div>
+            <div class="post-text">
+              Dard ko gusse me likhne se dil aur bhaari hota hai. Use naram alfaazon me likho. “Main toot gaya” ki jagah “main aaj thoda udaas hoon” likho. Yeh writing ko gentle banata hai aur dil ko heal karta hai.
+            </div>
+          </article>
+
+          <article class="post-card" data-category="captions">
+            <div class="post-tag">Captions</div>
+            <div class="post-title">Aesthetic image captions for profile or public wall</div>
+            <div class="mini-list">
+              <div class="mini-item">Soft heart, deep thoughts.</div>
+              <div class="mini-item">Pyar ko shor nahi, ehsaas chahiye.</div>
+              <div class="mini-item">Golden memories, silent feelings.</div>
+              <div class="mini-item">Aaj dil ne likhne ka faisla kiya.</div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="festival">
+            <div class="post-tag">Festival Wishes</div>
+            <div class="post-title">Special days ke liye sweet message ideas</div>
+            <div class="mini-list">
+              <div class="mini-item">Happy Birthday — tumhari muskurahat hamesha roshni banke rahe.</div>
+              <div class="mini-item">Friendship Day — tum jaisa dost zindagi ka sabse pyara gift hai.</div>
+              <div class="mini-item">New Year — naye saal me dil me aur pyar, zindagi me aur roshni aaye.</div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="publicwall">
+            <div class="post-tag">Public Wall Ideas</div>
+            <div class="post-title">Public Wall par kya likhna chahiye</div>
+            <div class="post-text">
+              Public Wall par pyar, shayari, jokes, motivational soft lines, ya sweet appreciation likhna best rehta hai. Respectful aur warm writing hi sabse sundar impact banati hai.
+            </div>
+            <div class="mini-list">
+              <div class="mini-item">Aaj ka pyara thought</div>
+              <div class="mini-item">Short shayari</div>
+              <div class="mini-item">Ek clean joke</div>
+              <div class="mini-item">Kisi ke liye praise line</div>
+            </div>
+          </article>
+
+          <article class="post-card" data-category="love">
+            <div class="post-tag">Love</div>
+            <div class="post-title">Good night romantic messages</div>
+            <div class="mini-list">
+              <div class="mini-item">Good night, tumhari yaad aaj bhi dil me halki si roshni banke hai.</div>
+              <div class="mini-item">Aaj ki raat tumhari muskurahat ke naam.</div>
+              <div class="mini-item">Sukoon bhari neend aur pyar bhari yaad tumhare saath rahe.</div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const categoryButtons = document.querySelectorAll(".cat-btn");
+    const blogPosts = document.querySelectorAll(".post-card");
+
+    categoryButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        categoryButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const category = btn.dataset.category;
+
+        blogPosts.forEach(post => {
+          if (category === "all" || post.dataset.category === category) {
+            post.classList.remove("hidden");
+          } else {
+            post.classList.add("hidden");
+          }
+        });
+      });
+    });
+  </script>
+  <script src="navbar.js"></script>
+</body>
+</html>
