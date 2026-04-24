@@ -1238,19 +1238,11 @@ function loadHomeLiveLine(){
   }
 
   box.style.display = "flex";
-
-  if(textBox.textContent !== "❦ " + latest + " ❦"){
-    textBox.style.animation = "none";
-    textBox.offsetHeight;
-    textBox.textContent = "❦ " + latest + " ❦";
-    textBox.style.animation = "homeTrainMove 16s linear infinite";
-  }
+  textBox.textContent = "❦ " + latest + " ❦";
 }
 
 loadHomeLiveLine();
-setInterval(loadHomeLiveLine, 1000);
-  // ALWAYS latest (first item)
-  let latest = words[0].text;
+setInterval(loadHomeLiveLine, 2000);
 
   // watermark remove
   latest = latest.replace(/~~.*~~/, "");
