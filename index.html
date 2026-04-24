@@ -1161,16 +1161,19 @@ Aage barhiye, kyunki yeh kitaab sirf aapki hai...
   </div>
 
   <script>
-    const nextBtn = document.getElementById("nextBtn");
-    const backBtn = document.getElementById("backBtn");
-    const closedView = document.getElementById("closedView");
-    const openView = document.getElementById("openView");
-    const flipPage = document.getElementById("flipPage");
+  const nextBtn = document.getElementById("nextBtn");
+  const backBtn = document.getElementById("backBtn");
+  const closedView = document.getElementById("closedView");
+  const openView = document.getElementById("openView");
+  const flipPage = document.getElementById("flipPage");
 
+  if (nextBtn) {
     nextBtn.addEventListener("click", function () {
       closedView.classList.add("hide");
+
       setTimeout(function () {
         openView.classList.add("show");
+
         if (flipPage) {
           flipPage.style.animation = "none";
           flipPage.offsetHeight;
@@ -1178,79 +1181,57 @@ Aage barhiye, kyunki yeh kitaab sirf aapki hai...
         }
       }, 180);
     });
-      
+  }
+
+  if (backBtn) {
     backBtn.addEventListener("click", function () {
       openView.classList.remove("show");
+
       setTimeout(function () {
         closedView.classList.remove("hide");
       }, 350);
     });
-    document.addEventListener("copy", function(e){
-  const uid = getCurrentUserUID();
-  const text = window.getSelection().toString();
-
-  const watermarkText = text + "\n\n— MySecretBook (" + uid + ")";
-  
-  e.clipboardData.setData("text/plain", watermarkText);
-  e.preventDefault();
-});
-    function getLatestHomeLine(){
-  const publicPosts = JSON.parse(localStorage.getItem("msb_public_posts") || "[]");
-  const profileWords = JSON.parse(localStorage.getItem("msb_words") || "[]");
-
-  const allLines = [];
-
-  publicPosts.forEach(post => {
-    if(post.text){
-      allLines.push({
-        text: post.text,
-        time: post.createdAt || 0
-      });
-    }
-  });
-
-  profileWords.forEach(word => {
-    if(word.text){
-      allLines.push({
-        text: word.text.replace(/ *~~MSB-[^~]+~~/g, ""),
-        time: word.createdAt || Date.parse(word.date) || 0
-      });
-    }
-  });
-
-  if(!allLines.length) return "";
-
-  allLines.sort((a,b) => b.time - a.time);
-  return allLines[0].text;
-}
-
-function loadHomeLiveLine(){
-  const box = document.getElementById("homeLiveLine");
-  const textBox = document.getElementById("homeLiveText");
-
-  if(!box || !textBox) return;
-
-  const latest = localStorage.getItem("msb_latest_line") || "";
-
-  if(!latest.trim()){
-    box.style.display = "none";
-    textBox.textContent = "";
-    return;
   }
 
-  box.style.display = "flex";
-  textBox.textContent = "❦ " + latest + " ❦";
-}
+  function getCurrentUserUID(){
+    const email = localStorage.getItem("loggedInUser");
+    const users = JSON.parse(localStorage.getItem("msb_users") || "[]");
+    const user = users.find(u => u.email === email);
+    return user && user.uid ? user.uid : "GUEST";
+  }
 
-loadHomeLiveLine();
-setInterval(loadHomeLiveLine, 2000);
+  document.addEventListener("copy", function(e){
+    const uid = getCurrentUserUID();
+    const text = window.getSelection().toString();
 
-  // watermark remove
-  latest = latest.replace(/~~.*~~/, "");
+    if (!text) return;
 
-  homeLiveText.textContent = latest;
+    const watermarkText = text + "\n\n— MySecretBook (" + uid + ")";
+    e.clipboardData.setData("text/plain", watermarkText);
+    e.preventDefault();
+  });
+
+  function loadHomeLiveLine(){
+    const box = document.getElementById("homeLiveLine");
+    const textBox = document.getElementById("homeLiveText");
+
+    if(!box || !textBox) return;
+
+    const latest = localStorage.getItem("msb_latest_line") || "";
+
+    if(!latest.trim()){
+      box.style.display = "none";
+      textBox.textContent = "";
+      return;
     }
-  </script>
+
+    box.style.display = "flex";
+    textBox.textContent = "❦ " + latest.replace(/ *~~MSB-[^~]+~~/g, "") + " ❦";
+  }
+
+  loadHomeLiveLine();
+  setInterval(loadHomeLiveLine, 2000);
+</script>
   <script src="translations.js"></script>
   <script src="language.js"></script>
   <script src="navbar.js"></script>
