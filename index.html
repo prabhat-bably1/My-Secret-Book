@@ -1001,6 +1001,31 @@
 .open-book-ui::before {
   display: none !important;
 }
+    .home-live-line{
+  width:min(900px,94vw);
+  margin:36px auto 0;
+  overflow:hidden;
+  min-height:44px;
+  border-top:1px solid rgba(208,154,54,.35);
+  border-bottom:1px solid rgba(208,154,54,.35);
+  display:none;
+  align-items:center;
+  background:rgba(255,248,238,.35);
+}
+
+.home-live-track{
+  white-space:nowrap;
+  font-family:"Cinzel",serif;
+  font-size:1rem;
+  color:#7a3520;
+  padding:10px 0;
+  animation:homeTrainMove 16s linear infinite;
+}
+
+@keyframes homeTrainMove{
+  0%{transform:translateX(100vw);}
+  100%{transform:translateX(-100%);}
+}
     
   </style>
 </head>
@@ -1150,6 +1175,56 @@ Aage barhiye, kyunki yeh kitaab sirf aapki hai...
   e.clipboardData.setData("text/plain", watermarkText);
   e.preventDefault();
 });
+    function getLatestHomeLine(){
+  const publicPosts = JSON.parse(localStorage.getItem("msb_public_posts") || "[]");
+  const profileWords = JSON.parse(localStorage.getItem("msb_words") || "[]");
+
+  const allLines = [];
+
+  publicPosts.forEach(post => {
+    if(post.text){
+      allLines.push({
+        text: post.text,
+        time: post.createdAt || 0
+      });
+    }
+  });
+
+  profileWords.forEach(word => {
+    if(word.text){
+      allLines.push({
+        text: word.text.replace(/ *~~MSB-[^~]+~~/g, ""),
+        time: word.createdAt || Date.parse(word.date) || 0
+      });
+    }
+  });
+
+  if(!allLines.length) return "";
+
+  allLines.sort((a,b) => b.time - a.time);
+  return allLines[0].text;
+}
+
+function loadHomeLiveLine(){
+  const box = document.getElementById("homeLiveLine");
+  const textBox = document.getElementById("homeLiveText");
+
+  if(!box || !textBox) return;
+
+  const latest = getLatestHomeLine();
+
+  if(!latest){
+    box.style.display = "none";
+    textBox.textContent = "";
+    return;
+  }
+
+  box.style.display = "flex";
+  textBox.textContent = "❦ " + latest + " ❦";
+}
+
+loadHomeLiveLine();
+setInterval(loadHomeLiveLine, 3000);
   </script>
   <script src="translations.js"></script>
   <script src="language.js"></script>
