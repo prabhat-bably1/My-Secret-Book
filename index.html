@@ -69,6 +69,7 @@
       animation-name:fall;
       animation-timing-function:linear;
       animation-iteration-count:infinite;
+      animation-fill-mode:both;
     }
 
     .petal::before{
@@ -99,6 +100,27 @@
       50%{transform:translateY(50vh) translateX(-16px) rotate(160deg);}
       75%{transform:translateY(75vh) translateX(22px) rotate(240deg);}
       100%{transform:translateY(110vh) translateX(-12px) rotate(320deg);}
+      @keyframes fall{
+  0%{
+    transform:translateY(-80px) translateX(0) rotate(0deg);
+    opacity:0;
+  }
+  10%{
+    opacity:.85;
+  }
+  75%{
+    transform:translateY(78vh) translateX(18px) rotate(240deg);
+    opacity:.85;
+  }
+  88%{
+    transform:translateY(86vh) translateX(8px) rotate(285deg) scale(.95);
+    opacity:.75;
+  }
+  100%{
+    transform:translateY(92vh) translateX(0) rotate(320deg) scale(.75);
+    opacity:0;
+  }
+    }
     }
 
     .content{
