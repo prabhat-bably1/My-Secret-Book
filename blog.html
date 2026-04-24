@@ -279,6 +279,76 @@
       font-size:.9rem;
     }
 
+    .mychoice-box{
+      margin-top:12px;
+    }
+
+    .mychoice-box textarea{
+      width:100%;
+      min-height:180px;
+      resize:vertical;
+      padding:14px;
+      border-radius:18px;
+      border:1px solid rgba(208,154,54,.30);
+      background:rgba(255,252,247,.95);
+      outline:none;
+      font-family:"Poppins",sans-serif;
+      color:#4b2d1a;
+      line-height:1.8;
+      font-size:.95rem;
+    }
+
+    .mychoice-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    .mini-btn{
+      border:none;
+      cursor:pointer;
+      padding:10px 14px;
+      border-radius:999px;
+      color:#fff4e2;
+      font-family:"Cinzel",serif;
+      font-size:.85rem;
+      background:linear-gradient(180deg,var(--btn1) 0%, #761b13 55%, var(--btn2) 100%);
+      border:2px solid var(--gold);
+      box-shadow:0 10px 16px rgba(0,0,0,.10);
+    }
+
+    .mychoice-list{
+      margin-top:16px;
+      display:grid;
+      gap:12px;
+    }
+
+    .mychoice-item{
+      padding:14px;
+      border-radius:18px;
+      background:rgba(255,252,247,.95);
+      border:1px solid rgba(208,154,54,.18);
+      color:#5d3b24;
+      line-height:1.85;
+      white-space:pre-wrap;
+      word-break:break-word;
+    }
+
+    .mychoice-date{
+      font-size:.78rem;
+      color:#8a5a34;
+      margin-bottom:8px;
+      font-family:"Cinzel",serif;
+    }
+
+    .empty-note{
+      color:#8b6547;
+      font-size:.92rem;
+      line-height:1.7;
+      padding:10px 2px;
+    }
+
     .hidden{
       display:none;
     }
@@ -332,6 +402,7 @@
           <button class="cat-btn" data-category="captions" type="button">Captions</button>
           <button class="cat-btn" data-category="festival" type="button">Festival Wishes</button>
           <button class="cat-btn" data-category="publicwall" type="button">Public Wall Ideas</button>
+          <button class="cat-btn" data-category="mychoice" type="button">My Choice</button>
         </div>
       </aside>
 
@@ -453,6 +524,25 @@
             </div>
           </article>
 
+          <article class="post-card" data-category="mychoice">
+            <div class="post-tag">My Choice</div>
+            <div class="post-title">Meri Dil Ki Gehrai</div>
+            <div class="post-text">
+              Ye jagah sirf tumhare personal thoughts ke liye hai. Yahan tum apni dil ki gehrai, apne sachche ehsaas, ya apni private lines likh sakte ho.
+            </div>
+
+            <div class="mychoice-box">
+              <textarea id="myChoiceInput" placeholder="Yahan apni dil ki gehrai likho..."></textarea>
+
+              <div class="mychoice-actions">
+                <button class="mini-btn" id="saveMyChoiceBtn" type="button">Save My Choice</button>
+                <button class="mini-btn" id="clearMyChoiceBtn" type="button">Clear</button>
+              </div>
+
+              <div class="mychoice-list" id="myChoiceList"></div>
+            </div>
+          </article>
+
         </div>
       </section>
     </div>
@@ -478,6 +568,67 @@
         });
       });
     });
+
+    const myChoiceInput = document.getElementById("myChoiceInput");
+    const saveMyChoiceBtn = document.getElementById("saveMyChoiceBtn");
+    const clearMyChoiceBtn = document.getElementById("clearMyChoiceBtn");
+    const myChoiceList = document.getElementById("myChoiceList");
+
+    function escapeHtml(text){
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function getMyChoiceData(){
+      return JSON.parse(localStorage.getItem("msb_my_choice_blog") || "[]");
+    }
+
+    function saveMyChoiceData(data){
+      localStorage.setItem("msb_my_choice_blog", JSON.stringify(data));
+    }
+
+    function renderMyChoice(){
+      const data = getMyChoiceData();
+
+      if(!data.length){
+        myChoiceList.innerHTML = '<div class="empty-note">Abhi tak koi personal writing save nahi hui.</div>';
+        return;
+      }
+
+      myChoiceList.innerHTML = data.map(item => `
+        <div class="mychoice-item">
+          <div class="mychoice-date">${item.date}</div>
+          ${escapeHtml(item.text)}
+        </div>
+      `).join("");
+    }
+
+    saveMyChoiceBtn.addEventListener("click", () => {
+      const text = myChoiceInput.value.trim();
+
+      if(!text){
+        alert("Pehle kuch likho.");
+          return;
+      }
+
+      const data = getMyChoiceData();
+      data.unshift({
+        text:text,
+        date:new Date().toLocaleString()
+      });
+
+      saveMyChoiceData(data);
+      myChoiceInput.value = "";
+      renderMyChoice();
+      alert("My Choice saved.");
+    });
+
+    clearMyChoiceBtn.addEventListener("click", () => {
+      myChoiceInput.value = "";
+    });
+
+    renderMyChoice();
   </script>
   <script src="navbar.js"></script>
 </body>
