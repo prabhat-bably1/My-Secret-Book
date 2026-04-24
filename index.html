@@ -1043,6 +1043,29 @@
 
 .home-live-track{
   display:inline-block;
+/* FIX: open book navbar ke upar na chadhe */
+#navbar-container,
+.nav,
+.ribbon-nav{
+  position:relative !important;
+  z-index:9999 !important;
+}
+
+.open-view{
+  margin-top:42px !important;
+  position:relative !important;
+  z-index:5 !important;
+}
+
+.open-shell,
+.open-book{
+  margin-top:0 !important;
+}
+
+@media(max-width:600px){
+  .open-view{
+    margin-top:58px !important;
+  }
 }
     
   </style>
