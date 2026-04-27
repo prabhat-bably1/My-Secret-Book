@@ -533,3 +533,33 @@
     bottom:-45px !important;
   }
 }
+/* 🔥 FORCE LOGO EXTREME LEFT */
+.ribbon-nav{
+  padding-left:120px !important;
+  position:relative !important;
+}
+
+/* LOGO KO NAVBAR SE BAHAR NIKALO */
+.ribbon-nav .nav-logo{
+  position:absolute !important;
+  left:-30px !important;   /* 👈 YE MAIN CHEEZ HAI */
+  top:50% !important;
+  transform:translateY(-50%) !important;
+
+  width:120px !important;
+  height:120px !important;
+  object-fit:contain;
+
+  z-index:999 !important;
+}
+
+/* MENU KO RIGHT SHIFT */
+.ribbon-nav .nav-left{
+  margin-left:40px !important;
+}
+
+/* TASSEL LOGO AUR HOME KE BEECH */
+.ribbon-tassel.left,
+.ribbon-tassel-img.left{
+  left:100px !important;
+}
