@@ -489,3 +489,47 @@
     bottom:-38px !important;
   }
 }
+/* LOGO LEFT FINAL FIX */
+.ribbon-nav{
+  padding-left:150px !important;
+}
+
+.ribbon-nav .nav-logo{
+  width:115px !important;
+  height:115px !important;
+  left:12px !important;        /* 👈 logo left */
+  top:50% !important;
+  transform:translateY(-50%) !important;
+  position:absolute !important;
+  z-index:30 !important;
+}
+
+.ribbon-nav .nav-left{
+  margin-left:0 !important;
+  gap:28px !important;
+}
+
+/* tassel logo aur home ke middle */
+.ribbon-tassel.left,
+.ribbon-tassel-img.left{
+  left:128px !important;
+  bottom:-55px !important;
+}
+
+@media(max-width:600px){
+  .ribbon-nav{
+    padding-left:112px !important;
+  }
+
+  .ribbon-nav .nav-logo{
+    width:88px !important;
+    height:88px !important;
+    left:8px !important;
+  }
+
+  .ribbon-tassel.left,
+  .ribbon-tassel-img.left{
+    left:94px !important;
+    bottom:-45px !important;
+  }
+}
