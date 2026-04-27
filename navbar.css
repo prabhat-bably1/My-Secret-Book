@@ -386,7 +386,7 @@
 /* 🔥 LOGO FIX LEFT */
 .logo-box{
     position: absolute;
-    left: 40px;   /* LEFT EDGE FIX */
+    left: -40px;   /* LEFT EDGE FIX */
     top: 50%;
     transform: translateY(-50%);
     z-index: 10;
