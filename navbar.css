@@ -542,7 +542,7 @@
 /* LOGO KO NAVBAR SE BAHAR NIKALO */
 .ribbon-nav .nav-logo{
   position:absolute !important;
-  left:-220px !important;   /* 👈 YE MAIN CHEEZ HAI */
+  left:-200px !important;   /* 👈 YE MAIN CHEEZ HAI */
   top:50% !important;
   transform:translateY(-50%) !important;
 
