@@ -565,14 +565,16 @@
 }
 .hanging-book{
     position: absolute;
-    top: 65px;        /* navbar ke niche */
-    left:80%;
-    transform: translateX(-50%);
-    width: 80px;      /* size adjust kar sakte ho */
+    top: 65px;
+
+    right: 80px;   /* 👉 MORE ke paas lane ke liye */
+    left: auto;
+
+    width: 80px;
     z-index: 10;
+
     animation: swing 3s ease-in-out infinite;
 }
-
 /* Swing animation */
 @keyframes swing {
     0% { transform: translateX(-50%) rotate(3deg); }
