@@ -566,7 +566,7 @@
 .hanging-book{
     position: absolute;
     top: 65px;        /* navbar ke niche */
-    right: 40%;
+    right:80%;
     transform: translateX(-50%);
     width: 80px;      /* size adjust kar sakte ho */
     z-index: 10;
