@@ -581,3 +581,10 @@
     50% { transform: translateX(-50%) rotate(-3deg); }
     100% { transform: translateX(-50%) rotate(3deg); }
 }
+.hanging-book{
+    background: transparent;   /* remove white box */
+}
+
+.hanging-book img{
+    background: transparent;
+}
