@@ -563,3 +563,19 @@
 .ribbon-tassel-img.left{
   left:100px !important;
 }
+.hanging-book{
+    position: absolute;
+    top: 65px;        /* navbar ke niche */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;      /* size adjust kar sakte ho */
+    z-index: 10;
+    animation: swing 3s ease-in-out infinite;
+}
+
+/* Swing animation */
+@keyframes swing {
+    0% { transform: translateX(-50%) rotate(3deg); }
+    50% { transform: translateX(-50%) rotate(-3deg); }
+    100% { transform: translateX(-50%) rotate(3deg); }
+}
